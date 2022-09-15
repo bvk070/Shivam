@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment1">
+    <fragment
+        android:id="@+id/fragment1"
+        android:name="com.sadiwala.shivam.ui.main.FragmentHome"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.sadiwala.shivam.ui.main.FragmentOrders"
+        android:label="@string/orders"
+        tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/fragment3"
+        android:name="com.sadiwala.shivam.ui.main.FragmentCustomers"
+        android:label="@string/customers"
+        tools:layout="@layout/fragment_customers" />
+</navigation>

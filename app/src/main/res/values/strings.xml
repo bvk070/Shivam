@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Shivam</string>
+
+    <string name="home">Home</string>
+    <string name="orders">Orders</string>
+    <string name="customers">Customers</string>
+
 </resources>
