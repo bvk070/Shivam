@@ -4,5 +4,7 @@
     <string name="home">Home</string>
     <string name="orders">Orders</string>
     <string name="customers">Customers</string>
+    <string name="add_order">Add Order</string>
+    <string name="add_customer">Add Customer</string>
 
 </resources>
