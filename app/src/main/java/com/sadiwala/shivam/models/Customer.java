@@ -1,6 +1,7 @@
 package com.sadiwala.shivam.models;
 
 import com.google.firebase.firestore.Exclude;
+import com.sadiwala.shivam.inputfields.InputFieldValue;
 
 public class Customer {
 
@@ -10,59 +11,59 @@ public class Customer {
     public static final String AREA = "area";
     public static final String PINCODE = "pincode";
 
-    private int id;
-    private String name;
-    private String mobile;
-    private String address;
-    private String area;
-    private String pincode;
+    private String id;
+    private InputFieldValue name;
+    private InputFieldValue mobile;
+    private InputFieldValue address;
+    private InputFieldValue area;
+    private InputFieldValue pincode;
 
     @Exclude
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getName() {
+    public InputFieldValue getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(InputFieldValue name) {
         this.name = name;
     }
 
-    public String getMobile() {
+    public InputFieldValue getMobile() {
         return mobile;
     }
 
-    public void setMobile(String mobile) {
+    public void setMobile(InputFieldValue mobile) {
         this.mobile = mobile;
     }
 
-    public String getAddress() {
+    public InputFieldValue getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(InputFieldValue address) {
         this.address = address;
     }
 
-    public String getArea() {
+    public InputFieldValue getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(InputFieldValue area) {
         this.area = area;
     }
 
-    public String getPincode() {
+    public InputFieldValue getPincode() {
         return pincode;
     }
 
-    public void setPincode(String pincode) {
+    public void setPincode(InputFieldValue pincode) {
         this.pincode = pincode;
     }
 }

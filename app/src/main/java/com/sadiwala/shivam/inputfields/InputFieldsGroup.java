@@ -338,7 +338,7 @@ public class InputFieldsGroup extends ParentInputField implements ParentInputFie
 
                 Map<String, Object> meta = mInputFields.get(i).getMeta();
                 if (meta != null) {
-                    inputFieldValue.setMeta(meta);
+//                    inputFieldValue.setMeta(meta);
                 }
                 inputFieldValues.add(inputFieldValue);
             }

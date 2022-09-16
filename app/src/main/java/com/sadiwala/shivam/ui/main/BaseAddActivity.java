@@ -92,7 +92,7 @@ public class BaseAddActivity extends BaseActivity {
     }
 
     protected void addView(View inputFieldFormView) {
-        ((ViewGroup) findViewById(R.id.add_container)).addView(inputFieldFormView);
+        ((ViewGroup) findViewById(R.id.input_fields)).addView(inputFieldFormView);
     }
 
     public void submit(View view) {
@@ -130,11 +130,11 @@ public class BaseAddActivity extends BaseActivity {
         HashMap<String, InputFieldValue> hashMap = prepareInputValues();
 
         Customer customer = new Customer();
-        customer.setName(hashMap.get(Customer.NAME).getValue());
-        customer.setMobile(hashMap.get(Customer.MOBILE).getValue());
-        customer.setAddress(hashMap.get(Customer.ADDRESS).getValue());
-        customer.setArea(hashMap.get(Customer.AREA).getValue());
-        customer.setPincode(hashMap.get(Customer.PINCODE).getValue());
+        customer.setName(hashMap.get(Customer.NAME));
+        customer.setMobile(hashMap.get(Customer.MOBILE));
+        customer.setAddress(hashMap.get(Customer.ADDRESS));
+        customer.setArea(hashMap.get(Customer.AREA));
+        customer.setPincode(hashMap.get(Customer.PINCODE));
 
         CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(TABLE_CUSTOMERS);
         collectionReference.add(customer).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

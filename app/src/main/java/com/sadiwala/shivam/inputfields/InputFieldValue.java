@@ -2,15 +2,12 @@ package com.sadiwala.shivam.inputfields;
 
 import android.text.Html;
 
-import java.util.Map;
-
 
 public class InputFieldValue {
     private String type;
     private String code;
     private String name;
     private String value;
-    private Map<String, Object> meta;
 
     public InputFieldValue(String type, String code, String name, String value) {
         this.type = type;
@@ -45,17 +42,6 @@ public class InputFieldValue {
         return value;
     }
 
-    public String getRawValue() {
-        return value;
-    }
-
-
-    @Override
-    public String toString() {
-        return name;
-    }
-
-
     public void setType(String type) {
         this.type = type;
     }
@@ -72,11 +58,4 @@ public class InputFieldValue {
         this.value = value;
     }
 
-    public Map<String, Object> getMeta() {
-        return meta;
-    }
-
-    public void setMeta(Map<String, Object> meta) {
-        this.meta = meta;
-    }
 }

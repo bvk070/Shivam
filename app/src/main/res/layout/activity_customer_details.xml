@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.main.MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/white" />
+
+    <RelativeLayout
+        android:id="@+id/profileView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_margin="@dimen/medium_padding"
+        android:minHeight="@dimen/icon_size_40">
+
+        <RelativeLayout
+            android:id="@+id/rlCall"
+            android:layout_width="@dimen/icon_size_40"
+            android:layout_height="@dimen/icon_size_40"
+            android:layout_alignParentRight="true">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="@dimen/padding_20dp"
+                android:layout_height="@dimen/padding_20dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_phone_call_icon"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+
+        </RelativeLayout>
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/progress_loader_size_24sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/form"
+        style="@style/MatchParent"
+        android:layout_below="@+id/profileView"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:id="@+id/input_fields"
+            style="@style/Default"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+</RelativeLayout>

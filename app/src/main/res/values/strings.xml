@@ -8,7 +8,9 @@
     <string name="add_customer">Add Customer</string>
     <string name="customer_added">Customer is added successfully</string>
     <string name="customer_failed">Failed to add customer, please try again</string>
-
+    <string name="customer_details">Details</string>
+    <string name="error_required_permissions_not_available">Shivam doesn’t have mandatory permissions. To enable access, go to Settings.</string>
+    <string name="no_call_facility">Calling facility is not available for this device.</string>
 
 
     <string name="left_icon" translatable="false">Left Icon</string>

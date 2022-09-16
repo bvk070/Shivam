@@ -30,4 +30,10 @@ public class FragmentHome extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle(getString(R.string.home));
+    }
+
 }

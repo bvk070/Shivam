@@ -15,5 +15,9 @@ public class AaryaConstants {
     public static final String ONE_TIME_AARYA_WORK_MANAGER_TAG = "onetime_work_manager";
 
     public static final int AARYA_FOREGROUND_SERVICE_NOTIFICATION_ID = 1111;
+    public static final int REQUEST_CODE_USER_PERMISSIONS = 60418;
+    public static final int REQUEST_CODE_ACTIVITY_UPDATE = 60415;
+    public static final int PERMISSIONS_REQUEST_PHONE_CALL = 31;
+    public static final int USER_PERMISSION_REQUEST_RETRY_COUNT = 2;
 
 }
