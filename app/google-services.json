@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "457587955197",
+    "project_id": "shivam-b35ed",
+    "storage_bucket": "shivam-b35ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457587955197:android:44153fed8922c24fd3b594",
+        "android_client_info": {
+          "package_name": "com.sadiwala.shivam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457587955197-rsipmcb8dqnu6fi9876veurbliasrpg1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATLohew6Aey2OUTiuFZWlOAN6eGpoor0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "457587955197-rsipmcb8dqnu6fi9876veurbliasrpg1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

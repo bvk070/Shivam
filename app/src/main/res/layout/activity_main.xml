@@ -23,12 +23,19 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/navigation_menu" />
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@+id/activity_main_bottom_navigation_view"
+        android:background="@color/light_white" />
+
     <fragment
         android:id="@+id/activity_main_nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/activity_main_bottom_navigation_view"
+        android:layout_above="@+id/view"
         android:layout_below="@+id/toolbar"
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
