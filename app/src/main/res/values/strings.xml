@@ -6,6 +6,8 @@
     <string name="customers">Customers</string>
     <string name="add_order">Add Order</string>
     <string name="add_customer">Add Customer</string>
+    <string name="customer_added">Customer is added successfully</string>
+    <string name="customer_failed">Failed to add customer, please try again</string>
 
 
 

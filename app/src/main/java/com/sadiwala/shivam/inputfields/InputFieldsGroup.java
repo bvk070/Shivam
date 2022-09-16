@@ -200,11 +200,21 @@ public class InputFieldsGroup extends ParentInputField implements ParentInputFie
                         mInputFieldsContainerLayout.addView(container);
                     }
                 }
+
+
                 //calling extended view which will add a download button if server validation is required.
                 View inputFieldView;
-                mInputFieldsGroupLayout.setPadding(UiUtil.getDpToPixel(1), UiUtil.getDpToPixel(1), UiUtil.getDpToPixel(1), UiUtil.getDpToPixel(1));
-                mInputFieldsGroupLayout.setBackgroundResource(R.drawable.bg_card_grey_border);
-                inputFieldView = inputField.getDisplayView();
+
+                if (inputFieldType.isReadOnly()) {
+                    inputFieldView = inputField.getReadOnlyView();
+                } else if (EditMode.WRITE.equals(mMode)) {
+                    inputFieldView = inputField.getExtendedView(prePopulateValue);
+                } else {
+                    mInputFieldsGroupLayout.setPadding(UiUtil.getDpToPixel(1), UiUtil.getDpToPixel(1), UiUtil.getDpToPixel(1), UiUtil.getDpToPixel(1));
+                    mInputFieldsGroupLayout.setBackgroundResource(R.drawable.bg_card_grey_border);
+                    inputFieldView = inputField.getDisplayView();
+                }
+
                 if (inputFieldView != null) {
                     int dpToPixel = UiUtil.getDpToPixel(16);
                     mInputFieldsContainerLayout.addView(inputFieldView);
@@ -288,7 +298,6 @@ public class InputFieldsGroup extends ParentInputField implements ParentInputFie
     public String getOnlineValidationValue() {
         return null;
     }
-
 
     public List<InputFieldValue> getInputFieldValue() {
         if (mInputFieldTypes == null) {

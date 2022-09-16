@@ -30,16 +30,4 @@ public class FragmentHome extends Fragment {
         return view;
     }
 
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(TABLE_CUSTOMERS);
-        Customer customer = new Customer();
-        customer.setId(1);
-        customer.setName("Bhavik");
-        collectionReference.add(customer);
-
-    }
 }

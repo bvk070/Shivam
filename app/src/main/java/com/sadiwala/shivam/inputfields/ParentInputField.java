@@ -34,7 +34,6 @@ public abstract class ParentInputField implements InputField {
     private List<InputFieldValue> mPrepopulateValueList;
     private ImageView mFetchButton;
     protected boolean mIsInputFieldPopulated = false;
-    protected RecyclerView mieChipsRecyclerView;
 
     public ParentInputField(AppCompatActivity activity, EventBus bus, EditMode mode, String startState, List<InputFieldValue> prepopulateValueList) {
         if (activity != null) {
@@ -43,15 +42,15 @@ public abstract class ParentInputField implements InputField {
             Log.e(TAG, "Context is null");
         }
 
-        if (bus != null) {
-            mBus = bus;
-            if (mBus.isRegistered(ParentInputField.this)) {
-                mBus.unregister(ParentInputField.this);
-            }
-            mBus.register(ParentInputField.this);
-        } else {
-            Log.e(TAG, "Bus is null");
-        }
+//        if (bus != null) {
+//            mBus = bus;
+//            if (mBus.isRegistered(ParentInputField.this)) {
+//                mBus.unregister(ParentInputField.this);
+//            }
+//            mBus.register(ParentInputField.this);
+//        } else {
+//            Log.e(TAG, "Bus is null");
+//        }
 
         mMode = mode;
         mStartState = startState;
@@ -145,6 +144,20 @@ public abstract class ParentInputField implements InputField {
         value.addView(displayValueView);
 
         return container;
+    }
+
+    /**
+     * This method will add download button if input field has "oif_options".
+     * if we need diff views based on diff type need to implement here.
+     *
+     * @param prePopulateValue
+     */
+    public View getExtendedView(String prePopulateValue) {
+        if (mInputFieldType != null && mInputFieldType.isReadOnly()) {
+            return getReadOnlyView();
+        } else {
+            return getFormView();
+        }
     }
 
     @Override

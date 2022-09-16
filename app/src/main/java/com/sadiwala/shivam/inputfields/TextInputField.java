@@ -41,7 +41,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -127,10 +126,6 @@ public class TextInputField extends ParentInputField {
                     btnClear.setVisibility(View.VISIBLE);
                 }
 
-                if (!TextUtils.isEmpty(s) && s.length() > 0) {
-                    mieChipsRecyclerView.setVisibility(View.VISIBLE);
-                }
-
             }
 
             @Override
@@ -155,7 +150,6 @@ public class TextInputField extends ParentInputField {
             @Override
             public void onClick(View view) {
                 mEditText.setText("");
-                mieChipsRecyclerView.setVisibility(View.GONE);
             }
         });
 

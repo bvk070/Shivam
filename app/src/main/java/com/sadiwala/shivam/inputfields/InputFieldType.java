@@ -240,7 +240,7 @@ public class InputFieldType {
     }
 
     public boolean isReadOnly() {
-        return readOnly ;
+        return readOnly;
     }
 
     /**
@@ -303,19 +303,16 @@ public class InputFieldType {
 
         if (INPUT_FIELD_TYPE_TEXT.equals(getType())) {
             return new TextInputField(activity, savedInstanceState, prePopulateValue, this, bus, mode, startState);
-
+        } else if (INPUT_FIELD_TYPE_PHONE.equals(getType())) {
+            return new TextInputField(activity, savedInstanceState, prePopulateValue, this, bus, mode, startState);
         } else if (INPUT_FIELD_TYPE_LABEL.equals(getType())) {
             return new LabelInputField(activity, prePopulateValue, this, bus, mode, startState);
-
         } else if (INPUT_FIELD_TYPE_SENTENCE.equals(getType())) {
             return new TextInputField(activity, savedInstanceState, prePopulateValue, this, bus, mode, startState);
-
         } else if (INPUT_FIELD_TYPE_NUMBER.equals(getType())) {
             return new TextInputField(activity, savedInstanceState, prePopulateValue, this, bus, mode, startState);
-
         } else if (INPUT_FIELD_TYPE_DECIMAL.equals(getType())) {
             return new TextInputField(activity, savedInstanceState, prePopulateValue, this, bus, mode, startState);
-
         } else {
             return null;
         }
