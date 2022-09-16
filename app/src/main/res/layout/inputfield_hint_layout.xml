@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Default"
+    android:orientation="vertical">
+
+    <com.sadiwala.shivam.util.CustomTextView
+        android:id="@+id/tvCount"
+        style="@style/WrapContent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingTop="@dimen/medium_padding"
+        android:paddingBottom="@dimen/tiny_padding"
+        android:textColor="@color/card_text_title"
+        android:textSize="@dimen/vymo_normal_small_font"
+        android:visibility="gone" />
+
+    <com.sadiwala.shivam.util.CustomTextView
+        android:id="@+id/label"
+        style="@style/SubTitle"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/tvCount"
+        android:paddingTop="@dimen/medium_padding"
+        android:paddingBottom="@dimen/tiny_padding"
+        android:singleLine="false"
+        android:text="New Text"
+        android:textColor="@color/card_text_title"
+        android:textSize="@dimen/vymo_normal_small_font" />
+
+</RelativeLayout>

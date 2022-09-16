@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.main.MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdd"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navigation_item_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/red"
+        android:text="Add"
+        android:textColor="@color/white" />
+
+    <ScrollView
+        android:id="@+id/form"
+        style="@style/MatchParent"
+        android:layout_above="@+id/btnAdd"
+        android:layout_below="@+id/toolbar"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:id="@+id/add_container"
+            style="@style/Default"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+</RelativeLayout>

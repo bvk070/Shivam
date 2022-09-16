@@ -6,51 +6,51 @@
         <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
     </style>
 
-    <style name="MatchParent">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-    </style>
+<!--    <style name="MatchParent">-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">match_parent</item>-->
+<!--    </style>-->
 
-    <style name="WrapContent">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
+<!--    <style name="WrapContent">-->
+<!--        <item name="android:layout_width">wrap_content</item>-->
+<!--        <item name="android:layout_height">wrap_content</item>-->
+<!--    </style>-->
 
-    <style name="Default">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
+<!--    <style name="Default">-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">wrap_content</item>-->
+<!--    </style>-->
 
-    <style name="Text" parent="Default" />
+<!--    <style name="Text" parent="Default" />-->
 
-    <style name="Text.SingleLine">
-        <item name="android:singleLine">true</item>
-        <item name="android:ellipsize">end</item>
-    </style>
+<!--    <style name="Text.SingleLine">-->
+<!--        <item name="android:singleLine">true</item>-->
+<!--        <item name="android:ellipsize">end</item>-->
+<!--    </style>-->
 
-    <style name="SubTitle" parent="Text.SingleLine">
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/text_color_3</item>
-    </style>
+<!--    <style name="SubTitle" parent="Text.SingleLine">-->
+<!--        <item name="android:textStyle">normal</item>-->
+<!--        <item name="android:textSize">14sp</item>-->
+<!--        <item name="android:textColor">@color/text_color_3</item>-->
+<!--    </style>-->
 
-    <style name="SubTitle.Dark" parent="SubTitle">
-        <item name="android:textColor">@color/text_color_3</item>
-    </style>
+<!--    <style name="SubTitle.Dark" parent="SubTitle">-->
+<!--        <item name="android:textColor">@color/text_color_3</item>-->
+<!--    </style>-->
 
-    <style name="SelectionInputListItem" parent="Text.SingleLine">
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">@dimen/text_size_16sp</item>
-        <item name="android:textColor">@color/text_color_7</item>
-    </style>
+<!--    <style name="SelectionInputListItem" parent="Text.SingleLine">-->
+<!--        <item name="android:textStyle">normal</item>-->
+<!--        <item name="android:textSize">@dimen/text_size_16sp</item>-->
+<!--        <item name="android:textColor">@color/text_color_7</item>-->
+<!--    </style>-->
 
-    <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
-        <!-- Query Text Color -->
-        <item name="android:textColorPrimary">@color/white</item>
-        <!-- Hint Color -->
-        <item name="android:textColorHint">@color/light_white</item>
-        <!-- Icon Color -->
-        <item name="android:tint">@color/white</item>
-    </style>
+<!--    <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >-->
+<!--        &lt;!&ndash; Query Text Color &ndash;&gt;-->
+<!--        <item name="android:textColorPrimary">@color/white</item>-->
+<!--        &lt;!&ndash; Hint Color &ndash;&gt;-->
+<!--        <item name="android:textColorHint">@color/light_white</item>-->
+<!--        &lt;!&ndash; Icon Color &ndash;&gt;-->
+<!--        <item name="android:tint">@color/white</item>-->
+<!--    </style>-->
 
 </resources>

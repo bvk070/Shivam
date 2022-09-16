@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Default"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/padding_6dp">
+
+    <com.sadiwala.shivam.util.CustomTextView
+        android:id="@+id/label"
+        style="@style/SubTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginRight="@dimen/padding_6dp"
+        android:layout_weight="0.3"
+        android:maxLines="3"
+        android:singleLine="false"
+        android:textColor="@color/card_text_title"
+        android:textSize="@dimen/vymo_font_c"
+        tools:text="Hint of InputField" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_weight="0.7"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/left_icon"
+            android:layout_width="@dimen/icon_size_16"
+            android:layout_height="@dimen/icon_size_16"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/small_padding"
+            android:contentDescription="@string/left_icon"
+            android:visibility="gone" />
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/value"
+            style="@style/SubTitle.Dark"
+            android:layout_gravity="top"
+            android:gravity="center_vertical"
+            android:singleLine="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_14sp"
+            tools:text="Value of InputField" />
+
+    </LinearLayout>
+
+</LinearLayout>

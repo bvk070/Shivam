@@ -183,4 +183,30 @@
     <dimen name="ftuj_custom_text">28dp</dimen>
 
     <dimen name="dimen_220dp">220dp</dimen>
+
+    <!--Vymo 2.0 version-->
+    <dimen name="vymo_a">24sp</dimen>
+    <dimen name="vymo_b">20sp</dimen>
+    <dimen name="vymo_c">14sp</dimen>
+    <dimen name="vymo_d">36sp</dimen>
+    <dimen name="vymo_primary_text">@dimen/vymo_b</dimen>
+    <dimen name="vymo_secondary_text">@dimen/vymo_c</dimen>
+    <dimen name="vymo_very_large_text">72sp</dimen>
+    <dimen name="vymo_large_text">48sp</dimen>
+    <dimen name="vymo_medium_text">28sp</dimen>
+    <dimen name="vymo_tiny_text">12sp</dimen>
+    <!--After war room meeting all SPs are relative to 480 ppi screen-->
+    <dimen name="vymo_font_a">25sp</dimen><!--75px-->
+    <dimen name="vymo_font_b">20sp</dimen><!--60px-->
+    <dimen name="vymo_font_c">13sp</dimen><!--40px-->
+    <dimen name="vymo_font_d">15sp</dimen><!--45px-->
+    <dimen name="vymo_font_e">10sp</dimen>
+    <dimen name="vymo_font_jumbo">50sp</dimen><!--300px-->
+    <dimen name="vymo_padding_53px">9dp</dimen><!--53px/2-->
+    <dimen name="vymo_padding_50px">8dp</dimen><!--50px/2-->
+    <dimen name="vymo_padding_80px">14dp</dimen><!--80px/2-->
+    <dimen name="vymo_padding_top_for_metrics_figure">22dp</dimen><!--130px/2-->
+    <dimen name="vymo_padding_bottom_for_metrics_figure">24dp</dimen><!--140px/2-->
+    <dimen name="vymo_normal_small_font">12sp</dimen>
+
 </resources>

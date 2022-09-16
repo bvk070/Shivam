@@ -7,4 +7,20 @@
     <string name="add_order">Add Order</string>
     <string name="add_customer">Add Customer</string>
 
+
+
+    <string name="left_icon" translatable="false">Left Icon</string>
+    <string name="clear">Clear</string>
+    <string name="error_required">Required</string>
+    <string name="empty">&#160;</string>
+    <string name="error_network">No connectivity. Please try later.</string>
+    <string name="error_invalid">Invalid %1$s</string>
+    <string name="error_less_digit">%1$s digits</string>
+    <string name="error_less_letters">%1$s letters</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="error">Error</string>
+    <string name="no_data">No records found</string>
+    <string name="view_all">View All (%s)</string>
+    <string name="add_new">+ Add new</string>
+
 </resources>
