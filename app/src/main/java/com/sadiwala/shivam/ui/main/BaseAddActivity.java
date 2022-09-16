@@ -1,6 +1,7 @@
 package com.sadiwala.shivam.ui.main;
 
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.TABLE_CUSTOMERS;
+import static com.sadiwala.shivam.network.FirebaseDatabaseController.TABLE_ORDERS;
 
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.sadiwala.shivam.base.AppData;
 import com.sadiwala.shivam.inputfields.InputField;
 import com.sadiwala.shivam.inputfields.InputFieldValue;
 import com.sadiwala.shivam.models.Customer;
+import com.sadiwala.shivam.models.Order;
 import com.sadiwala.shivam.ui.BaseActivity;
 import com.sadiwala.shivam.ui.Customer.AddCustomerActivity;
 import com.sadiwala.shivam.util.Gson;
@@ -38,6 +40,8 @@ public class BaseAddActivity extends BaseActivity {
     protected static final String INPUTS = "inputs";
     private EventBus mBus;
     private Map<String, InputField> mInputFields = new HashMap<>();
+
+    protected String productType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,6 +99,14 @@ public class BaseAddActivity extends BaseActivity {
         ((ViewGroup) findViewById(R.id.input_fields)).addView(inputFieldFormView);
     }
 
+    protected void disableSubmitButton() {
+        findViewById(R.id.submit).setEnabled(false);
+    }
+
+    protected void enableSubmitButton() {
+        findViewById(R.id.submit).setEnabled(true);
+    }
+
     public void submit(View view) {
 
         if (mInputFields != null && mInputFields.size() > 0) {
@@ -110,6 +122,9 @@ public class BaseAddActivity extends BaseActivity {
                 if (this instanceof AddCustomerActivity) {
                     disableSubmitButton();
                     addCustomer();
+                } else {
+                    disableSubmitButton();
+                    addOrder();
                 }
             }
 
@@ -117,12 +132,43 @@ public class BaseAddActivity extends BaseActivity {
 
     }
 
-    protected void disableSubmitButton() {
-        findViewById(R.id.submit).setEnabled(false);
-    }
+    private void addOrder() {
 
-    protected void enableSubmitButton() {
-        findViewById(R.id.submit).setEnabled(true);
+        HashMap<String, InputFieldValue> hashMap = prepareInputValues();
+
+        Order order = new Order();
+        order.setTimestamp(System.currentTimeMillis());
+        order.setType(productType);
+        order.setCustomer(new Customer());
+
+        order.setShoulder(hashMap.get(Order.SHOULDER));
+        order.setChest(hashMap.get(Order.CHEST));
+        order.setWaist(hashMap.get(Order.WAIST));
+        order.setSleeve(hashMap.get(Order.SLEEVE));
+        order.setLength(hashMap.get(Order.LENGTH));
+        order.setNeckType(hashMap.get(Order.NECK_TYPE));
+        order.setNeckSize(hashMap.get(Order.NECK_SIZE));
+        order.setPattern(hashMap.get(Order.PATTERN));
+        order.setPocket(hashMap.get(Order.POCKET));
+        order.setPocketSize(hashMap.get(Order.POCKET_SIZE));
+        order.setMundho(hashMap.get(Order.MUNDHO));
+        order.setFitting(hashMap.get(Order.FITTING));
+
+        CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(TABLE_ORDERS);
+        collectionReference.add(order).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getApplicationContext(), getString(R.string.order_added), Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), getString(R.string.order_failed), Toast.LENGTH_LONG).show();
+                enableSubmitButton();
+            }
+        });
+
     }
 
     private void addCustomer() {
@@ -154,7 +200,7 @@ public class BaseAddActivity extends BaseActivity {
     }
 
     private HashMap<String, InputFieldValue> prepareInputValues() {
-        HashMap<String, InputFieldValue> hashMap = AppData.getCustomerEmptyInputFieldValues();
+        HashMap<String, InputFieldValue> hashMap = AppData.getEmptyInputFieldValues();
         String inputvalues = getInputFieldValue(INPUTS);
         ArrayList<InputFieldValue> inputFieldValues = Gson.getInstance().fromJson(inputvalues, new TypeToken<List<InputFieldValue>>() {
         }.getType());

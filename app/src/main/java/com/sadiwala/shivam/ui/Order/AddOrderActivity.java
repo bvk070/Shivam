@@ -1,4 +1,4 @@
-package com.sadiwala.shivam.ui.Customer;
+package com.sadiwala.shivam.ui.Order;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,12 +17,14 @@ import com.sadiwala.shivam.ui.main.BaseAddActivity;
 
 import java.util.ArrayList;
 
-public class AddCustomerActivity extends BaseAddActivity {
+public class AddOrderActivity extends BaseAddActivity {
+
+    public static final String PRODUCT_TYPE_DATA = "product_type_data";
 
     private Toolbar mToolbar;
 
     public static void start(Activity activity, Bundle bundle) {
-        Intent intent = new Intent(activity, AddCustomerActivity.class);
+        Intent intent = new Intent(activity, AddOrderActivity.class);
         intent.putExtras(bundle);
         activity.startActivity(intent);
     }
@@ -31,6 +33,11 @@ public class AddCustomerActivity extends BaseAddActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+
+        if (getIntent().getExtras() != null) {
+            productType = getIntent().getStringExtra(PRODUCT_TYPE_DATA);
+        }
+
         init();
         loadGroupView(savedInstanceState);
     }
@@ -40,20 +47,28 @@ public class AddCustomerActivity extends BaseAddActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        setTitle(getString(R.string.add_customer));
     }
 
     private void loadGroupView(Bundle savedInstanceState) {
-        ArrayList<InputFieldType> inputFieldTypes = AppData.getCustomerForm();
-        InputFieldsGroup inputFieldsGroup = new InputFieldsGroup(this, savedInstanceState, "code", "Customer Details",
-                null, inputFieldTypes, InputField.EditMode.WRITE, false, getBus(), null, null);
 
         ArrayList<InputFieldsGroup> inputFieldsGroups = new ArrayList<>();
-        inputFieldsGroups.add(inputFieldsGroup);
-        InputFieldsGroupsContainer groupView = new InputFieldsGroupsContainer(this, inputFieldsGroups, getBus(), InputField.EditMode.WRITE, null);
 
+        if (AppData.PRODUCT_TYPE.ALINE_GOWN.toString().equals(productType)) {
+            setTitle(getString(R.string.add_aline));
+
+            ArrayList<InputFieldType> inputFieldTypes = AppData.getAlineGownForm();
+            InputFieldsGroup inputFieldsGroup = new InputFieldsGroup(this, savedInstanceState, "code", "Aline Gown Info",
+                    null, inputFieldTypes, InputField.EditMode.WRITE, false, getBus(), null, null);
+            inputFieldsGroups.add(inputFieldsGroup);
+
+        } else if (AppData.PRODUCT_TYPE.CHAPATTI_GOWN.toString().equals(productType)) {
+            setTitle(getString(R.string.add_chapatti));
+        } else if (AppData.PRODUCT_TYPE.NIGHT_DRESS.toString().equals(productType)) {
+            setTitle(getString(R.string.add_nightdress));
+        }
+
+        InputFieldsGroupsContainer groupView = new InputFieldsGroupsContainer(this, inputFieldsGroups, getBus(), InputField.EditMode.WRITE, null);
         addInputField(INPUTS, groupView);
     }
-
 
 }

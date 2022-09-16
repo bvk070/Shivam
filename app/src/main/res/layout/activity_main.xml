@@ -62,11 +62,33 @@
         fab:menu_showShadow="true">
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/addOrder"
+            android:id="@+id/addAlineGown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_add_24"
-            fab:fab_label="@string/add_order"
+            fab:fab_label="@string/add_aline"
+            fab:fab_size="mini"
+            fab:menu_colorNormal="@color/red"
+            fab:menu_shadowColor="@color/red"
+            fab:menu_showShadow="true" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/addChapattiGown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_24"
+            fab:fab_label="@string/add_chapatti"
+            fab:fab_size="mini"
+            fab:menu_colorNormal="@color/red"
+            fab:menu_shadowColor="@color/red"
+            fab:menu_showShadow="true" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/addNightDress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_24"
+            fab:fab_label="@string/add_nightdress"
             fab:fab_size="mini"
             fab:menu_colorNormal="@color/red"
             fab:menu_shadowColor="@color/red"

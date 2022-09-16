@@ -4,6 +4,7 @@ public class FirebaseDatabaseController {
 
     private static final String TAG = FirebaseDatabaseController.class.getName();
     public static final String TABLE_CUSTOMERS = "customers";
+    public static final String TABLE_ORDERS = "orders";
 
 
 }
