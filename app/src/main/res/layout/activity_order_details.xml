@@ -24,11 +24,46 @@
         android:minHeight="@dimen/icon_size_40">
 
         <RelativeLayout
+            android:id="@+id/rlDownload"
+            android:layout_width="@dimen/icon_size_40"
+            android:layout_height="@dimen/icon_size_40"
+            android:layout_alignParentRight="true">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="@dimen/padding_20dp"
+                android:layout_height="@dimen/padding_20dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_download"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlWhatsApp"
+            android:layout_width="@dimen/icon_size_40"
+            android:layout_height="@dimen/icon_size_40"
+            android:layout_marginRight="@dimen/small_padding"
+            android:layout_toLeftOf="@+id/rlDownload">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_whatsapp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/rlCall"
             android:layout_width="@dimen/icon_size_40"
             android:layout_height="@dimen/icon_size_40"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/small_padding">
+            android:layout_marginRight="@dimen/small_padding"
+            android:layout_toLeftOf="@+id/rlWhatsApp">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:layout_width="@dimen/padding_20dp"

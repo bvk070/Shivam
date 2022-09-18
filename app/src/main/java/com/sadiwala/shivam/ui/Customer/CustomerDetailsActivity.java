@@ -1,5 +1,7 @@
 package com.sadiwala.shivam.ui.Customer;
 
+import static com.sadiwala.shivam.base.AppData.prepareCustomerGroups;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -84,7 +86,7 @@ public class CustomerDetailsActivity extends BaseActivity {
 
         ArrayList<InputFieldType> inputFieldTypes = new ArrayList<>();
         ArrayList<InputFieldValue> inputFieldValues = new ArrayList<>();
-        prepareGroups(inputFieldTypes, inputFieldValues);
+        prepareCustomerGroups(inputFieldTypes, inputFieldValues, customer);
 
         InputFieldsGroup inputFieldsGroup = new InputFieldsGroup(this, savedInstanceState, "code", "Other Info",
                 inputFieldValues, inputFieldTypes, InputField.EditMode.READ, false, getBus(), null, null);
@@ -94,36 +96,6 @@ public class CustomerDetailsActivity extends BaseActivity {
         InputFieldsGroupsContainer groupView = new InputFieldsGroupsContainer(this, inputFieldsGroups, getBus(), InputField.EditMode.READ, null);
 
         ((ViewGroup) findViewById(R.id.input_fields)).addView(groupView.getDisplayView());
-    }
-
-    private void prepareGroups(ArrayList<InputFieldType> inputFieldTypes, ArrayList<InputFieldValue> inputFieldValues) {
-        if (customer == null) return;
-
-//        InputFieldValue customerName = customer.getName();
-//        inputFieldValues.add(customerName);
-//        InputFieldType customerNameType = new InputFieldType(customerName.getType(), customerName.getCode(), false, customerName.getName());
-//        inputFieldTypes.add(customerNameType);
-
-        InputFieldValue customerMobile = customer.getMobile();
-        inputFieldValues.add(customerMobile);
-        InputFieldType customerMobileType = new InputFieldType(customerMobile.getType(), customerMobile.getCode(), false, customerMobile.getName());
-        inputFieldTypes.add(customerMobileType);
-
-        InputFieldValue customerAddress = customer.getAddress();
-        inputFieldValues.add(customerAddress);
-        InputFieldType customerAddressType = new InputFieldType(customerAddress.getType(), customerAddress.getCode(), false, customerAddress.getName());
-        inputFieldTypes.add(customerAddressType);
-
-        InputFieldValue customerArea = customer.getArea();
-        inputFieldValues.add(customerArea);
-        InputFieldType customerAreaType = new InputFieldType(customerArea.getType(), customerArea.getCode(), false, customerArea.getName());
-        inputFieldTypes.add(customerAreaType);
-
-        InputFieldValue customerPincode = customer.getPincode();
-        inputFieldValues.add(customerPincode);
-        InputFieldType customerPincodeType = new InputFieldType(customerPincode.getType(), customerPincode.getCode(), false, customerPincode.getName());
-        inputFieldTypes.add(customerPincodeType);
-
     }
 
 }

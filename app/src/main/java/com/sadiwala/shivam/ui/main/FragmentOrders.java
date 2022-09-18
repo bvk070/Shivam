@@ -134,8 +134,8 @@ public class FragmentOrders extends Fragment {
             tvError.setVisibility(View.GONE);
             OrdersRecycleviewAdapter ordersRecycleviewAdapter = new OrdersRecycleviewAdapter(orders, getActivity());
             mRecyclerView.setAdapter(ordersRecycleviewAdapter);
-            DataController.setPrefOrders(orders);
         }
+        DataController.setPrefOrders(orders);
         progressBar.setVisibility(View.GONE);
         swipeRefreshLayout.setRefreshing(false);
     }

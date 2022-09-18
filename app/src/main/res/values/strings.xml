@@ -10,12 +10,17 @@
     <string name="add_customer">Add Customer</string>
     <string name="customer_added">Customer is added successfully</string>
     <string name="customer_failed">Failed to add customer, please try again</string>
-    <string name="customer_details">Details</string>
+    <string name="customer_details">Customer Details</string>
+    <string name="order_details">Order Details</string>
     <string name="error_required_permissions_not_available">Shivam doesn’t have mandatory permissions. To enable access, go to Settings.</string>
     <string name="no_call_facility">Calling facility is not available for this device.</string>
     <string name="order_added">Order is added successfully</string>
     <string name="order_failed">Failed to add order, please try again</string>
-
+    <string name="aline_gown">Align Gown</string>
+    <string name="chapati_down">Chapati Gown</string>
+    <string name="night_dress">Night Dress</string>
+    <string name="soemthing_wrong">Something went wrong, please try again later.</string>
+    <string name="screenshot_saved">Screenshot is saved</string>
 
 
     <string name="left_icon" translatable="false">Left Icon</string>

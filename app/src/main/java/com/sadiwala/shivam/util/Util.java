@@ -1,22 +1,35 @@
 package com.sadiwala.shivam.util;
 
+import static com.sadiwala.shivam.util.AaryaConstants.PERMISSIONS_WRITE_STORAGE;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.view.View;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.sadiwala.shivam.R;
+import com.sadiwala.shivam.base.PermissionManager;
 import com.sadiwala.shivam.base.ShivamApplication;
-import com.sadiwala.shivam.models.Customer;
-import com.sadiwala.shivam.models.common.CodeName;
-import com.sadiwala.shivam.preferences.DataController;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Util {
 
@@ -103,15 +116,97 @@ public class Util {
         return arr[0];
     }
 
-    public static CodeName[] getCachedCustomers() {
-        ArrayList<Customer> customers = DataController.getPrefCustomers();
-        CodeName[] codeNames = new CodeName[customers.size()];
-        for (int i = 0; i < customers.size(); i++) {
-            CodeName codeName = new CodeName(customers.get(i).getId(), customers.get(i).getName().getValue());
-            codeNames[i] = codeName;
-        }
-        return codeNames;
+    public static ArrayList<Method> findGetters(Class<?> c) {
+        ArrayList<Method> list = new ArrayList<Method>();
+        Method[] methods = c.getDeclaredMethods();
+        for (Method method : methods)
+            if (isGetter(method))
+                list.add(method);
+        return list;
     }
 
+    public static boolean isGetter(Method method) {
+        if (Modifier.isPublic(method.getModifiers()) &&
+                method.getParameterTypes().length == 0) {
+            if (method.getName().matches("^get[A-Z].*") &&
+                    !method.getReturnType().equals(void.class))
+                return true;
+            if (method.getName().matches("^is[A-Z].*") &&
+                    method.getReturnType().equals(boolean.class))
+                return true;
+        }
+        return false;
+    }
+
+    public static String getGetterMethodNameByFieldName(ArrayList<Method> methods, String fieldName) {
+        for (Method method : methods) {
+            String methodNameString = method.toString();
+            if (methodNameString.toLowerCase().contains(fieldName.toLowerCase())) {
+                String[] res = methodNameString.split("[.]");
+                if (res != null && res.length > 0) {
+                    return res[res.length - 1];
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * This method will open WhatsApp screen
+     *
+     * @param number
+     */
+    public static void sendWhatsAppMessage(Activity activity, String message, Uri imageUri) {
+        try {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, message);
+            sendIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+            sendIntent.setType("image/jpeg");
+            sendIntent.setPackage("com.whatsapp");
+            activity.startActivity(Intent.createChooser(sendIntent, ""));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String getScreenshot(Activity activity, View view) {
+
+        if (!(Build.VERSION.SDK_INT > Build.VERSION_CODES.R)) {
+            if (!PermissionManager.hasSelfPermissions(activity, new String[]{PermissionManager.WRITE_EXTERNAL_STORAGE})) {
+                ActivityCompat.requestPermissions(activity, new String[]{PermissionManager.WRITE_EXTERNAL_STORAGE}, PERMISSIONS_WRITE_STORAGE);
+                return null;
+            }
+        }
+
+        try {
+            // image naming and path  to include sd card  appending name you choose for file
+            String mPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + generateNewUUID() + ".jpg";
+
+            // create bitmap screen capture
+            view.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
+            view.setDrawingCacheEnabled(false);
+
+            File imageFile = new File(mPath);
+
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            int quality = 100;
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+            return mPath;
+        } catch (Throwable e) {
+            // Several error may come out with file handling or DOM
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static String generateNewUUID() {
+        return UUID.randomUUID().toString();
+    }
 
 }

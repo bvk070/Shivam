@@ -5,18 +5,20 @@ import com.sadiwala.shivam.inputfields.InputFieldValue;
 
 public class Order {
 
+    // Field Names
     public static final String SHOULDER = "shoulder";
     public static final String CHEST = "chest";
     public static final String WAIST = "waist";
     public static final String SLEEVE = "sleeve";
     public static final String LENGTH = "length";
-    public static final String NECK_TYPE = "neckType";
-    public static final String NECK_SIZE = "neckSize";
+    public static final String NECK_TYPE = "neck_type";
+    public static final String NECK_SIZE = "neck_size";
     public static final String PATTERN = "pattern";
-    public static final String POCKET_SIZE = "pocketSize";
+    public static final String POCKET_SIZE = "pocket_size";
     public static final String POCKET = "pocket";
     public static final String MUNDHO = "mundho";
     public static final String FITTING = "fitting";
+    public static final String DESIGN = "design";
 
     private String id;
     private String type;
@@ -34,6 +36,7 @@ public class Order {
     private InputFieldValue pocketSize;
     private InputFieldValue mundho;
     private InputFieldValue fitting;
+    private InputFieldValue design;
 
     @Exclude
     public String getId() {
@@ -163,4 +166,30 @@ public class Order {
     public void setFitting(InputFieldValue fitting) {
         this.fitting = fitting;
     }
+
+    public InputFieldValue getDesign() {
+        return design;
+    }
+
+    public void setDesign(InputFieldValue design) {
+        this.design = design;
+    }
+
+    // Getter Method Names
+    public static final String GETCUSTOMER = "getCustomer()";
+    public static final String GETSHOULDER = "getShoulder()";
+    public static final String GETWAIST = "getWaist()";
+    public static final String GETCHEST = "getChest()";
+    public static final String GETSLEEVE = "getSleeve()";
+    public static final String GETLENGTH = "getLength()";
+    public static final String GETNECKTYPE = "getNeckType()";
+    public static final String GETNECKSIZE = "getNeckSize()";
+    public static final String GETPATTERN = "getPattern()";
+    public static final String GETPOCKET = "getPocket()";
+    public static final String GETPOCKETSIZE = "getPocketSize()";
+    public static final String GETMUNDHO = "getMundho()";
+    public static final String GETFITTING = "getFitting()";
+    public static final String GETDESIGN = "getDesign()";
+
+
 }

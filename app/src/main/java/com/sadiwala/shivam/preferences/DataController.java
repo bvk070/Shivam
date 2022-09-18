@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
+import com.sadiwala.shivam.models.common.CodeName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,24 @@ public class DataController {
 
     public static void setPrefCustomers(ArrayList<Customer> customers) {
         PreferenceUtil.setStringValue(PREF_CUSTOMERS, new Gson().toJson(customers));
+    }
+
+    public static CodeName[] getCachedCustomers() {
+        ArrayList<Customer> customers = DataController.getPrefCustomers();
+        CodeName[] codeNames = new CodeName[customers.size()];
+        for (int i = 0; i < customers.size(); i++) {
+            CodeName codeName = new CodeName(customers.get(i).getId(), customers.get(i).getName().getValue());
+            codeNames[i] = codeName;
+        }
+        return codeNames;
+    }
+
+    public static Customer getCustomerById(String id) {
+        ArrayList<Customer> customers = DataController.getPrefCustomers();
+        for (Customer customer : customers) {
+            if (customer.getId().equals(id)) return customer;
+        }
+        return null;
     }
 
 }

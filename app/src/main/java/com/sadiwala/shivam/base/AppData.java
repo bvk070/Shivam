@@ -1,15 +1,39 @@
 package com.sadiwala.shivam.base;
 
 import static com.sadiwala.shivam.models.Customer.CUSTOMER_CODE;
+import static com.sadiwala.shivam.models.Customer.GETADDRESS;
+import static com.sadiwala.shivam.models.Customer.GETAREA;
+import static com.sadiwala.shivam.models.Customer.GETMOBILE;
+import static com.sadiwala.shivam.models.Customer.GETPINCODE;
+import static com.sadiwala.shivam.models.Order.GETCHEST;
+import static com.sadiwala.shivam.models.Order.GETDESIGN;
+import static com.sadiwala.shivam.models.Order.GETFITTING;
+import static com.sadiwala.shivam.models.Order.GETLENGTH;
+import static com.sadiwala.shivam.models.Order.GETMUNDHO;
+import static com.sadiwala.shivam.models.Order.GETNECKSIZE;
+import static com.sadiwala.shivam.models.Order.GETNECKTYPE;
+import static com.sadiwala.shivam.models.Order.GETPATTERN;
+import static com.sadiwala.shivam.models.Order.GETPOCKET;
+import static com.sadiwala.shivam.models.Order.GETPOCKETSIZE;
+import static com.sadiwala.shivam.models.Order.GETSHOULDER;
+import static com.sadiwala.shivam.models.Order.GETSLEEVE;
+import static com.sadiwala.shivam.models.Order.GETWAIST;
+import static com.sadiwala.shivam.preferences.DataController.getCachedCustomers;
+import static com.sadiwala.shivam.util.Util.findGetters;
+import static com.sadiwala.shivam.util.Util.getGetterMethodNameByFieldName;
+
+import android.app.Activity;
 
 import com.google.gson.reflect.TypeToken;
+import com.sadiwala.shivam.R;
 import com.sadiwala.shivam.inputfields.InputFieldType;
 import com.sadiwala.shivam.inputfields.InputFieldValue;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
 import com.sadiwala.shivam.util.Gson;
-import com.sadiwala.shivam.util.Util;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -106,6 +130,7 @@ public class AppData {
         hashMap.put(Order.POCKET, new InputFieldValue());
         hashMap.put(Order.MUNDHO, new InputFieldValue());
         hashMap.put(Order.FITTING, new InputFieldValue());
+        hashMap.put(Order.DESIGN, new InputFieldValue());
 
         return hashMap;
     }
@@ -115,7 +140,7 @@ public class AppData {
                 "\"type\": \"code_name_spinner\",\n" +
                 "\"code\": \"" + CUSTOMER_CODE + "\",\n" +
                 "\"hint\": \"Customer\",\n" +
-                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(Util.getCachedCustomers()) + ",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getCachedCustomers()) + ",\n" +
                 "\"required\": true\n" +
                 "}]";
 
@@ -198,13 +223,122 @@ public class AppData {
                 "\"code\": \"fitting\",\n" +
                 "\"hint\": \"Fitting\",\n" +
                 "\"required\": false\n" +
-                "}\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"text\",\n" +
+                "\"code\": \"design\",\n" +
+                "\"hint\": \"Design and color\",\n" +
+                "\"required\": true\n" +
+                "}" +
                 "]";
 
         ArrayList<InputFieldType> inputFieldTypes = Gson.getInstance().fromJson(stringInputs, new TypeToken<List<InputFieldType>>() {
         }.getType());
 
         return inputFieldTypes;
+    }
+
+    public static boolean isExcludeField(String fieldName) {
+//        if (fieldName.equals("customer")) return true;
+        return false;
+    }
+
+    public static String getType(Activity Activity, String type) {
+        switch (type) {
+            case "ALINE_GOWN":
+                return Activity.getString(R.string.aline_gown);
+            case "CHAPATTI_GOWN":
+                return Activity.getString(R.string.chapati_down);
+            case "NIGHT_DRESS":
+                return Activity.getString(R.string.night_dress);
+        }
+        return null;
+    }
+
+    public static void prepareOrderGroups(ArrayList<InputFieldType> inputFieldTypes, ArrayList<InputFieldValue> inputFieldValues, Order order) {
+        if (order == null) return;
+
+        ArrayList<Method> methods = findGetters(Order.class);
+        Field[] fields = Order.class.getDeclaredFields();
+        for (Field field : fields) {
+            if (field.getType().getSimpleName().equals("InputFieldValue") && !AppData.isExcludeField(field.getName())) {
+                InputFieldValue inputFieldValue = getOrderFieldValueByFieldName(methods, field.getName(), order);
+                if (inputFieldValue != null) {
+                    inputFieldValues.add(inputFieldValue);
+                    InputFieldType inputFieldType = new InputFieldType(inputFieldValue.getType(), inputFieldValue.getCode(), false, inputFieldValue.getName());
+                    inputFieldTypes.add(inputFieldType);
+                }
+            }
+        }
+
+    }
+
+    public static void prepareCustomerGroups(ArrayList<InputFieldType> inputFieldTypes, ArrayList<InputFieldValue> inputFieldValues, Customer customer) {
+        if (customer == null) return;
+
+        ArrayList<Method> methods = findGetters(Customer.class);
+        Field[] fields = Customer.class.getDeclaredFields();
+        for (Field field : fields) {
+            if (field.getType().getSimpleName().equals("InputFieldValue") && !AppData.isExcludeField(field.getName())) {
+                InputFieldValue inputFieldValue = getCustomerFieldValueByFieldName(methods, field.getName(), customer);
+                if (inputFieldValue != null) {
+                    inputFieldValues.add(inputFieldValue);
+                    InputFieldType inputFieldType = new InputFieldType(inputFieldValue.getType(), inputFieldValue.getCode(), false, inputFieldValue.getName());
+                    inputFieldTypes.add(inputFieldType);
+                }
+            }
+        }
+
+    }
+
+    public static InputFieldValue getOrderFieldValueByFieldName(ArrayList<Method> methods, String fieldName, Order order) {
+        String getGetterMethod = getGetterMethodNameByFieldName(methods, fieldName);
+        switch (getGetterMethod) {
+            case GETSHOULDER:
+                return order.getShoulder();
+            case GETCHEST:
+                return order.getChest();
+            case GETWAIST:
+                return order.getWaist();
+            case GETSLEEVE:
+                return order.getSleeve();
+            case GETLENGTH:
+                return order.getLength();
+            case GETNECKTYPE:
+                return order.getNeckType();
+            case GETNECKSIZE:
+                return order.getNeckSize();
+            case GETPATTERN:
+                return order.getPattern();
+            case GETPOCKET:
+                return order.getPocket();
+            case GETPOCKETSIZE:
+                return order.getPocketSize();
+            case GETMUNDHO:
+                return order.getMundho();
+            case GETFITTING:
+                return order.getFitting();
+            case GETDESIGN:
+                return order.getDesign();
+            default:
+                return null;
+        }
+    }
+
+    public static InputFieldValue getCustomerFieldValueByFieldName(ArrayList<Method> methods, String fieldName, Customer customer) {
+        String getGetterMethod = getGetterMethodNameByFieldName(methods, fieldName);
+        switch (getGetterMethod) {
+            case GETMOBILE:
+                return customer.getMobile();
+            case GETADDRESS:
+                return customer.getAddress();
+            case GETAREA:
+                return customer.getArea();
+            case GETPINCODE:
+                return customer.getPincode();
+            default:
+                return null;
+        }
     }
 
 }

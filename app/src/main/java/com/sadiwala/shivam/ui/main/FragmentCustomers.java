@@ -133,8 +133,8 @@ public class FragmentCustomers extends Fragment {
             tvError.setVisibility(View.GONE);
             CustomersRecycleviewAdapter customersRecycleviewAdapter = new CustomersRecycleviewAdapter(customers, getActivity());
             mRecyclerView.setAdapter(customersRecycleviewAdapter);
-            DataController.setPrefCustomers(customers);
         }
+        DataController.setPrefCustomers(customers);
         progressBar.setVisibility(View.GONE);
         swipeRefreshLayout.setRefreshing(false);
     }

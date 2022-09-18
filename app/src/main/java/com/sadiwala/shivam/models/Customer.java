@@ -76,4 +76,11 @@ public class Customer {
     public void setPincode(InputFieldValue pincode) {
         this.pincode = pincode;
     }
+
+    // Getter Method Names
+    public static final String GETMOBILE = "getMobile()";
+    public static final String GETADDRESS = "getAddress()";
+    public static final String GETAREA = "getArea()";
+    public static final String GETPINCODE = "getPincode()";
+
 }

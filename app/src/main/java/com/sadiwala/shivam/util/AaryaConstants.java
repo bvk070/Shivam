@@ -21,6 +21,8 @@ public class AaryaConstants {
     public static final int USER_PERMISSION_REQUEST_RETRY_COUNT = 2;
     public static final String REQUEST_CODE = "requestCode";
     public static final int REQUEST_CODE_INPUTFIELD = 60411;
+    public static final int PERMISSIONS_WRITE_STORAGE = 40;
+    public static final String SCREENSHOTS = "screenshots";
 
 
 }
