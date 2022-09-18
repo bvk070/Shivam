@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.sadiwala.shivam.models.common.CodeName;
 import com.sadiwala.shivam.models.common.Data;
 import com.sadiwala.shivam.models.common.ICodeName;
 
@@ -90,7 +91,11 @@ public class InputFieldType {
     private int maxChars;
     private int minLines = 1; //default minimum line is 1.
     private boolean readOnly = false;
-
+    private String[] spinnerOptions; //Spinner options.
+    private String selectionHint; // Used in auto complete type to show hint while adding/editing.
+    private String source; //used in auto complete type to determine the pref name.
+    private boolean singleSelect; //used in MSACIF to make it single select.
+    private CodeName[] codeNameSpinnerOptions; // Code-Name spinner options.
 
     public InputFieldType(String type, String code, boolean required, String hint) {
         this.type = type;
@@ -252,6 +257,46 @@ public class InputFieldType {
         this.readOnly = isReadOnly;
     }
 
+    public String[] getSpinnerOptions() {
+        return spinnerOptions;
+    }
+
+    public void setSpinnerOptions(String[] spinnerOptions) {
+        this.spinnerOptions = spinnerOptions;
+    }
+
+    public String getSelectionHint() {
+        return selectionHint;
+    }
+
+    public void setSelectionHint(String selectionHint) {
+        this.selectionHint = selectionHint;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public boolean isSingleSelect() {
+        return singleSelect;
+    }
+
+    public void setSingleSelect(boolean singleSelect) {
+        this.singleSelect = singleSelect;
+    }
+
+    public CodeName[] getCodeNameSpinnerOptions() {
+        return codeNameSpinnerOptions;
+    }
+
+    public void setCodeNameSpinnerOptions(CodeName[] codeNameSpinnerOptions) {
+        this.codeNameSpinnerOptions = codeNameSpinnerOptions;
+    }
+
     public ParentInputField toInputField(
             AppCompatActivity activity,
             Bundle savedInstanceState,
@@ -313,6 +358,8 @@ public class InputFieldType {
             return new TextInputField(activity, savedInstanceState, prePopulateValue, this, bus, mode, startState);
         } else if (INPUT_FIELD_TYPE_DECIMAL.equals(getType())) {
             return new TextInputField(activity, savedInstanceState, prePopulateValue, this, bus, mode, startState);
+        } else if (INPUT_FIELD_TYPE_CODE_NAME_SPINNER.equals(getType())) {
+            return new SelectionInputField(activity, savedInstanceState, prePopulateValue, this, bus, mode, startState, false);
         } else {
             return null;
         }

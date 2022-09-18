@@ -1,8 +1,11 @@
 package com.sadiwala.shivam.ui.main;
 
+import static com.sadiwala.shivam.base.BaseBottomSheet.CLEAR_CLICK;
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.TABLE_CUSTOMERS;
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.TABLE_ORDERS;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +24,13 @@ import com.sadiwala.shivam.R;
 import com.sadiwala.shivam.base.AppData;
 import com.sadiwala.shivam.inputfields.InputField;
 import com.sadiwala.shivam.inputfields.InputFieldValue;
+import com.sadiwala.shivam.inputfields.SelectionInputField;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
+import com.sadiwala.shivam.models.common.IBottomSheetListener;
 import com.sadiwala.shivam.ui.BaseActivity;
 import com.sadiwala.shivam.ui.Customer.AddCustomerActivity;
+import com.sadiwala.shivam.util.AaryaConstants;
 import com.sadiwala.shivam.util.Gson;
 import com.sadiwala.shivam.util.UiUtil;
 
@@ -35,11 +41,12 @@ import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 
-public class BaseAddActivity extends BaseActivity {
+public abstract class BaseAddActivity extends BaseActivity implements IBottomSheetListener {
 
     protected static final String INPUTS = "inputs";
     private EventBus mBus;
     private Map<String, InputField> mInputFields = new HashMap<>();
+    protected Map<String, InputField> mRefreshInputFieldsMap = new HashMap<>();
 
     protected String productType;
 
@@ -48,6 +55,7 @@ public class BaseAddActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         mInputFields.clear();
+        mRefreshInputFieldsMap.clear();
         mBus = UiUtil.getVymoEventBus();
     }
 
@@ -63,12 +71,41 @@ public class BaseAddActivity extends BaseActivity {
         super.onStop();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case AaryaConstants.REQUEST_CODE_INPUTFIELD: {
+                if (resultCode == Activity.RESULT_OK) {
+                    if (mRefreshInputFieldsMap != null && !mRefreshInputFieldsMap.isEmpty()) {
+                        if (data.hasExtra(SelectionInputField.EXTRAS_CODE) && mRefreshInputFieldsMap != null) {
+                            mRefreshInputFieldsMap.get(data.getStringExtra(SelectionInputField.EXTRAS_CODE)).updateViewPostSelection(data.getStringExtra(SelectionInputField.EXTRAS_SELECTED_OPTIONS));
+                        }
+                        if (data.hasExtra(CLEAR_CLICK) && data.getExtras().getBoolean(CLEAR_CLICK)) {
+                            mRefreshInputFieldsMap.get(data.getStringExtra(SelectionInputField.EXTRAS_CODE)).clearView();
+                        }
+                    }
+                }
+                return;
+            }
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    public void addInputFieldInRefreshMap(String code, InputField inputField) {
+        mRefreshInputFieldsMap.put(code, inputField);
+    }
+
     public EventBus getBus() {
         return mBus;
     }
 
     public void onEvent(InputField inputField) {
 
+    }
+
+    public IBottomSheetListener getBottomSheetListener() {
+        return this;
     }
 
     protected void addInputField(String key, InputField inputField) {
@@ -176,6 +213,7 @@ public class BaseAddActivity extends BaseActivity {
         HashMap<String, InputFieldValue> hashMap = prepareInputValues();
 
         Customer customer = new Customer();
+        customer.setTimestamp(System.currentTimeMillis());
         customer.setName(hashMap.get(Customer.NAME));
         customer.setMobile(hashMap.get(Customer.MOBILE));
         customer.setAddress(hashMap.get(Customer.ADDRESS));

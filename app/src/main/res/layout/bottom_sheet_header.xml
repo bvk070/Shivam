@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Default"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="@dimen/padding_30dp"
+        android:layout_height="@dimen/padding_4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/padding_8dp"
+        android:background="@drawable/bottom_sheet_top_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_40dp"
+        android:layout_marginTop="@dimen/padding_6dp">
+
+        <RelativeLayout
+            android:id="@+id/rlCancel"
+            android:layout_width="@dimen/padding_40dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/padding_8dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/imgCancel"
+                android:layout_width="@dimen/icon_size_24"
+                android:layout_height="@dimen/icon_size_24"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_close" />
+
+        </RelativeLayout>
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/tvRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/medium_padding"
+            android:text="@string/refresh"
+            android:textColor="@color/black"
+            android:textSize="@dimen/vymo_font_c"
+            android:visibility="gone" />
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/tvSelectAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/medium_padding"
+            android:text="@string/selectall"
+            android:textColor="@color/black"
+            android:textSize="@dimen/vymo_font_c"
+            android:visibility="gone" />
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/tvClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/medium_padding"
+            android:text="@string/clear"
+            android:textColor="@color/black"
+            android:textSize="@dimen/vymo_font_c"
+            android:visibility="gone" />
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/tvHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="@dimen/margin_50dp"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="@dimen/vymo_font_d" />
+
+    </RelativeLayout>
+
+    <com.sadiwala.shivam.util.CustomTextView
+        android:id="@+id/tvSelectedDateTime"
+        style="@style/WrapContent"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:paddingLeft="@dimen/small_padding"
+        android:paddingRight="@dimen/small_padding"
+        android:paddingBottom="@dimen/small_padding"
+        android:textColor="@color/vymo_text_color_3"
+        android:textSize="@dimen/text_size_12sp"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dashboard_details_bg" />
+
+</LinearLayout>

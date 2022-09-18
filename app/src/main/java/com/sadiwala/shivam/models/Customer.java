@@ -12,6 +12,7 @@ public class Customer {
     public static final String PINCODE = "pincode";
 
     private String id;
+    private long timestamp;
     private InputFieldValue name;
     private InputFieldValue mobile;
     private InputFieldValue address;
@@ -25,6 +26,14 @@ public class Customer {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public InputFieldValue getName() {

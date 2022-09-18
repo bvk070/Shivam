@@ -53,7 +53,27 @@ public class AppData {
                 "\"code\": " + Customer.PINCODE + ",\n" +
                 "\"hint\": \"Pincode\",\n" +
                 "\"required\": false\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": \"add_campaign\",\n" +
+                "\"hint\": \"Add Campaign\",\n" +
+                "\"code_name_spinner_options\": [\n" +
+                "{\n" +
+                "\"code\": \"select\",\n" +
+                "\"name\": \"Select\"\n" +
+                "},\n" +
+                "{\n" +
+                "\"code\": \"yes\",\n" +
+                "\"name\": \"Yes\"\n" +
+                "},\n" +
+                "{\n" +
+                "\"code\": \"no\",\n" +
+                "\"name\": \"No\"\n" +
                 "}\n" +
+                "],\n" +
+                "\"required\": true\n" +
+                "}"+
                 "]";
 
         ArrayList<InputFieldType> inputFieldTypes = Gson.getInstance().fromJson(stringInputs, new TypeToken<List<InputFieldType>>() {

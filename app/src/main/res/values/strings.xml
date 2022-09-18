@@ -16,8 +16,15 @@
     <string name="order_added">Order is added successfully</string>
     <string name="order_failed">Failed to add order, please try again</string>
 
+
+
     <string name="left_icon" translatable="false">Left Icon</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
     <string name="clear">Clear</string>
+    <string name="refresh">Refresh</string>
+    <string name="selectall">Select All</string>
+    <string name="accept">Accept</string>
     <string name="error_required">Required</string>
     <string name="empty">&#160;</string>
     <string name="error_network">No connectivity. Please try later.</string>
@@ -29,5 +36,13 @@
     <string name="no_data">No records found</string>
     <string name="view_all">View All (%s)</string>
     <string name="add_new">+ Add new</string>
+    <string name="show_more_results">Show more results</string>
+    <string name="no_result">No results found</string>
+    <string name="and_x_more">"&amp; %s more"</string>
+    <string name="select">Select</string>
+    <string name="search">Search</string>
+    <string name="minimum_item_validation">Minimum %d items must be selected</string>
+    <string name="description">Description</string>
+    <string name="max_limit_selected">Maximum %1$d items can be selected</string>
 
 </resources>

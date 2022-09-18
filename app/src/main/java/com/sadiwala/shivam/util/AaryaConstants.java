@@ -19,5 +19,8 @@ public class AaryaConstants {
     public static final int REQUEST_CODE_ACTIVITY_UPDATE = 60415;
     public static final int PERMISSIONS_REQUEST_PHONE_CALL = 31;
     public static final int USER_PERMISSION_REQUEST_RETRY_COUNT = 2;
+    public static final String REQUEST_CODE = "requestCode";
+    public static final int REQUEST_CODE_INPUTFIELD = 60411;
+
 
 }
