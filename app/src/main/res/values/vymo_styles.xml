@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Default">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="settings_header_item" parent="Default">
+        <item name="android:minHeight">40dp</item>
+        <item name="android:paddingLeft">@dimen/padding_20dp</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:textColor">@color/vymo_text_light</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="settings_label_item" parent="Default">
+        <item name="android:paddingLeft">@dimen/padding_20dp</item>
+        <item name="android:paddingRight">@dimen/padding_20dp</item>
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+        <item name="android:textColor">@color/vymo_text_color_2</item>
+    </style>
+
+    <style name="settings_value_item" parent="Default">
+        <item name="android:layout_marginTop">@dimen/padding_4dp</item>
+        <item name="android:paddingLeft">@dimen/padding_20dp</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:textColor">@color/vymo_text_light</item>
+    </style>
+
+    <style name="MatchParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="WrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="XWrapYMatch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="XMatchYWrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="VariableWidth">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="VariableWidth.TinyPadding" parent="VariableWidth">
+        <item name="android:padding">@dimen/very_tiny_padding</item>
+    </style>
+
+    <style name="TenPercent" parent="VariableWidth">
+        <item name="android:layout_weight">0.1</item>
+    </style>
+
+    <style name="TwentyPercent" parent="VariableWidth">
+        <item name="android:layout_weight">0.2</item>
+    </style>
+
+    <style name="ThirtyPercent" parent="VariableWidth">
+        <item name="android:layout_weight">0.3</item>
+    </style>
+
+    <style name="FortyPercent" parent="VariableWidth">
+        <item name="android:layout_weight">0.4</item>
+    </style>
+
+    <style name="FiftyPercent" parent="VariableWidth">
+        <item name="android:layout_weight">0.5</item>
+    </style>
+
+    <style name="SixtyPercent" parent="VariableWidth">
+        <item name="android:layout_weight">0.6</item>
+    </style>
+
+    <style name="SeventyPercent" parent="VariableWidth">
+        <item name="android:layout_weight">0.7</item>
+    </style>
+
+    <style name="EightyPercent" parent="VariableWidth">
+        <item name="android:layout_weight">0.8</item>
+    </style>
+
+    <style name="NinetyPercent" parent="VariableWidth">
+        <item name="android:layout_weight">0.9</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="Text" parent="Default" />
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="Text.SingleLine">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Text.MultipleLine">
+        <item name="android:singleLine">false</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="Text.TwoLines">
+        <item name="android:minLines">1</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Text.ThreeLines">
+        <item name="android:minLines">1</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Text.FourLines">
+        <item name="android:minLines">1</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- TextView -->
+
+    <style name="Text.SingleLine.Normal">
+        <item name="android:textSize">@dimen/vymo_primary_text</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="Text.SingleLine.Medium">
+        <item name="android:textSize">@dimen/vymo_medium_text</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="Text.SingleLine.Large">
+        <item name="android:textSize">@dimen/vymo_large_text</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="Text.TwoLines.Normal">
+        <item name="android:textSize">@dimen/vymo_primary_text</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="Text.TwoLines.Medium">
+        <item name="android:textSize">@dimen/vymo_medium_text</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="Text.SingleLine.RightAligned">
+        <item name="android:gravity">right</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="VariableWidthText" parent="VariableWidth" />
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="VariableWidthText.SingleLine">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="VariableWidthText.TwoLines">
+        <item name="android:minLines">1</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="VariableWidthText.SingleLine.Medium">
+        <item name="android:textSize">@dimen/vymo_medium_text</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="VariableWidthText.TwoLines.Medium">
+        <item name="android:textSize">@dimen/vymo_medium_text</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="VariableWidthText.SingleLine.RightAligned">
+        <item name="android:gravity">right</item>
+    </style>
+
+    <!-- LinearLayout -->
+    <style name="TopLevelActivity" parent="MatchParent">
+        <item name="android:padding">@dimen/small_padding</item>
+        <item name="android:background">@color/background</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="SectionHeader" parent="Default">
+        <item name="android:paddingTop">@dimen/medium_padding</item>
+        <item name="android:paddingBottom">@dimen/small_padding</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/vymo_primary_text</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="SectionHeader.Small" parent="WrapContent">
+        <item name="android:paddingTop">@dimen/small_padding</item>
+        <item name="android:paddingBottom">@dimen/small_padding</item>
+        <item name="android:paddingRight">@dimen/small_padding</item>
+        <!--<item name="android:textSize">?android:attr/textAppearanceMedium</item>-->
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="SectionHeader.First">
+        <item name="android:paddingTop">0dp</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="SectionHeader.List">
+        <item name="android:paddingBottom">0dp</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="SectionHeader.Details">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!-- ImageView -->
+    <style name="EditButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:padding">@dimen/small_padding</item>
+        <item name="android:tint">@android:color/darker_gray</item>
+    </style>
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="ExpandableListHeader" parent="Default">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">?android:attr/expandableListPreferredItemPaddingLeft</item>
+        <item name="android:textSize">@dimen/vymo_medium_text</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="LegendFixed">
+        <item name="android:layout_width">16dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">4dp</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="LegendExpand" parent="VariableWidthText.SingleLine">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- ListView -->
+    <style name="HelloScreenListView" parent="MatchParent">
+        <item name="android:divider">@color/background</item>
+        <item name="android:dividerHeight">@dimen/small_divider_1dp</item>
+        <item name="android:scrollbarSize">@dimen/very_tiny_padding</item>
+    </style>
+
+    <!-- ListView -->
+    <style name="BasicList" parent="Default">
+        <item name="android:divider">@color/background</item>
+        <item name="android:dividerHeight">@dimen/small_divider_1dp</item>
+        <item name="android:scrollbarSize">@dimen/very_tiny_padding</item>
+    </style>
+
+    <!-- ListView -->
+    <style name="ExpandableList" parent="BasicList">
+        <item name="android:dividerHeight">@dimen/very_very_tiny_padding</item>
+        <item name="android:childDivider">@android:color/transparent</item>
+    </style>
+
+    <!-- LinearLayout -->
+    <style name="BasicListRow" parent="Default">
+        <item name="android:paddingTop">@dimen/small_padding</item>
+        <item name="android:paddingBottom">@dimen/small_padding</item>
+        <item name="android:paddingLeft">@dimen/small_padding</item>
+        <item name="android:paddingRight">@dimen/small_padding</item>
+    </style>
+
+    <!-- LinearLayout -->
+    <style name="BasicListRow.Card">
+        <item name="android:background">@drawable/bg_card</item>
+    </style>
+
+    <!-- NearBy -->
+    <style name="NearBy" parent="Default">
+        <item name="android:paddingBottom">@dimen/small_padding</item>
+        <item name="android:paddingLeft">@dimen/small_padding</item>
+    </style>
+
+    <!-- LinearLayout -->
+    <style name="BasicListRow.Card.ExtraPadding">
+        <item name="android:paddingTop">@dimen/medium_padding</item>
+        <item name="android:paddingBottom">@dimen/medium_padding</item>
+    </style>
+
+
+    <!-- bar_chart*.xml -->
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="Bar" parent="VariableWidthText.SingleLine.RightAligned">
+        <item name="android:textColor">@color/bar_chart_text</item>
+        <item name="android:paddingRight">@dimen/tiny_padding</item>
+    </style>
+
+    <!-- LinearLayout -->
+    <style name="BarChart" parent="VariableWidth">
+        <item name="android:paddingRight">@dimen/small_padding</item>
+        <item name="android:paddingBottom">1dp</item>
+    </style>
+
+    <!-- LinearLayout -->
+    <style name="BarChartAndValue" parent="Default">
+        <item name="android:paddingTop">@dimen/tiny_padding</item>
+        <item name="android:paddingBottom">@dimen/tiny_padding</item>
+    </style>
+
+    <!-- loading_and_error.xml -->
+    <!-- LinearLayout -->
+    <style name="LoadingAndError" parent="MatchParent">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- ProgressBar -->
+    <style name="Loading" parent="WrapContent">
+        <item name="android:indeterminate">true</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="NoData" parent="WrapContent">
+        <item name="android:textSize">@dimen/vymo_primary_text</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="Error" parent="NoData">
+        <item name="android:text">@string/error</item>
+        <item name="android:textColor">@color/vymo_red</item>
+    </style>
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView -->
+    <style name="Empty" parent="Default">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:text">@string/no_data</item>
+    </style>
+
+    <!-- Button style-->
+    <style name="Button" parent="Default">
+        <!-- this is to show text in small case in app compact lib -->
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+
+    <!-- style for FAB-->
+    <style name="FABButton" parent="WrapContent">
+        <item name="fab_colorNormal">@color/vymo_fab_background</item>
+        <item name="fab_colorPressed">@color/vymo_fab_background_pressed</item>
+        <item name="fab_size">mini</item>
+    </style>
+
+    <!-- this is the hack for making text size same as in screen heading and other places in the app-->
+    <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/vymo_font_b</item>
+    </style>
+
+    <!-- Dialog Style-->
+    <style name="VymoAlertDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+    <style name="AtcPopup" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="DetectPopup" parent="AtcPopup">
+        <item name="android:listDivider">@color/divider</item>
+        <item name="android:color">@color/white</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+    <style name="VymoAppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--<item name="colorAccent">#FFCC00</item>-->
+        <item name="android:textColorPrimary">@color/vymo_red</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--<item name="colorAccent">#FFCC00</item>-->
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+
+    <style name="MarkerDefaultTextColor">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MarkerSelectedTextColor">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MarkerGreyTextColor">
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MarkerBlueTextColor">
+        <item name="android:textColor">@android:color/holo_blue_light</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MarkerRedTextColor">
+        <item name="android:textColor">@color/vymo_red</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <!-- in.vymo.android.base.util.ui.CustomTextView.DraftRow -->
+    <style name="DraftRow" parent="Text.SingleLine">
+        <item name="android:textColor">@color/vymo_text_light</item>
+        <item name="android:textSize">@dimen/vymo_normal_small_font</item>
+    </style>
+
+    <style name="manager_card_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/vymo_text_color_7</item>
+        <item name="android:textSize">@dimen/text_size_16sp
+        </item>
+    </style>
+
+    <style name="date_filter_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/card_text_subtitle</item>
+        <item name="android:textSize">@dimen/text_size_10sp</item>
+        <item name="android:paddingLeft">@dimen/small_padding</item>
+        <item name="android:paddingRight">@dimen/small_padding</item>
+        <item name="android:paddingBottom">@dimen/tiny_padding</item>
+        <item name="android:paddingTop">@dimen/tiny_padding</item>
+    </style>
+
+    <style name="metric_card_bigtext">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/card_text_title</item>
+        <item name="android:textSize">@dimen/metric_card_value_big_text</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+
+    <style name="metric_card_smalltext">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/card_text_subtitle</item>
+        <item name="android:textSize">@dimen/metric_card_small_text</item>
+    </style>
+
+    <style name="manager_details_card_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/filter_selected_red</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+    </style>
+
+    <style name="defaultCustomEditText" parent="Default">
+        <item name="android:background">@drawable/vymo_light_weight_background_selector</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingTop">@dimen/padding_14dp</item>
+        <item name="android:paddingBottom">@dimen/padding_14dp</item>
+        <item name="android:paddingEnd">@dimen/padding_18dp</item>
+        <item name="android:paddingStart">@dimen/padding_18dp</item>
+        <item name="android:textSize">@dimen/vymo_c</item>
+        <item name="android:textColorHint">@color/vymo_text_color_3</item>
+        <item name="android:textColor">@color/vymo_text_color_7</item>
+        <item name="android:textCursorDrawable">@drawable/edit_text_cursor_resource</item>
+
+    </style>
+
+    <style name="lead_tags" parent="Text.SingleLine.Normal">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/padding_4dp</item>
+        <item name="android:layout_marginEnd">@dimen/padding_4dp</item>
+        <item name="android:paddingLeft">@dimen/padding_10dp</item>
+        <item name="android:paddingRight">@dimen/padding_10dp</item>
+        <item name="android:paddingTop">@dimen/padding_4dp</item>
+        <item name="android:paddingBottom">@dimen/padding_4dp</item>
+        <item name="android:textSize">@dimen/vymo_font_e</item>
+    </style>
+
+
+    <style name="TabLayoutTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+
+    <style name="constraint_0_dp">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">0dp</item>
+    </style>
+</resources>

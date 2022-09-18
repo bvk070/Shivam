@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Default"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/Default"
+        android:paddingTop="@dimen/tiny_padding"
+        android:paddingBottom="@dimen/tiny_padding">
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/txt_selected_values"
+            style="@style/Text.SingleLine"
+            android:layout_centerVertical="true"
+            android:paddingTop="@dimen/padding_8dp"
+            android:paddingRight="@dimen/padding_30dp"
+            android:paddingBottom="@dimen/padding_8dp"
+            android:textColor="@color/vymo_text_light"
+            android:textSize="@dimen/text_size_14sp"
+            android:visibility="visible"
+            tools:text="@string/select" />
+
+        <ImageView
+            android:id="@+id/img_right_arrow"
+            style="@style/WrapContent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padding_8dp"
+            app:srcCompat="@drawable/selection_dropdown"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/error_text_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Default">
+
+    <com.sadiwala.shivam.util.CustomTextView
+        android:id="@+id/error_text"
+        style="@style/Default"
+        android:text="@string/error_required"
+        android:textColor="@color/snackbar_error"
+        android:textSize="@dimen/vymo_normal_small_font"
+        android:visibility="gone" />
+
+</RelativeLayout>

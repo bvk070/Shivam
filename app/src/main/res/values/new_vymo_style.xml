@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        <item name="colorPrimary">@color/vymo_color_primary</item>-->
+<!--        <item name="colorPrimaryDark">@color/status_bar</item>-->
+<!--        <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>-->
+<!--        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>-->
+<!--        <item name="android:homeAsUpIndicator">@drawable/ic_back_new</item>-->
+<!--    </style>-->
+
+    <style name="OverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <!-- Required for pre-Lollipop. -->
+        <item name="overlapAnchor">false</item>
+
+        <!-- Required for Lollipop. -->
+        <item name="android:overlapAnchor">false</item>
+    </style>
+
+    <style name="CardHeading" parent="Text.SingleLine">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/vymo_font_b</item>
+        <item name="android:textColor">@color/vymo_text_color_3</item>
+    </style>
+
+    <style name="CardHeadingMultiple" parent="Text.MultipleLine">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/vymo_font_b</item>
+        <item name="android:textColor">@color/vymo_text_color_3</item>
+    </style>
+
+    <style name="CardHeading.Normal" parent="CardHeading">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Title" parent="Text.SingleLine">
+        <item name="android:textSize">@dimen/vymo_b</item>
+        <item name="android:textColor">@color/title_text</item>
+    </style>
+
+    <style name="Title.Normal" parent="Title">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="ViewAll" parent="Text.SingleLine">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/vymo_font_c</item>
+        <item name="android:textColor">@color/vymo_red</item>
+    </style>
+
+    <style name="SubTitle" parent="Text.SingleLine">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/vymo_secondary_text</item>
+        <item name="android:textColor">@color/vymo_text_color_3</item>
+    </style>
+
+    <style name="SelectionInputListItem" parent="Text.SingleLine">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@color/vymo_text_color_7</item>
+    </style>
+
+    <style name="SubTitle.Count" parent="SubTitle">
+        <item name="android:textSize">@dimen/vymo_primary_text</item>
+    </style>
+
+    <style name="SubTitle.Dark" parent="SubTitle">
+        <item name="android:textColor">@color/vymo_text_color_3</item>
+    </style>
+
+    <style name="Description" parent="Text.TwoLines">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/vymo_secondary_text</item>
+        <item name="android:textColor">@color/sub_title_text</item>
+    </style>
+
+    <style name="Description.Paragraph" parent="Text">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/vymo_secondary_text</item>
+        <item name="android:textColor">@color/sub_title_text</item>
+    </style>
+
+    <style name="Description.Paragraph.Dark" parent="Text">
+        <item name="android:textColor">@color/vymo_text_color_3</item>
+    </style>
+
+    <!--in.vymo.android.base.util.ui.CustomTextView-->
+    <style name="Text.SingleLine.Medium.Time">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/vymo_b</item>
+        <item name="android:textColor">@color/title_text</item>
+    </style>
+
+    <!--in.vymo.android.base.util.ui.CustomTextView-->
+    <style name="Text.SingleLine.Medium.Time.Normal" parent="Text.SingleLine.Medium.Time">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="MetricsValue" parent="MetricsMessage">
+        <item name="android:textColor">@color/vymo_text_color_2</item>
+    </style>
+
+    <style name="MetricsMessage" parent="Text.SingleLine">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/vymo_font_c</item>
+        <item name="android:textColor">@color/vymo_text_color_3</item>
+        <item name="android:paddingTop">@dimen/vymo_padding_50px</item>
+    </style>
+
+    <style name="MetricsFigure" parent="Text.SingleLine">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/vymo_d</item>
+        <item name="android:textColor">@color/vymo_text_color_4</item>
+    </style>
+
+    <style name="PositiveButton" parent="VariableWidth">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@color/vymo_red_enabled</item>
+    </style>
+
+    <style name="NegativeButton" parent="VariableWidth">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@color/vymo_text_color_3</item>
+    </style>
+
+    <!--Style v2.1 Feb 09, 2017 starts here-->
+    <style name="ClickableText" parent="Text.SingleLine">
+        <item name="android:textSize">@dimen/small_font</item>
+    </style>
+
+    <style name="CardTitle" parent="Text.SingleLine">
+        <item name="android:textColor">@color/vymo_text_color_7</item>
+        <item name="android:textSize">@dimen/large_font</item>
+    </style>
+
+    <style name="CardRowItem" parent="Text.TwoLines">
+        <item name="android:textColor">@color/vymo_text_color_2</item>
+        <item name="android:textSize">@dimen/small_font</item>
+    </style>
+    <!--Style v2.1 Feb 09, 2017 ends here-->
+    <style name="Address" parent="Text.ThreeLines">
+        <item name="android:textColor">@color/address</item>
+        <item name="android:textSize">@dimen/small_font</item>
+    </style>
+
+    <style name="LocationTag" parent="Text.SingleLine">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/input_field_border_color</item>
+    </style>
+
+    <style name="Card.Title" parent="CardHeading">
+        <item name="android:textColor">@color/dark_grey_323232</item>
+        <item name="android:textSize">@dimen/card_title_font_size</item>
+        <item name="android:paddingTop">@dimen/small_padding</item>
+        <item name="android:paddingBottom">@dimen/small_padding</item>
+        <item name="android:paddingLeft">@dimen/medium_padding</item>
+        <item name="android:paddingRight">@dimen/medium_padding</item>
+    </style>
+
+    <style name="Card.MultipleLineTitle" parent="CardHeadingMultiple">
+        <item name="android:textColor">@color/dark_grey_323232</item>
+        <item name="android:textSize">@dimen/card_title_font_size</item>
+        <item name="android:paddingTop">@dimen/small_padding</item>
+        <item name="android:paddingBottom">@dimen/small_padding</item>
+        <item name="android:paddingLeft">@dimen/medium_padding</item>
+        <item name="android:paddingRight">@dimen/medium_padding</item>
+    </style>
+
+    <style name="Card.SubTitle" parent="CardHeading">
+        <item name="android:textColor">@color/vymo_text_light</item>
+        <item name="android:textSize">@dimen/small_font</item>
+        <item name="android:paddingTop">@dimen/small_padding</item>
+        <item name="android:paddingBottom">@dimen/small_padding</item>
+        <item name="android:paddingLeft">@dimen/medium_padding</item>
+        <item name="android:paddingRight">@dimen/medium_padding</item>
+    </style>
+
+    <style name="GroupTitle" parent="Title">
+        <item name="android:paddingTop">@dimen/group_title_padding</item>
+        <item name="android:paddingBottom">@dimen/group_title_padding</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/vymo_font_b</item>
+        <item name="android:paddingLeft">@dimen/medium_padding</item>
+        <item name="android:paddingRight">@dimen/medium_padding</item>
+        <item name="android:textColor">@color/input_field_group_title_text_color</item>
+    </style>
+
+    <style name="GroupViewAll" parent="Text.SingleLine">
+        <item name="android:paddingTop">@dimen/small_padding</item>
+        <item name="android:paddingBottom">@dimen/small_padding</item>
+        <item name="android:textColor">@color/input_field_group_view_all_color</item>
+        <item name="android:textSize">@dimen/small_font</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="h2" parent="Text.SingleLine">
+        <item name="android:paddingLeft">@dimen/medium_padding</item>
+        <item name="android:paddingRight">@dimen/medium_padding</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="h3" parent="Text.SingleLine">
+        <item name="android:paddingLeft">@dimen/tiny_padding</item>
+        <item name="android:paddingRight">@dimen/tiny_padding</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="ActionLabel" parent="Default">
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingTop">@dimen/tiny_padding</item>
+        <item name="android:textSize">@dimen/vymo_normal_small_font</item>
+    </style>
+
+    <style name="DialogTitle" parent="Default">
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@color/dark_grey_323232</item>
+        <item name="android:paddingLeft">@dimen/medium_padding</item>
+        <item name="android:paddingRight">@dimen/medium_padding</item>
+        <item name="android:paddingTop">@dimen/padding_8dp</item>
+        <item name="android:paddingBottom">@dimen/padding_8dp</item>
+    </style>
+
+    <style name="DialogMessage" parent="Default">
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+        <item name="android:textColor">@color/dark_grey_323232</item>
+        <item name="android:paddingLeft">@dimen/medium_padding</item>
+        <item name="android:paddingRight">@dimen/medium_padding</item>
+        <item name="android:paddingTop">@dimen/padding_10dp</item>
+        <item name="android:paddingBottom">@dimen/padding_16dp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="DialogButton" parent="VariableWidth">
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@color/vymo_text_light</item>
+        <item name="android:paddingLeft">@dimen/medium_padding</item>
+        <item name="android:paddingRight">@dimen/medium_padding</item>
+        <item name="android:background">@null</item>
+    </style>
+
+
+    <!-- This is for vymo search bar custom attributes-->
+    <declare-styleable name="VymoSearchBar">
+        <attr name="search_bar_background_color" format="color" />
+        <attr name="search_bar_hint_text_color" format="color" />
+        <attr name="search_bar_text_color" format="color" />
+        <attr name="search_icon" format="integer" />
+        <attr name="clear_icon" format="integer" />
+        <attr name="hint" format="string" />
+        <attr name="text" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="VymoHorizontalScrollView">
+        <attr name="vymo_title" format="string" />
+        <attr name="view_all_text" format="string" />
+        <attr name="auto_scroll" format="integer" />
+    </declare-styleable>
+
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+
+    <declare-styleable name="VymoRecyclerView">
+        <attr name="pagination" format="boolean" />
+        <attr name="pull_to_refresh" format="boolean" />
+    </declare-styleable>
+
+</resources>

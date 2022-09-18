@@ -3,16 +3,55 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.37333333333333335" />
         <entry key="app/src/main/res/drawable-v24/ic_back.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_filter_1_black_24dp.xml" value="0.217" />
         <entry key="app/src/main/res/drawable-v24/ic_orders.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/bg_card.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/bg_card_grey_border.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/bottom_sheet_top_bar.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/buttons_upper_drop_shadow.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/divider.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/edit_text_background.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/edit_text_cursor_resource.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/edittext_cursor.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/edittext_error_background.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/expand_selector.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/horizontal_divider.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/ic_back_new.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/ic_chevron_down.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/ic_clear_button.xml" value="0.217" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.217" />
         <entry key="app/src/main/res/drawable/ic_orders.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/ic_whatsapp.xml" value="0.1875" />
+        <entry key="app/src/main/res/drawable/positive_button_background.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/searchbar_bg.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/selection_dropdown.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable/vymo_light_weight_background_selector.xml" value="0.217" />
+        <entry key="app/src/main/res/layout/activity_add_customer.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_add_order.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/activity_customer_details.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/bottom_sheet_header.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/customer_list_item.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/error_text_layout.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/fragment_customers.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/fragment_fragment1.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/fragment_fragment3.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/fragment_orders.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/horizontal_divider.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/horizontal_input_field_view_linear_layout.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/horizontal_input_field_view_text_layout.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/input_field_group.xml" value="0.17916666666666667" />
+        <entry key="app/src/main/res/layout/inputfield_hint_layout.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/order_details.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/order_list_item.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/selection_input_field_list_row_view.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/selection_input_field_list_view.xml" value="0.3614457831325301" />
+        <entry key="app/src/main/res/layout/text_inputfield_layout.xml" value="0.3614457831325301" />
+        <entry key="app/src/main/res/layout/vymo_search_bar.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.17916666666666667" />
       </map>
     </option>

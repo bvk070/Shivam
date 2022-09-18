@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Default"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/padding_2dp"
+    android:paddingBottom="@dimen/padding_2dp">
+
+    <RelativeLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_6dp"
+        android:paddingBottom="@dimen/padding_6dp">
+
+        <com.sadiwala.shivam.util.CustomEditText
+            android:id="@+id/text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@drawable/edittext_cursor"
+            android:textSize="@dimen/vymo_font_d" />
+
+        <ImageButton
+            android:id="@+id/btnClear"
+            android:layout_width="@dimen/padding_14dp"
+            android:layout_height="@dimen/padding_14dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padding_10dp"
+            android:background="@drawable/ic_clear_button"
+            android:contentDescription="@string/clear"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/error_text_layout" />
+
+</LinearLayout>

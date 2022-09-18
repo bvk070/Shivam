@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Default"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/padding_6dp">
+
+    <LinearLayout
+        style="@style/MatchParent"
+        android:orientation="horizontal">
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/label"
+            style="@style/SubTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginRight="@dimen/padding_6dp"
+            android:layout_weight="0.3"
+            android:maxLines="3"
+            android:singleLine="false"
+            android:textColor="@color/card_text_title"
+            android:textSize="@dimen/vymo_font_c"
+            tools:text="Hint of InputField" />
+
+        <LinearLayout
+            android:id="@+id/ll_view_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="0.7"
+            android:orientation="vertical" />
+    </LinearLayout>
+</LinearLayout>

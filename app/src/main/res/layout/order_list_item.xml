@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_rl"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_60dp"
+    android:padding="@dimen/tiny_padding">
+
+    <RelativeLayout
+        android:id="@+id/rlCall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/name"
+            style="@style/WrapContent"
+            android:layout_marginLeft="@dimen/medium_padding"
+            android:text="Bhavik sadiwala"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/black" />
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/type"
+            android:text="Aline gown"
+            android:layout_marginTop="@dimen/padding_2dp"
+            android:layout_below="@+id/name"
+            style="@style/WrapContent"
+            android:textSize="@dimen/text_size_12sp"
+            android:layout_marginLeft="@dimen/medium_padding"
+            android:textColor="@color/gray" />
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/date"
+            android:text="22nd sep, 5:50pm"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/padding_2dp"
+            android:layout_below="@+id/name"
+            style="@style/WrapContent"
+            android:textSize="@dimen/text_size_12sp"
+            android:layout_marginLeft="@dimen/medium_padding"
+            android:textColor="@color/gray" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

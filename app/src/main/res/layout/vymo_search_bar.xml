@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Default">
+
+    <ImageView
+        android:id="@+id/search_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:paddingLeft="@dimen/padding_16dp"
+        android:paddingTop="@dimen/padding_16dp"
+        android:paddingBottom="@dimen/padding_16dp"
+        app:srcCompat="@drawable/ic_back_new"
+        app:tint="@color/vymo_text_light" />
+
+    <ImageView
+        android:id="@+id/clear_all"
+        android:layout_width="@dimen/padding_16dp"
+        android:layout_height="@dimen/padding_16dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/padding_16dp"
+        android:src="@drawable/ic_close"
+        app:tint="@color/vymo_text_light" />
+
+    <ProgressBar
+        android:id="@+id/search_progress_bar"
+        android:layout_width="@dimen/icon_size_24"
+        android:layout_height="@dimen/icon_size_24"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/padding_16dp"
+        android:src="@drawable/ic_close"
+        android:tint="@color/vymo_text_light"
+        android:visibility="gone" />
+
+    <com.sadiwala.shivam.util.CustomEditText
+        android:id="@+id/search_et"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/task_row_height"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/clear_all"
+        android:layout_toRightOf="@id/search_icon"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:paddingLeft="@dimen/padding_8dp"
+        android:paddingRight="@dimen/padding_8dp"
+        android:textColor="@color/dark_grey_323232"
+        android:textColorHint="@color/vymo_disabled"
+        android:textSize="@dimen/small_font"/>
+
+</merge>
