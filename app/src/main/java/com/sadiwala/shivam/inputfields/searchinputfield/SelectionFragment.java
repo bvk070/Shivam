@@ -73,7 +73,6 @@ public class SelectionFragment extends BaseBottomSheet implements OnRemoveListen
     public static final String BottomSheetConfirmationDialog = "BottomSheetConfirmationDialog";
     public static final String TAG = "SF";
     private static final String CODE_NAME = "CODE_NAME";
-    private static final String LEAD = "LEAD";
     public static final String SEARCH_CHECK_ENABLE = "search_check_enable";
     protected List<ICodeName> mOptions, mAllOfflineOptions;
     private static final int MAX_ITEMS_TO_ENABLE_SEARCH = 7;
@@ -149,7 +148,6 @@ public class SelectionFragment extends BaseBottomSheet implements OnRemoveListen
         intent.putExtra(CLEAR_CLICK, true);
         iBottomSheetListener.onActivityResult(requestCode, AppCompatActivity.RESULT_OK, intent);
         dismiss();
-
     }
 
     @Override

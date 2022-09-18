@@ -21,8 +21,7 @@ public class Order {
     private String id;
     private String type;
     private long timestamp;
-    private Customer customer;
-
+    private InputFieldValue customer;
     private InputFieldValue shoulder;
     private InputFieldValue chest;
     private InputFieldValue waist;
@@ -61,11 +60,11 @@ public class Order {
         this.timestamp = timestamp;
     }
 
-    public Customer getCustomer() {
+    public InputFieldValue getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(InputFieldValue customer) {
         this.customer = customer;
     }
 

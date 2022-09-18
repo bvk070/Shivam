@@ -5,6 +5,7 @@ import com.sadiwala.shivam.inputfields.InputFieldValue;
 
 public class Customer {
 
+    public static final String CUSTOMER_CODE = "customer_code";
     public static final String NAME = "name";
     public static final String MOBILE = "mobile";
     public static final String ADDRESS = "address";

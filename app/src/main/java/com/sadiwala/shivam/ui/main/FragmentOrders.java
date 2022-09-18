@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sadiwala.shivam.R;
 import com.sadiwala.shivam.models.Order;
+import com.sadiwala.shivam.preferences.DataController;
 import com.sadiwala.shivam.ui.Order.OrdersRecycleviewAdapter;
 import com.sadiwala.shivam.util.CustomDividerItemDecoration;
 import com.sadiwala.shivam.util.Util;
@@ -62,7 +63,12 @@ public class FragmentOrders extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         initializeViews();
-        refreshData();
+        ArrayList<Order> orders = DataController.getPrefOrders();
+        if (Util.isListEmpty(orders)) {
+            refreshData();
+        } else {
+            setData(orders);
+        }
 
     }
 
@@ -128,6 +134,7 @@ public class FragmentOrders extends Fragment {
             tvError.setVisibility(View.GONE);
             OrdersRecycleviewAdapter ordersRecycleviewAdapter = new OrdersRecycleviewAdapter(orders, getActivity());
             mRecyclerView.setAdapter(ordersRecycleviewAdapter);
+            DataController.setPrefOrders(orders);
         }
         progressBar.setVisibility(View.GONE);
         swipeRefreshLayout.setRefreshing(false);

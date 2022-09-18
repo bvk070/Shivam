@@ -1,11 +1,14 @@
 package com.sadiwala.shivam.base;
 
+import static com.sadiwala.shivam.models.Customer.CUSTOMER_CODE;
+
 import com.google.gson.reflect.TypeToken;
 import com.sadiwala.shivam.inputfields.InputFieldType;
 import com.sadiwala.shivam.inputfields.InputFieldValue;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
 import com.sadiwala.shivam.util.Gson;
+import com.sadiwala.shivam.util.Util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,7 +76,7 @@ public class AppData {
                 "}\n" +
                 "],\n" +
                 "\"required\": true\n" +
-                "}"+
+                "}" +
                 "]";
 
         ArrayList<InputFieldType> inputFieldTypes = Gson.getInstance().fromJson(stringInputs, new TypeToken<List<InputFieldType>>() {
@@ -90,6 +93,7 @@ public class AppData {
         hashMap.put(Customer.AREA, new InputFieldValue());
         hashMap.put(Customer.PINCODE, new InputFieldValue());
 
+        hashMap.put(CUSTOMER_CODE, new InputFieldValue());
         hashMap.put(Order.SHOULDER, new InputFieldValue());
         hashMap.put(Order.CHEST, new InputFieldValue());
         hashMap.put(Order.WAIST, new InputFieldValue());
@@ -104,6 +108,21 @@ public class AppData {
         hashMap.put(Order.FITTING, new InputFieldValue());
 
         return hashMap;
+    }
+
+    public static ArrayList<InputFieldType> getCustomerSectionInputs() {
+        String stringInputs = "[{\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": \"" + CUSTOMER_CODE + "\",\n" +
+                "\"hint\": \"Customer\",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(Util.getCachedCustomers()) + ",\n" +
+                "\"required\": true\n" +
+                "}]";
+
+        ArrayList<InputFieldType> inputFieldTypes = Gson.getInstance().fromJson(stringInputs, new TypeToken<List<InputFieldType>>() {
+        }.getType());
+
+        return inputFieldTypes;
     }
 
     public static ArrayList<InputFieldType> getAlineGownForm() {

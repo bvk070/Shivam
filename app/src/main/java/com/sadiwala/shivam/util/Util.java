@@ -10,8 +10,12 @@ import androidx.core.content.ContextCompat;
 
 import com.sadiwala.shivam.R;
 import com.sadiwala.shivam.base.ShivamApplication;
+import com.sadiwala.shivam.models.Customer;
+import com.sadiwala.shivam.models.common.CodeName;
+import com.sadiwala.shivam.preferences.DataController;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Util {
@@ -97,6 +101,16 @@ public class Util {
     public static String getFirstWord(String fullString) {
         String arr[] = fullString.split(" ", 2);
         return arr[0];
+    }
+
+    public static CodeName[] getCachedCustomers() {
+        ArrayList<Customer> customers = DataController.getPrefCustomers();
+        CodeName[] codeNames = new CodeName[customers.size()];
+        for (int i = 0; i < customers.size(); i++) {
+            CodeName codeName = new CodeName(customers.get(i).getId(), customers.get(i).getName().getValue());
+            codeNames[i] = codeName;
+        }
+        return codeNames;
     }
 
 

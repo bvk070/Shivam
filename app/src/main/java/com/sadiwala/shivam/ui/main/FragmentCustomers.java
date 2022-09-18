@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sadiwala.shivam.R;
 import com.sadiwala.shivam.models.Customer;
+import com.sadiwala.shivam.preferences.DataController;
 import com.sadiwala.shivam.ui.Customer.CustomersRecycleviewAdapter;
 import com.sadiwala.shivam.util.CustomDividerItemDecoration;
 import com.sadiwala.shivam.util.Util;
@@ -62,8 +63,12 @@ public class FragmentCustomers extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         initializeViews();
-        refreshData();
-
+        ArrayList<Customer> customers = DataController.getPrefCustomers();
+        if (Util.isListEmpty(customers)) {
+            refreshData();
+        } else {
+            setData(customers);
+        }
     }
 
     private void initializeViews() {
@@ -128,6 +133,7 @@ public class FragmentCustomers extends Fragment {
             tvError.setVisibility(View.GONE);
             CustomersRecycleviewAdapter customersRecycleviewAdapter = new CustomersRecycleviewAdapter(customers, getActivity());
             mRecyclerView.setAdapter(customersRecycleviewAdapter);
+            DataController.setPrefCustomers(customers);
         }
         progressBar.setVisibility(View.GONE);
         swipeRefreshLayout.setRefreshing(false);

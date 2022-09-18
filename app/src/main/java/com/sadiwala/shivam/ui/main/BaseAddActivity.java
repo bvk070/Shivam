@@ -176,7 +176,7 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         Order order = new Order();
         order.setTimestamp(System.currentTimeMillis());
         order.setType(productType);
-        order.setCustomer(new Customer());
+        order.setCustomer(hashMap.get(Customer.CUSTOMER_CODE));
 
         order.setShoulder(hashMap.get(Order.SHOULDER));
         order.setChest(hashMap.get(Order.CHEST));
