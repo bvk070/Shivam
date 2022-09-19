@@ -1,6 +1,7 @@
 package com.sadiwala.shivam.ui.Order;
 
 import static com.sadiwala.shivam.base.AppData.prepareOrderGroups;
+import static com.sadiwala.shivam.network.FirebaseDatabaseController.TABLE_CUSTOMERS;
 import static com.sadiwala.shivam.ui.Customer.CustomerDetailsActivity.CUSTOMER_DATA;
 
 import android.app.Activity;
@@ -12,10 +13,17 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.sadiwala.shivam.R;
 import com.sadiwala.shivam.base.AppData;
 import com.sadiwala.shivam.base.ShivamApplication;
@@ -24,6 +32,7 @@ import com.sadiwala.shivam.inputfields.InputFieldType;
 import com.sadiwala.shivam.inputfields.InputFieldValue;
 import com.sadiwala.shivam.inputfields.InputFieldsGroup;
 import com.sadiwala.shivam.inputfields.InputFieldsGroupsContainer;
+import com.sadiwala.shivam.inputfields.SelectionInputField;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
 import com.sadiwala.shivam.preferences.DataController;
@@ -64,7 +73,6 @@ public class OrderDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
         init();
-        loadGroupView(savedInstanceState);
     }
 
     public EventBus getBus() {
@@ -81,9 +89,39 @@ public class OrderDetailsActivity extends BaseActivity {
 
         if (getIntent().getExtras() != null) {
             order = Gson.getInstance().fromJson(getIntent().getStringExtra(ORDER_DATA), Order.class);
-            customer = DataController.getCustomerById(order.getCustomer().getValue());
+            customer = DataController.getCustomerById(SelectionInputField.getCodeFromJsonValue(order.getCustomer().getValue()));
         }
 
+        if (customer != null) {
+            loadData();
+        } else {
+            fetchCustomerById(order.getCustomer().getValue());
+        }
+
+    }
+
+    private void fetchCustomerById(String id) {
+        CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(TABLE_CUSTOMERS);
+        DocumentReference documentReference = collectionReference.document(id);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                if (documentSnapshot.exists()) {
+                    customer = documentSnapshot.toObject(Customer.class);
+                    loadData();
+                }
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+    }
+
+    private void loadData() {
         tvName = findViewById(R.id.name);
         tvName.setText(customer.getName().getValue());
 
@@ -134,6 +172,8 @@ public class OrderDetailsActivity extends BaseActivity {
                 CustomerDetailsActivity.start(OrderDetailsActivity.this, bundle);
             }
         });
+
+        loadGroupView(null);
     }
 
     private void loadGroupView(Bundle savedInstanceState) {

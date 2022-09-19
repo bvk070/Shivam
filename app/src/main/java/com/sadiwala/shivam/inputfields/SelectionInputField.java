@@ -256,21 +256,7 @@ public class SelectionInputField extends ParentInputField {
 
     @Override
     public View getDisplayView() {
-        if (InputFieldType.INPUT_FIELD_TYPE_MULTI_SELECT_CHECK_BOX.equals(mInputFieldType.getType())
-                || InputFieldType.INPUT_FIELD_TYPE_MULTI_SELECT_AUTO_COMPLETE.equals(mInputFieldType.getType())) {
-
-            String valueString = processMultilinePrepopulateValue(mPrepopulateValue);
-            View displayView = getReadOnlyView(mInputFieldType.getHint(), valueString.trim());
-            TextView textView = (TextView) displayView.findViewById(R.id.value);
-            //setting multi line because we need to show multiple selected options in each line.
-            textView.setMaxLines(Integer.MAX_VALUE);
-            textView.setSingleLine(false);
-            return displayView;
-        } else if (INPUT_FIELD_TYPE_SPINNER.equals(mInputFieldType.getType())
-                || INPUT_FIELD_TYPE_CODE_NAME_SPINNER.equals(mInputFieldType.getType())) {
-            return getReadOnlyView(mInputFieldType.getHint(), mPrepopulateValue);
-        }
-        return null;
+        return getReadOnlyView(mInputFieldType.getHint(), getNameFromJsonValue(mPrepopulateValue));
     }
 
     @Override
@@ -392,35 +378,7 @@ public class SelectionInputField extends ParentInputField {
 
     @Override
     public String getJsonValue() {
-
-        if (INPUT_FIELD_TYPE_SPINNER.equals(mInputFieldType.getType())
-                || INPUT_FIELD_TYPE_CODE_NAME_SPINNER.equals(mInputFieldType.getType())) {
-
-            if (!Util.isListEmpty(mSelectedOptions)) {
-                return Gson.getInstance().toJson(mSelectedOptions.get(0).getCode());
-            }
-            return null;
-
-        }
-
-        try {
-            if (mSelectedOptions == null || mSelectedOptions.isEmpty()) {
-                return Gson.getInstance().toJson(Collections.emptyList());
-            } else {
-                List<CodeName> selectedOptions = new ArrayList<>();
-                for (ICodeName codeName : mSelectedOptions) {
-                    selectedOptions.add(new CodeName(codeName.getCode(), codeName.getName()));
-                }
-                if (InputFieldType.INPUT_FIELD_TYPE_REFERRAL.equals(mInputFieldType.getType())) {
-                    return "{" + Gson.getInstance().toJson(selectedOptions.get(0)) + "}";
-                } else {
-                    return Gson.getInstance().toJson(selectedOptions);
-                }
-            }
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-        }
-        return null;
+        return Gson.getInstance().toJson(mSelectedOptions);
     }
 
     @Override
@@ -690,6 +648,24 @@ public class SelectionInputField extends ParentInputField {
         public void searchOnline(Activity activity, String searchQuery, SelectionInputfieldSearchResultsCallback callback, Map<String, String> additionalParams) {
 
         }
+    }
+
+    public static String getCodeFromJsonValue(String json) {
+        ArrayList<CodeName> codeNames = new com.google.gson.Gson().fromJson(json, new TypeToken<List<CodeName>>() {
+        }.getType());
+        if (!Util.isListEmpty(codeNames)) {
+            return codeNames.get(0).getCode();
+        }
+        return null;
+    }
+
+    public static String getNameFromJsonValue(String json) {
+        ArrayList<CodeName> codeNames = new com.google.gson.Gson().fromJson(json, new TypeToken<List<CodeName>>() {
+        }.getType());
+        if (!Util.isListEmpty(codeNames)) {
+            return codeNames.get(0).getName();
+        }
+        return null;
     }
 
 }
