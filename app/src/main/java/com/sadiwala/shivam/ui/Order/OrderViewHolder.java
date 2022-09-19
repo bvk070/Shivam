@@ -55,7 +55,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
         if (customer != null) {
             loadData();
         } else {
-            fetchCustomerById(order.getCustomer().getValue());
+            fetchCustomerById(SelectionInputField.getCodeFromJsonValue(order.getCustomer().getValue()));
         }
 
     }

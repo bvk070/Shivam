@@ -16,9 +16,16 @@ public class Order {
     public static final String PATTERN = "pattern";
     public static final String POCKET_SIZE = "pocket_size";
     public static final String POCKET = "pocket";
+    public static final String LENGHA_POCKET = "lengha_pocket";
     public static final String MUNDHO = "mundho";
     public static final String FITTING = "fitting";
     public static final String KOTHO = "kotho";
+    public static final String HIPS = "hips";
+    public static final String GHER = "gher";
+    public static final String CUT = "cut";
+    public static final String MORI = "mori";
+    public static final String KHRISTAK = "khristak";
+    public static final String ILASTIC = "ilastic";
     public static final String CLOTH_DESIGN = "cloth_design";
     public static final String CLOTH_COLOR = "cloth_color";
 
@@ -35,10 +42,17 @@ public class Order {
     private InputFieldValue neckSize;
     private InputFieldValue pattern;
     private InputFieldValue pocket;
+    private InputFieldValue lenghaPocket;
     private InputFieldValue pocketSize;
     private InputFieldValue mundho;
     private InputFieldValue fitting;
     private InputFieldValue kotho;
+    private InputFieldValue hips;
+    private InputFieldValue gher;
+    private InputFieldValue cut;
+    private InputFieldValue mori;
+    private InputFieldValue khristak;
+    private InputFieldValue ilastic;
     private InputFieldValue clothDesign;
     private InputFieldValue clothColor;
 
@@ -179,6 +193,54 @@ public class Order {
         this.kotho = kotho;
     }
 
+    public InputFieldValue getHips() {
+        return hips;
+    }
+
+    public void setHips(InputFieldValue hips) {
+        this.hips = hips;
+    }
+
+    public InputFieldValue getGher() {
+        return gher;
+    }
+
+    public void setGher(InputFieldValue gher) {
+        this.gher = gher;
+    }
+
+    public InputFieldValue getCut() {
+        return cut;
+    }
+
+    public void setCut(InputFieldValue cut) {
+        this.cut = cut;
+    }
+
+    public InputFieldValue getMori() {
+        return mori;
+    }
+
+    public void setMori(InputFieldValue mori) {
+        this.mori = mori;
+    }
+
+    public InputFieldValue getKhristak() {
+        return khristak;
+    }
+
+    public void setKhristak(InputFieldValue khristak) {
+        this.khristak = khristak;
+    }
+
+    public InputFieldValue getIlastic() {
+        return ilastic;
+    }
+
+    public void setIlastic(InputFieldValue ilastic) {
+        this.ilastic = ilastic;
+    }
+
     public InputFieldValue getClothDesign() {
         return clothDesign;
     }
@@ -195,6 +257,14 @@ public class Order {
         this.clothColor = clothColor;
     }
 
+    public InputFieldValue getLenghaPocket() {
+        return lenghaPocket;
+    }
+
+    public void setLenghaPocket(InputFieldValue lenghaPocket) {
+        this.lenghaPocket = lenghaPocket;
+    }
+
     // Getter Method Names
     public static final String GETSHOULDER = "getShoulder()";
     public static final String GETWAIST = "getWaist()";
@@ -205,10 +275,17 @@ public class Order {
     public static final String GETNECKSIZE = "getNeckSize()";
     public static final String GETPATTERN = "getPattern()";
     public static final String GETPOCKET = "getPocket()";
+    public static final String GETLENGHAPOCKET = "getLenghaPocket()";
     public static final String GETPOCKETSIZE = "getPocketSize()";
     public static final String GETMUNDHO = "getMundho()";
     public static final String GETFITTING = "getFitting()";
     public static final String GETKOTHO = "getKotho()";
+    public static final String GETHIPS = "getHips()";
+    public static final String GETGHER = "getGher()";
+    public static final String GETCUT = "getCut()";
+    public static final String GETMORI = "getMori()";
+    public static final String GETKHRISTAK = "getKhristak()";
+    public static final String GETILASTIC = "getIlastic()";
     public static final String GETCLOTHDESIGN = "getClothDesign()";
     public static final String GETCLOTHCOLOR = "getClothColor()";
 

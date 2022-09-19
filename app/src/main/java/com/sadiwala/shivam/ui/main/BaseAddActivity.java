@@ -187,10 +187,17 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         order.setNeckSize(hashMap.get(Order.NECK_SIZE));
         order.setPattern(hashMap.get(Order.PATTERN));
         order.setPocket(hashMap.get(Order.POCKET));
+        order.setLenghaPocket(hashMap.get(Order.LENGHA_POCKET));
         order.setPocketSize(hashMap.get(Order.POCKET_SIZE));
         order.setMundho(hashMap.get(Order.MUNDHO));
         order.setFitting(hashMap.get(Order.FITTING));
         order.setKotho(hashMap.get(Order.KOTHO));
+        order.setHips(hashMap.get(Order.HIPS));
+        order.setGher(hashMap.get(Order.GHER));
+        order.setCut(hashMap.get(Order.CUT));
+        order.setMori(hashMap.get(Order.MORI));
+        order.setKhristak(hashMap.get(Order.KHRISTAK));
+        order.setIlastic(hashMap.get(Order.ILASTIC));
         order.setClothDesign(hashMap.get(Order.CLOTH_DESIGN));
         order.setClothColor(hashMap.get(Order.CLOTH_COLOR));
 

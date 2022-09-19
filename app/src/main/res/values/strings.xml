@@ -21,7 +21,8 @@
     <string name="night_dress">નાઈટશુટ</string>
     <string name="soemthing_wrong">Something went wrong, please try again later.</string>
     <string name="screenshot_saved">Screenshot is saved</string>
-
+    <string name="night_shoot_top">ટોપ</string>
+    <string name="night_shoot_bottom">લેંઘી</string>
 
     <string name="left_icon" translatable="false">Left Icon</string>
     <string name="ok">Ok</string>

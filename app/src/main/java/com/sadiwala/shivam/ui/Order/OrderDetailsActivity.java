@@ -95,7 +95,7 @@ public class OrderDetailsActivity extends BaseActivity {
         if (customer != null) {
             loadData();
         } else {
-            fetchCustomerById(order.getCustomer().getValue());
+            fetchCustomerById(SelectionInputField.getCodeFromJsonValue(order.getCustomer().getValue()));
         }
 
     }
@@ -178,17 +178,48 @@ public class OrderDetailsActivity extends BaseActivity {
 
     private void loadGroupView(Bundle savedInstanceState) {
 
-        ArrayList<InputFieldType> inputFieldTypes = new ArrayList<>();
-        ArrayList<InputFieldValue> inputFieldValues = new ArrayList<>();
-        prepareOrderGroups(inputFieldTypes, inputFieldValues, order);
-
-        InputFieldsGroup inputFieldsGroup = new InputFieldsGroup(this, savedInstanceState, "code", customer.getName().getValue() + " / " + AppData.getType(this, order.getType()),
-                inputFieldValues, inputFieldTypes, InputField.EditMode.READ, false, getBus(), null, null);
-
         ArrayList<InputFieldsGroup> inputFieldsGroups = new ArrayList<>();
-        inputFieldsGroups.add(inputFieldsGroup);
-        groupView = new InputFieldsGroupsContainer(this, inputFieldsGroups, getBus(), InputField.EditMode.READ, null);
 
+        if (AppData.PRODUCT_TYPE.ALINE_GOWN.toString().equals(order.getType())) {
+
+            ArrayList<InputFieldType> inputFieldTypes = new ArrayList<>();
+            ArrayList<InputFieldValue> inputFieldValues = new ArrayList<>();
+
+            prepareOrderGroups(inputFieldTypes, inputFieldValues, order);
+
+            InputFieldsGroup inputFieldsGroup = new InputFieldsGroup(this, savedInstanceState, "code", customer.getName().getValue() + " / " + AppData.getType(this, order.getType()),
+                    inputFieldValues, AppData.getAlineGownForm(), InputField.EditMode.READ, false, getBus(), null, null);
+            inputFieldsGroups.add(inputFieldsGroup);
+
+        } else if (AppData.PRODUCT_TYPE.CHAPATTI_GOWN.toString().equals(order.getType())) {
+
+            ArrayList<InputFieldType> inputFieldTypes = new ArrayList<>();
+            ArrayList<InputFieldValue> inputFieldValues = new ArrayList<>();
+
+            prepareOrderGroups(inputFieldTypes, inputFieldValues, order);
+
+            InputFieldsGroup inputFieldsGroup = new InputFieldsGroup(this, savedInstanceState, "code", customer.getName().getValue() + " / " + AppData.getType(this, order.getType()),
+                    inputFieldValues, AppData.getChapatiGownForm(), InputField.EditMode.READ, false, getBus(), null, null);
+            inputFieldsGroups.add(inputFieldsGroup);
+
+        } else if (AppData.PRODUCT_TYPE.NIGHT_DRESS.toString().equals(order.getType())) {
+
+            ArrayList<InputFieldType> inputFieldTypes = new ArrayList<>();
+            ArrayList<InputFieldValue> inputFieldValues = new ArrayList<>();
+
+            prepareOrderGroups(inputFieldTypes, inputFieldValues, order);
+
+            InputFieldsGroup inputFieldsGroup1 = new InputFieldsGroup(this, savedInstanceState, "night_shoot_top", customer.getName().getValue() + " / " + AppData.getType(this, order.getType()) + " / " + getString(R.string.night_shoot_top),
+                    inputFieldValues, AppData.getNightShootTopForm(), InputField.EditMode.READ, false, getBus(), null, null);
+            inputFieldsGroups.add(inputFieldsGroup1);
+
+            InputFieldsGroup inputFieldsGroup2 = new InputFieldsGroup(this, savedInstanceState, "night_shoot_bottom", customer.getName().getValue() + " / " + AppData.getType(this, order.getType()) + " / " + getString(R.string.night_shoot_bottom),
+                    inputFieldValues, AppData.getNightShootBottomForm(), InputField.EditMode.READ, false, getBus(), null, null);
+            inputFieldsGroups.add(inputFieldsGroup2);
+
+        }
+
+        groupView = new InputFieldsGroupsContainer(this, inputFieldsGroups, getBus(), InputField.EditMode.READ, null);
         ((ViewGroup) findViewById(R.id.input_fields)).addView(groupView.getDisplayView());
     }
 

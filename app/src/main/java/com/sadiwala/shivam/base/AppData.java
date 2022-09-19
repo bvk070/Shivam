@@ -8,9 +8,16 @@ import static com.sadiwala.shivam.models.Customer.GETPINCODE;
 import static com.sadiwala.shivam.models.Order.GETCHEST;
 import static com.sadiwala.shivam.models.Order.GETCLOTHCOLOR;
 import static com.sadiwala.shivam.models.Order.GETCLOTHDESIGN;
+import static com.sadiwala.shivam.models.Order.GETCUT;
 import static com.sadiwala.shivam.models.Order.GETFITTING;
+import static com.sadiwala.shivam.models.Order.GETGHER;
+import static com.sadiwala.shivam.models.Order.GETHIPS;
+import static com.sadiwala.shivam.models.Order.GETILASTIC;
+import static com.sadiwala.shivam.models.Order.GETKHRISTAK;
 import static com.sadiwala.shivam.models.Order.GETKOTHO;
+import static com.sadiwala.shivam.models.Order.GETLENGHAPOCKET;
 import static com.sadiwala.shivam.models.Order.GETLENGTH;
+import static com.sadiwala.shivam.models.Order.GETMORI;
 import static com.sadiwala.shivam.models.Order.GETMUNDHO;
 import static com.sadiwala.shivam.models.Order.GETNECKSIZE;
 import static com.sadiwala.shivam.models.Order.GETNECKTYPE;
@@ -114,6 +121,13 @@ public class AppData {
         hashMap.put(Order.MUNDHO, new InputFieldValue());
         hashMap.put(Order.FITTING, new InputFieldValue());
         hashMap.put(Order.KOTHO, new InputFieldValue());
+        hashMap.put(Order.HIPS, new InputFieldValue());
+        hashMap.put(Order.GHER, new InputFieldValue());
+        hashMap.put(Order.CUT, new InputFieldValue());
+        hashMap.put(Order.MORI, new InputFieldValue());
+        hashMap.put(Order.LENGHA_POCKET, new InputFieldValue());
+        hashMap.put(Order.KHRISTAK, new InputFieldValue());
+        hashMap.put(Order.ILASTIC, new InputFieldValue());
         hashMap.put(Order.CLOTH_DESIGN, new InputFieldValue());
         hashMap.put(Order.CLOTH_COLOR, new InputFieldValue());
 
@@ -158,7 +172,7 @@ public class AppData {
                 "{\n" +
                 "\"type\": \"text\",\n" +
                 "\"code\": \"" + Order.SLEEVE + "\",\n" +
-                "\"hint\": \"સ્લીવ\",\n" +
+                "\"hint\": \"બાંય\",\n" +
                 "\"required\": true\n" +
                 "},\n" +
                 "{\n" +
@@ -174,6 +188,12 @@ public class AppData {
                 "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getThroats()) + ",\n" +
                 "\"required\": true\n" +
                 "}," +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.NECK_SIZE + "\",\n" +
+                "\"hint\": \"ગળાનું માપ\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
                 "{\n" +
                 "\"type\": \"code_name_spinner\",\n" +
                 "\"code\": \"" + Order.PATTERN + "\",\n" +
@@ -311,6 +331,162 @@ public class AppData {
         return inputFieldTypes;
     }
 
+    public static ArrayList<InputFieldType> getNightShootTopForm() {
+        String stringInputs = "[\n" +
+                " {\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.SHOULDER + "\",\n" +
+                "\"hint\": \"ખભો\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.CHEST + "\",\n" +
+                "\"hint\": \"છાતી\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.WAIST + "\",\n" +
+                "\"hint\": \"કમર\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.HIPS + "\",\n" +
+                "\"hint\": \"હીપ્સ\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"text\",\n" +
+                "\"code\": \"" + Order.SLEEVE + "\",\n" +
+                "\"hint\": \"બાંય\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.LENGTH + "\",\n" +
+                "\"hint\": \"લંબાઈ\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.GHER + "\",\n" +
+                "\"hint\": \"ઘેર\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.CUT + "\",\n" +
+                "\"hint\": \"ક્ટ\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": \"" + Order.NECK_TYPE + "\",\n" +
+                "\"hint\": \"ગળું\",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getThroats()) + ",\n" +
+                "\"required\": true\n" +
+                "}," +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.NECK_SIZE + "\",\n" +
+                "\"hint\": \"ગળાનું માપ\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": \"" + Order.PATTERN + "\",\n" +
+                "\"hint\": \"પેટર્ન\",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getPatterns()) + ",\n" +
+                "\"required\": true\n" +
+                "}," +
+                "{\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": \"" + Order.POCKET + "\",\n" +
+                "\"hint\": \"પોકેટ\",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getPockets()) + ",\n" +
+                "\"required\": true\n" +
+                "}," +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.POCKET_SIZE + "\",\n" +
+                "\"hint\": \"પોકેટનું માપ\",\n" +
+                "\"required\": false\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"text\",\n" +
+                "\"code\": \"" + Order.MUNDHO + "\",\n" +
+                "\"hint\": \"મૂંઢો\",\n" +
+                "\"required\": false\n" +
+                "}" +
+                "]";
+
+        ArrayList<InputFieldType> inputFieldTypes = Gson.getInstance().fromJson(stringInputs, new TypeToken<List<InputFieldType>>() {
+        }.getType());
+
+        return inputFieldTypes;
+    }
+
+    public static ArrayList<InputFieldType> getNightShootBottomForm() {
+        String stringInputs = "[\n" +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.LENGTH + "\",\n" +
+                "\"hint\": \"લંબાઈ\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.MORI + "\",\n" +
+                "\"hint\": \"મોરી\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.GHER + "\",\n" +
+                "\"hint\": \"ઘેર\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.KHRISTAK + "\",\n" +
+                "\"hint\": \"ખ્રિસ્તક\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.ILASTIC + "\",\n" +
+                "\"hint\": \"ઈલાસ્ટીક\",\n" +
+                "\"required\": false\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": \"" + Order.LENGHA_POCKET + "\",\n" +
+                "\"hint\": \"લેઘામાં પોકેટ\",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getPocketsYesNo()) + ",\n" +
+                "\"required\": true\n" +
+                "}," +
+                "{\n" +
+                "\"type\": \"text\",\n" +
+                "\"code\": \"" + Order.CLOTH_DESIGN + "\",\n" +
+                "\"hint\": \"કાપડ ડિઝાઇન\",\n" +
+                "\"required\": true\n" +
+                "}," +
+                "{\n" +
+                "\"type\": \"text\",\n" +
+                "\"code\": \"" + Order.CLOTH_COLOR + "\",\n" +
+                "\"hint\": \"કાપડ રંગ\",\n" +
+                "\"required\": true\n" +
+                "}" +
+                "]";
+
+        ArrayList<InputFieldType> inputFieldTypes = Gson.getInstance().fromJson(stringInputs, new TypeToken<List<InputFieldType>>() {
+        }.getType());
+
+        return inputFieldTypes;
+    }
+
     public static boolean isExcludeField(String fieldName) {
 //        if (fieldName.equals("customer")) return true;
         return false;
@@ -385,6 +561,8 @@ public class AppData {
                 return order.getPattern();
             case GETPOCKET:
                 return order.getPocket();
+            case GETLENGHAPOCKET:
+                return order.getLenghaPocket();
             case GETPOCKETSIZE:
                 return order.getPocketSize();
             case GETMUNDHO:
@@ -393,6 +571,18 @@ public class AppData {
                 return order.getFitting();
             case GETKOTHO:
                 return order.getKotho();
+            case GETHIPS:
+                return order.getHips();
+            case GETGHER:
+                return order.getGher();
+            case GETCUT:
+                return order.getCut();
+            case GETMORI:
+                return order.getMori();
+            case GETKHRISTAK:
+                return order.getKhristak();
+            case GETILASTIC:
+                return order.getIlastic();
             case GETCLOTHDESIGN:
                 return order.getClothDesign();
             case GETCLOTHCOLOR:
@@ -435,6 +625,13 @@ public class AppData {
         CodeName[] codeNames = new CodeName[2];
         codeNames[0] = new CodeName("pocket", "પોકેટ");
         codeNames[1] = new CodeName("side_pocket", "સાઈડ પોકેટ");
+        return codeNames;
+    }
+
+    public static CodeName[] getPocketsYesNo() {
+        CodeName[] codeNames = new CodeName[2];
+        codeNames[0] = new CodeName("yes", "Yes");
+        codeNames[1] = new CodeName("no", "No");
         return codeNames;
     }
 

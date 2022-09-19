@@ -23,6 +23,6 @@ public class AaryaConstants {
     public static final int REQUEST_CODE_INPUTFIELD = 60411;
     public static final int PERMISSIONS_WRITE_STORAGE = 40;
     public static final String SCREENSHOTS = "screenshots";
-
+    public static final String NO_SEARCH_BAR = "show_search_bar";
 
 }

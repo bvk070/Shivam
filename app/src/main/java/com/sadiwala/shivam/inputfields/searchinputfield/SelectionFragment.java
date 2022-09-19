@@ -47,6 +47,7 @@ import com.sadiwala.shivam.inputfields.SelectionInputField;
 import com.sadiwala.shivam.models.common.CodeName;
 import com.sadiwala.shivam.models.common.IBottomSheetListener;
 import com.sadiwala.shivam.models.common.ICodeName;
+import com.sadiwala.shivam.util.AaryaConstants;
 import com.sadiwala.shivam.util.BottomSheetListView;
 import com.sadiwala.shivam.util.CustomTextView;
 import com.sadiwala.shivam.util.Gson;
@@ -210,7 +211,9 @@ public class SelectionFragment extends BaseBottomSheet implements OnRemoveListen
         mMinSelection = getArguments().getInt(SelectionInputField.EXTRAS_MIN_ITEMS_SELECTION, -1);
         mMaxSelection = getArguments().getInt(SelectionInputField.EXTRAS_MAX_ITEMS_SELECTION, -1);
         searchCheckEnable = getArguments().getBoolean(SEARCH_CHECK_ENABLE, false);
-
+        if (getArguments().containsKey(AaryaConstants.NO_SEARCH_BAR)) {
+            noSearchBar = getArguments().getBoolean(AaryaConstants.NO_SEARCH_BAR, false);
+        }
 
         mainContainer = view.findViewById(R.id.main_container);
         mainContainer.setBackground(getResources().getDrawable(R.drawable.bottom_sheet_bg));

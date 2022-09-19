@@ -2,6 +2,7 @@ package com.sadiwala.shivam.inputfields;
 
 import static com.sadiwala.shivam.inputfields.InputFieldType.INPUT_FIELD_TYPE_CODE_NAME_SPINNER;
 import static com.sadiwala.shivam.inputfields.InputFieldType.INPUT_FIELD_TYPE_SPINNER;
+import static com.sadiwala.shivam.util.AaryaConstants.NO_SEARCH_BAR;
 import static com.sadiwala.shivam.util.AaryaConstants.REQUEST_CODE;
 import static io.reactivex.annotations.SchedulerSupport.NONE;
 
@@ -37,7 +38,6 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -216,7 +216,8 @@ public class SelectionInputField extends ParentInputField {
         intent.putExtra(EXTRAS_SELECTED_OPTIONS_CLASS_TYPE, getClass().getSimpleName());
         intent.putExtra(HINT, inputFieldType.getHint());
         intent.putExtra(REQUEST_CODE, AaryaConstants.REQUEST_CODE_INPUTFIELD);
-
+        boolean noSearchBar = mAvailableOptions.size() > 7 ? false : true;
+        intent.putExtra(NO_SEARCH_BAR, noSearchBar);
         SelectionFragment.showSelectionFragment((AppCompatActivity) mActivity, intent.getExtras());
     }
 
