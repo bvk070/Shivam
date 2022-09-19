@@ -217,6 +217,17 @@ public class OrderDetailsActivity extends BaseActivity {
                     inputFieldValues, AppData.getNightShootBottomForm(), InputField.EditMode.READ, false, getBus(), null, null);
             inputFieldsGroups.add(inputFieldsGroup2);
 
+        } else if (AppData.PRODUCT_TYPE.LENGHI.toString().equals(order.getType())) {
+
+            ArrayList<InputFieldType> inputFieldTypes = new ArrayList<>();
+            ArrayList<InputFieldValue> inputFieldValues = new ArrayList<>();
+
+            prepareOrderGroups(inputFieldTypes, inputFieldValues, order);
+
+            InputFieldsGroup inputFieldsGroup2 = new InputFieldsGroup(this, savedInstanceState, "night_shoot_bottom", customer.getName().getValue() + " / " + AppData.getType(this, order.getType()),
+                    inputFieldValues, AppData.getNightShootBottomForm(), InputField.EditMode.READ, false, getBus(), null, null);
+            inputFieldsGroups.add(inputFieldsGroup2);
+
         }
 
         groupView = new InputFieldsGroupsContainer(this, inputFieldsGroups, getBus(), InputField.EditMode.READ, null);

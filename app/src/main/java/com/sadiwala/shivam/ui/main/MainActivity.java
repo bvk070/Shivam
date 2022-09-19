@@ -22,7 +22,7 @@ import com.sadiwala.shivam.ui.Order.AddOrderActivity;
 public class MainActivity extends BaseActivity {
 
     private FloatingActionMenu floatingActionMenu;
-    private FloatingActionButton addCustomer, addAlineGown, addChapattiGown, addNightDress;
+    private FloatingActionButton addCustomer, addAlineGown, addChapattiGown, addLenghi, addNightDress;
     private Toolbar mToolbar;
 
     @Override
@@ -45,6 +45,7 @@ public class MainActivity extends BaseActivity {
         addCustomer = findViewById(R.id.addCustomer);
         addAlineGown = findViewById(R.id.addAlineGown);
         addChapattiGown = findViewById(R.id.addChapattiGown);
+        addLenghi = findViewById(R.id.addLenghi);
         addNightDress = findViewById(R.id.addNightDress);
 
         addCustomer.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +82,16 @@ public class MainActivity extends BaseActivity {
                 floatingActionMenu.close(true);
                 Bundle bundle=new Bundle();
                 bundle.putString(PRODUCT_TYPE_DATA, AppData.PRODUCT_TYPE.NIGHT_DRESS.toString());
+                AddOrderActivity.start(MainActivity.this, bundle);
+            }
+        });
+
+        addLenghi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                floatingActionMenu.close(true);
+                Bundle bundle=new Bundle();
+                bundle.putString(PRODUCT_TYPE_DATA, AppData.PRODUCT_TYPE.LENGHI.toString());
                 AddOrderActivity.start(MainActivity.this, bundle);
             }
         });

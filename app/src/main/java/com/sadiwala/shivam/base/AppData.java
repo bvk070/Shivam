@@ -51,7 +51,7 @@ import java.util.List;
 public class AppData {
 
     public enum PRODUCT_TYPE {
-        ALINE_GOWN, CHAPATTI_GOWN, NIGHT_DRESS
+        ALINE_GOWN, CHAPATTI_GOWN, NIGHT_DRESS, LENGHI
     }
 
     public static ArrayList<InputFieldType> getCustomerForm() {
@@ -500,6 +500,8 @@ public class AppData {
                 return Activity.getString(R.string.chapati_down);
             case "NIGHT_DRESS":
                 return Activity.getString(R.string.night_dress);
+            case "LENGHI":
+                return Activity.getString(R.string.lenghi);
         }
         return null;
     }
