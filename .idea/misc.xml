@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_back.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_filter_1_black_24dp.xml" value="0.217" />
         <entry key="app/src/main/res/drawable-v24/ic_orders.xml" value="0.217" />
+        <entry key="app/src/main/res/drawable-xxhdpi/chip_mie_background.xml" value="0.217" />
         <entry key="app/src/main/res/drawable/bg_card.xml" value="0.217" />
         <entry key="app/src/main/res/drawable/bg_card_grey_border.xml" value="0.217" />
         <entry key="app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.217" />
@@ -35,6 +36,8 @@
         <entry key="app/src/main/res/layout/activity_customer_details.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/bottom_sheet_header.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/chip_mie_layout.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/chip_single_mie_layout.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/customer_list_item.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/error_text_layout.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/fragment_customers.xml" value="0.31567028985507245" />
@@ -49,6 +52,7 @@
         <entry key="app/src/main/res/layout/inputfield_hint_layout.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/order_details.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/order_list_item.xml" value="0.31567028985507245" />
+        <entry key="app/src/main/res/layout/selection_input_field.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/selection_input_field_list_row_view.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/selection_input_field_list_view.xml" value="0.3614457831325301" />
         <entry key="app/src/main/res/layout/text_inputfield_layout.xml" value="0.3614457831325301" />

@@ -52,5 +52,6 @@
     <string name="minimum_item_validation">Minimum %d items must be selected</string>
     <string name="description">Description</string>
     <string name="max_limit_selected">Maximum %1$d items can be selected</string>
+    <string name="mieChipLeftDrawable" translatable="false">MiEChipLeftDrawable</string>
 
 </resources>

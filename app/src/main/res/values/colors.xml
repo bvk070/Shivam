@@ -225,4 +225,10 @@
     <color name="check_in_disabled_text_color">#666666</color>
     <color name="check_in_enabled_background_color">#FFFFFF</color>
     <color name="check_in_enabled_text_color">#B2182B</color>
+
+    <color name="aline_gown_bg_color">#F8F1CD</color>
+    <color name="chapati_gown_bg_color">#CDF8F1</color>
+    <color name="night_shoot_bg_color">#F8CDD4</color>
+    <color name="lenghi_bg_color">#ADD8E6</color>
+
 </resources>

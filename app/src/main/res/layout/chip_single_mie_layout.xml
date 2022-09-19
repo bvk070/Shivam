@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_single_mie_chip"
+    style="@style/WrapContent"
+    android:layout_marginTop="@dimen/padding_4dp"
+    android:layout_marginEnd="@dimen/padding_8dp"
+    android:layout_marginBottom="@dimen/padding_4dp"
+    android:background="@drawable/chip_mie_background"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/padding_16dp"
+    android:paddingTop="@dimen/padding_4dp"
+    android:paddingRight="@dimen/padding_16dp"
+    android:paddingBottom="@dimen/padding_4dp">
+
+    <ImageView
+        android:id="@+id/iv_single_mie_chip_left_drawable"
+        android:layout_width="@dimen/padding_20dp"
+        android:layout_height="@dimen/padding_18dp"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/mieChipLeftDrawable"
+        android:paddingRight="@dimen/padding_6dp"
+        android:visibility="gone" />
+
+    <com.sadiwala.shivam.util.CustomTextView
+        android:id="@+id/ctv_single_mie_chip"
+        style="@style/WrapContent"
+        android:textColor="@color/vymo_dark"
+        android:textSize="@dimen/vymo_tiny_text"
+        tools:text="MiEChipValue" />
+
+</LinearLayout>

@@ -21,6 +21,8 @@ import androidx.core.content.ContextCompat;
 import com.sadiwala.shivam.R;
 import com.sadiwala.shivam.base.PermissionManager;
 import com.sadiwala.shivam.base.ShivamApplication;
+import com.sadiwala.shivam.models.common.CodeValue;
+import com.sadiwala.shivam.models.common.ICodeName;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -208,5 +210,20 @@ public class Util {
     public static String generateNewUUID() {
         return UUID.randomUUID().toString();
     }
+
+    public static List<CodeValue> createChips(List<ICodeName> iCodeNameList) {
+        List<CodeValue> codeValueList = new ArrayList<>();
+        if (iCodeNameList.size() > 7) {
+            for (int i = 0; i < 7; i++) {
+                codeValueList.add(new CodeValue(iCodeNameList.get(i).getCode(), iCodeNameList.get(i).getName()));
+            }
+        } else {
+            for (ICodeName iCodeName : iCodeNameList) {
+                codeValueList.add(new CodeValue(iCodeName.getCode(), iCodeName.getName()));
+            }
+        }
+        return codeValueList;
+    }
+
 
 }

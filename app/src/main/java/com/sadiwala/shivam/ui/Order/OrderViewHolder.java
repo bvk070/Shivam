@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -85,6 +86,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
         tvName.setText(customer.getName().getValue());
         tvType.setText(AppData.getType(mActivity, order.getType()));
         setDate();
+//        setBackgroundColor();
 
         rlMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +96,18 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
                 OrderDetailsActivity.start(mActivity, bundle);
             }
         });
+    }
+
+    private void setBackgroundColor() {
+        if (AppData.PRODUCT_TYPE.ALINE_GOWN.toString().equals(order.getType())) {
+            rlMain.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.aline_gown_bg_color));
+        } else if (AppData.PRODUCT_TYPE.CHAPATTI_GOWN.toString().equals(order.getType())) {
+            rlMain.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.chapati_gown_bg_color));
+        } else if (AppData.PRODUCT_TYPE.NIGHT_DRESS.toString().equals(order.getType())) {
+            rlMain.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.night_shoot_bg_color));
+        } else if (AppData.PRODUCT_TYPE.LENGHI.toString().equals(order.getType())) {
+            rlMain.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.lenghi_bg_color));
+        }
     }
 
     private void setDate() {

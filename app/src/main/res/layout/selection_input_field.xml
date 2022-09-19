@@ -35,6 +35,8 @@
 
     </RelativeLayout>
 
+    <include layout="@layout/chip_mie_layout" />
+
     <include
         layout="@layout/error_text_layout"
         android:layout_width="match_parent"

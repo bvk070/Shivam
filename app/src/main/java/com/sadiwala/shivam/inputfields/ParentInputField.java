@@ -11,11 +11,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sadiwala.shivam.R;
+import com.sadiwala.shivam.inputfields.chips.MiEChipsAdapter;
+import com.sadiwala.shivam.models.chips.MiEChipCodeValueModel;
+import com.sadiwala.shivam.models.chips.MiEChipModel;
+import com.sadiwala.shivam.util.Util;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +39,9 @@ public abstract class ParentInputField implements InputField {
     private List<InputFieldValue> mPrepopulateValueList;
     private ImageView mFetchButton;
     protected boolean mIsInputFieldPopulated = false;
+    protected RecyclerView mieChipsRecyclerView;
+    protected MiEChipsAdapter mieChipsAdapter;
+    protected MiEChipModel mieChipModel;
 
     public ParentInputField(AppCompatActivity activity, EventBus bus, EditMode mode, String startState, List<InputFieldValue> prepopulateValueList) {
         if (activity != null) {
@@ -212,5 +220,34 @@ public abstract class ParentInputField implements InputField {
         return mInputFieldType;
     }
 
+    // Method to set the MiE Chips List to the recyclerView layout for the particular inputField
+    protected void setMiEChipsToInputField(MiEChipModel mieChipModel, MiEChipsAdapter.OnChipItemClickListener listener) {
+        // Extra check if the default list is empty
+        if ((mieChipModel instanceof MiEChipCodeValueModel && Util.isListEmpty(((MiEChipCodeValueModel) mieChipModel).getChips()))) {
+            Log.e(TAG, "MiEChipModel: Chip List is Empty. Please Check for - " + mInputFieldType);
+            mieChipsRecyclerView.setVisibility(View.GONE);
+        }
+
+        // If there is some pre-populated value in the inputField then do not display the chips for it
+        if (isInputFieldPopulated()) {
+            Log.d(TAG, "MiEChipModel: The inputField is already populated - " + mInputFieldType);
+            mieChipsRecyclerView.setVisibility(View.GONE);
+        }
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false);
+        mieChipsRecyclerView.setLayoutManager(linearLayoutManager);
+        mieChipsRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mieChipsAdapter = new MiEChipsAdapter(mieChipModel, getActivity(), null);
+
+        // Set the onClick Listener for telling what to do if we click a single chip from the horizontal view
+        if (listener != null) {
+            mieChipsAdapter.setListener(listener);
+        } else {
+            Log.e(TAG, "setMiEChipsToInputField: OnClick Listener for inputField is NULL - " + mInputFieldType);
+            mieChipsRecyclerView.setVisibility(View.GONE);
+        }
+
+        mieChipsRecyclerView.setAdapter(mieChipsAdapter);
+    }
 
 }

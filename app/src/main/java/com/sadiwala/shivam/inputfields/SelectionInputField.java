@@ -4,6 +4,7 @@ import static com.sadiwala.shivam.inputfields.InputFieldType.INPUT_FIELD_TYPE_CO
 import static com.sadiwala.shivam.inputfields.InputFieldType.INPUT_FIELD_TYPE_SPINNER;
 import static com.sadiwala.shivam.util.AaryaConstants.NO_SEARCH_BAR;
 import static com.sadiwala.shivam.util.AaryaConstants.REQUEST_CODE;
+import static com.sadiwala.shivam.util.Util.createChips;
 import static io.reactivex.annotations.SchedulerSupport.NONE;
 
 import android.app.Activity;
@@ -21,10 +22,13 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.sadiwala.shivam.R;
 import com.sadiwala.shivam.base.SourceRouteUtil;
+import com.sadiwala.shivam.inputfields.chips.MiEChipsAdapter;
 import com.sadiwala.shivam.inputfields.searchinputfield.SelectionFragment;
 import com.sadiwala.shivam.inputfields.searchinputfield.SelectionInputfieldSearchResultsCallback;
+import com.sadiwala.shivam.models.chips.MiEChipCodeValueModel;
 import com.sadiwala.shivam.models.common.CodeName;
 import com.sadiwala.shivam.models.common.CodeValue;
+import com.sadiwala.shivam.models.common.IBottomSheetListener;
 import com.sadiwala.shivam.models.common.ICodeName;
 import com.sadiwala.shivam.models.common.OnItemSelectedListener;
 import com.sadiwala.shivam.util.AaryaConstants;
@@ -143,6 +147,10 @@ public class SelectionInputField extends ParentInputField {
                 }
             }
         });
+
+        mieChipsRecyclerView = view.findViewById(R.id.mie_chips_rv);
+        setMiEChips();
+
     }
 
     // Method to tell if the selectionInputField is already populated or not
@@ -415,6 +423,10 @@ public class SelectionInputField extends ParentInputField {
             updateHintText(mSelectedOptions);
         }
 
+        if (mieChipsRecyclerView != null) {
+            mieChipsRecyclerView.setVisibility(View.GONE);
+        }
+
         if (mListener != null) {
             mListener.onRefreshData();
         }
@@ -649,6 +661,75 @@ public class SelectionInputField extends ParentInputField {
         public void searchOnline(Activity activity, String searchQuery, SelectionInputfieldSearchResultsCallback callback, Map<String, String> additionalParams) {
 
         }
+    }
+
+
+    private void setMiEChips() {
+        // Generate defaultMiEChips list for SelectionInputField from mAvailableOptions coming from config.
+        mAvailableOptionsForMiEChips = createChips(mAvailableOptions);
+
+        // Display the mAvailableOptions for MiE Chip list for the SelectionInputField
+        mieChipModel = new MiEChipCodeValueModel(mInputFieldType.getCode(), mAvailableOptionsForMiEChips);
+        mieChipsRecyclerView.setVisibility(View.VISIBLE);
+
+        MiEChipsAdapter.OnChipItemClickListener listener = (clickItem, position) -> {
+            String item = clickItem.getValue();
+            if (!TextUtils.isEmpty(item) && position != -1) {
+                List<ICodeName> selectedOptions = new ArrayList<>();
+                ICodeName selectedCodeNameObject = getSelectedCodeNameOptions(clickItem);
+                if (selectedCodeNameObject != null) {
+                    selectedOptions.add(selectedCodeNameObject);
+                }
+
+                if (Util.isListEmpty(selectedOptions)) {
+                    mieChipsRecyclerView.setVisibility(View.GONE);
+                }
+
+                sendMiEChipSelectionOptionsToBottomSheet(Gson.getInstance().toJson(selectedOptions));
+            } else {
+                Log.e(TAG, "onItemClick of MiEChip: Unable to fetch the Chip value from the horizontal view list.");
+                mieChipsRecyclerView.setVisibility(View.GONE);
+            }
+        };
+
+        setMiEChipsToInputField(mieChipModel, listener);
+        mieChipsAdapter.updateList(mieChipModel);
+
+    }
+
+    private void sendMiEChipSelectionOptionsToBottomSheet(String results) {
+        IBottomSheetListener iBottomSheetListener = SourceRouteUtil.getBottomSheetListener(mActivity);
+        if (iBottomSheetListener != null) {
+            Intent intent = new Intent();
+            intent.putExtra(SelectionInputField.EXTRAS_CODE, mInputFieldType.getCode());
+            intent.putExtra(SelectionInputField.EXTRAS_SELECTED_OPTIONS, results);
+            iBottomSheetListener.onActivityResult(AaryaConstants.REQUEST_CODE_INPUTFIELD, AppCompatActivity.RESULT_OK, intent);
+        }
+    }
+
+    // Return ICodeName object for the selectedOptionItem by comparing with "name" identifier
+    private ICodeName getSelectedCodeNameOptions(CodeValue item) {
+        List<ICodeName> availableOptions = mAvailableOptions;
+
+        // For ReferralInputField - fetch the availableOptions for it
+        if (Util.isListEmpty(mAvailableOptions)) {
+            DataProvider dataProvider = staticOptionsDataProvider;
+            if (getDataProvider() != null) {
+                dataProvider = getDataProvider();
+            }
+            availableOptions = dataProvider.getOptions();
+        }
+
+        // Search for the selectedItem in the availableOptions ICodeNameList
+        if (!Util.isListEmpty(availableOptions)) {
+            for (ICodeName iCodeName : availableOptions) {
+                if (iCodeName.getCode().equalsIgnoreCase(item.getCode())) {
+                    return iCodeName;
+                }
+            }
+        }
+
+        return null;
     }
 
     public static String getCodeFromJsonValue(String json) {
