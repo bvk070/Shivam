@@ -18,7 +18,9 @@ public class Order {
     public static final String POCKET = "pocket";
     public static final String MUNDHO = "mundho";
     public static final String FITTING = "fitting";
-    public static final String DESIGN = "design";
+    public static final String KOTHO = "kotho";
+    public static final String CLOTH_DESIGN = "cloth_design";
+    public static final String CLOTH_COLOR = "cloth_color";
 
     private String id;
     private String type;
@@ -36,7 +38,9 @@ public class Order {
     private InputFieldValue pocketSize;
     private InputFieldValue mundho;
     private InputFieldValue fitting;
-    private InputFieldValue design;
+    private InputFieldValue kotho;
+    private InputFieldValue clothDesign;
+    private InputFieldValue clothColor;
 
     @Exclude
     public String getId() {
@@ -167,16 +171,31 @@ public class Order {
         this.fitting = fitting;
     }
 
-    public InputFieldValue getDesign() {
-        return design;
+    public InputFieldValue getKotho() {
+        return kotho;
     }
 
-    public void setDesign(InputFieldValue design) {
-        this.design = design;
+    public void setKotho(InputFieldValue kotho) {
+        this.kotho = kotho;
+    }
+
+    public InputFieldValue getClothDesign() {
+        return clothDesign;
+    }
+
+    public void setClothDesign(InputFieldValue clothDesign) {
+        this.clothDesign = clothDesign;
+    }
+
+    public InputFieldValue getClothColor() {
+        return clothColor;
+    }
+
+    public void setClothColor(InputFieldValue clothColor) {
+        this.clothColor = clothColor;
     }
 
     // Getter Method Names
-    public static final String GETCUSTOMER = "getCustomer()";
     public static final String GETSHOULDER = "getShoulder()";
     public static final String GETWAIST = "getWaist()";
     public static final String GETCHEST = "getChest()";
@@ -189,7 +208,9 @@ public class Order {
     public static final String GETPOCKETSIZE = "getPocketSize()";
     public static final String GETMUNDHO = "getMundho()";
     public static final String GETFITTING = "getFitting()";
-    public static final String GETDESIGN = "getDesign()";
+    public static final String GETKOTHO = "getKotho()";
+    public static final String GETCLOTHDESIGN = "getClothDesign()";
+    public static final String GETCLOTHCOLOR = "getClothColor()";
 
 
 }

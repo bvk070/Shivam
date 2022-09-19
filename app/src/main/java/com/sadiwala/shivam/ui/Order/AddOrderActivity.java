@@ -68,6 +68,17 @@ public class AddOrderActivity extends BaseAddActivity {
 
         } else if (AppData.PRODUCT_TYPE.CHAPATTI_GOWN.toString().equals(productType)) {
             setTitle(getString(R.string.add_chapatti));
+
+            ArrayList<InputFieldType> inputFieldTypes1 = AppData.getCustomerSectionInputs();
+            InputFieldsGroup inputFieldsGroup1 = new InputFieldsGroup(this, savedInstanceState, "customer_info", "Customer Info",
+                    null, inputFieldTypes1, InputField.EditMode.WRITE, false, getBus(), null, null);
+            inputFieldsGroups.add(inputFieldsGroup1);
+
+            ArrayList<InputFieldType> inputFieldTypes2 = AppData.getChapatiGownForm();
+            InputFieldsGroup inputFieldsGroup2 = new InputFieldsGroup(this, savedInstanceState, "aline_gown_info", "Aline Gown Info",
+                    null, inputFieldTypes2, InputField.EditMode.WRITE, false, getBus(), null, null);
+            inputFieldsGroups.add(inputFieldsGroup2);
+
         } else if (AppData.PRODUCT_TYPE.NIGHT_DRESS.toString().equals(productType)) {
             setTitle(getString(R.string.add_nightdress));
         }

@@ -6,8 +6,10 @@ import static com.sadiwala.shivam.models.Customer.GETAREA;
 import static com.sadiwala.shivam.models.Customer.GETMOBILE;
 import static com.sadiwala.shivam.models.Customer.GETPINCODE;
 import static com.sadiwala.shivam.models.Order.GETCHEST;
-import static com.sadiwala.shivam.models.Order.GETDESIGN;
+import static com.sadiwala.shivam.models.Order.GETCLOTHCOLOR;
+import static com.sadiwala.shivam.models.Order.GETCLOTHDESIGN;
 import static com.sadiwala.shivam.models.Order.GETFITTING;
+import static com.sadiwala.shivam.models.Order.GETKOTHO;
 import static com.sadiwala.shivam.models.Order.GETLENGTH;
 import static com.sadiwala.shivam.models.Order.GETMUNDHO;
 import static com.sadiwala.shivam.models.Order.GETNECKSIZE;
@@ -30,6 +32,7 @@ import com.sadiwala.shivam.inputfields.InputFieldType;
 import com.sadiwala.shivam.inputfields.InputFieldValue;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
+import com.sadiwala.shivam.models.common.CodeName;
 import com.sadiwala.shivam.util.Gson;
 
 import java.lang.reflect.Field;
@@ -80,27 +83,7 @@ public class AppData {
                 "\"code\": " + Customer.PINCODE + ",\n" +
                 "\"hint\": \"Pincode\",\n" +
                 "\"required\": false\n" +
-                "},\n" +
-                "{\n" +
-                "\"type\": \"code_name_spinner\",\n" +
-                "\"code\": \"add_campaign\",\n" +
-                "\"hint\": \"Add Campaign\",\n" +
-                "\"code_name_spinner_options\": [\n" +
-                "{\n" +
-                "\"code\": \"select\",\n" +
-                "\"name\": \"Select\"\n" +
-                "},\n" +
-                "{\n" +
-                "\"code\": \"yes\",\n" +
-                "\"name\": \"Yes\"\n" +
-                "},\n" +
-                "{\n" +
-                "\"code\": \"no\",\n" +
-                "\"name\": \"No\"\n" +
                 "}\n" +
-                "],\n" +
-                "\"required\": true\n" +
-                "}" +
                 "]";
 
         ArrayList<InputFieldType> inputFieldTypes = Gson.getInstance().fromJson(stringInputs, new TypeToken<List<InputFieldType>>() {
@@ -130,7 +113,9 @@ public class AppData {
         hashMap.put(Order.POCKET, new InputFieldValue());
         hashMap.put(Order.MUNDHO, new InputFieldValue());
         hashMap.put(Order.FITTING, new InputFieldValue());
-        hashMap.put(Order.DESIGN, new InputFieldValue());
+        hashMap.put(Order.KOTHO, new InputFieldValue());
+        hashMap.put(Order.CLOTH_DESIGN, new InputFieldValue());
+        hashMap.put(Order.CLOTH_COLOR, new InputFieldValue());
 
         return hashMap;
     }
@@ -154,80 +139,168 @@ public class AppData {
         String stringInputs = "[\n" +
                 " {\n" +
                 "\"type\": \"decimal\",\n" +
-                "\"code\": \"shoulder\",\n" +
-                "\"hint\": \"Shoulder\",\n" +
+                "\"code\": \"" + Order.SHOULDER + "\",\n" +
+                "\"hint\": \"ખભો\",\n" +
                 "\"required\": true\n" +
                 "},\n" +
                 "{\n" +
                 "\"type\": \"decimal\",\n" +
-                "\"code\": \"chest\",\n" +
-                "\"hint\": \"Chest\",\n" +
+                "\"code\": \"" + Order.CHEST + "\",\n" +
+                "\"hint\": \"છાતી\",\n" +
                 "\"required\": true\n" +
                 "},\n" +
                 "{\n" +
                 "\"type\": \"decimal\",\n" +
-                "\"code\": \"waist\",\n" +
-                "\"hint\": \"Waist\",\n" +
+                "\"code\": \"" + Order.WAIST + "\",\n" +
+                "\"hint\": \"કમર\",\n" +
                 "\"required\": true\n" +
                 "},\n" +
                 "{\n" +
                 "\"type\": \"text\",\n" +
-                "\"code\": \"sleeve\",\n" +
-                "\"hint\": \"Sleeve\",\n" +
+                "\"code\": \"" + Order.SLEEVE + "\",\n" +
+                "\"hint\": \"સ્લીવ\",\n" +
                 "\"required\": true\n" +
                 "},\n" +
                 "{\n" +
                 "\"type\": \"decimal\",\n" +
-                "\"code\": \"length\",\n" +
-                "\"hint\": \"Length\",\n" +
+                "\"code\": \"" + Order.LENGTH + "\",\n" +
+                "\"hint\": \"લંબાઈ\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": \"" + Order.NECK_TYPE + "\",\n" +
+                "\"hint\": \"ગળું\",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getThroats()) + ",\n" +
+                "\"required\": true\n" +
+                "}," +
+                "{\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": \"" + Order.PATTERN + "\",\n" +
+                "\"hint\": \"પેટર્ન\",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getPatterns()) + ",\n" +
+                "\"required\": true\n" +
+                "}," +
+                "{\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": \"" + Order.POCKET + "\",\n" +
+                "\"hint\": \"પોકેટ\",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getPockets()) + ",\n" +
+                "\"required\": true\n" +
+                "}," +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.POCKET_SIZE + "\",\n" +
+                "\"hint\": \"પોકેટનું માપ\",\n" +
+                "\"required\": false\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"text\",\n" +
+                "\"code\": \"" + Order.MUNDHO + "\",\n" +
+                "\"hint\": \"મૂંઢો\",\n" +
+                "\"required\": false\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"text\",\n" +
+                "\"code\": \"" + Order.FITTING + "\",\n" +
+                "\"hint\": \"ફિટિંગ\",\n" +
+                "\"required\": false\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"text\",\n" +
+                "\"code\": \"" + Order.CLOTH_DESIGN + "\",\n" +
+                "\"hint\": \"કાપડ ડિઝાઇન\",\n" +
+                "\"required\": true\n" +
+                "}," +
+                "{\n" +
+                "\"type\": \"text\",\n" +
+                "\"code\": \"" + Order.CLOTH_COLOR + "\",\n" +
+                "\"hint\": \"કાપડ રંગ\",\n" +
+                "\"required\": true\n" +
+                "}" +
+                "]";
+
+        ArrayList<InputFieldType> inputFieldTypes = Gson.getInstance().fromJson(stringInputs, new TypeToken<List<InputFieldType>>() {
+        }.getType());
+
+        return inputFieldTypes;
+    }
+
+    public static ArrayList<InputFieldType> getChapatiGownForm() {
+        String stringInputs = "[\n" +
+                " {\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.SHOULDER + "\",\n" +
+                "\"hint\": \"ખભો\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.CHEST + "\",\n" +
+                "\"hint\": \"છાતી\",\n" +
                 "\"required\": true\n" +
                 "},\n" +
                 "{\n" +
                 "\"type\": \"text\",\n" +
-                "\"code\": \"neck_type\",\n" +
-                "\"hint\": \"Neck Type\",\n" +
-                "\"required\": false\n" +
+                "\"code\": \"" + Order.SLEEVE + "\",\n" +
+                "\"hint\": \"સ્લીવ\",\n" +
+                "\"required\": true\n" +
                 "},\n" +
                 "{\n" +
                 "\"type\": \"decimal\",\n" +
-                "\"code\": \"neck_size\",\n" +
-                "\"hint\": \"Neck Size\",\n" +
-                "\"required\": false\n" +
-                "},\n" +
-                "{\n" +
-                "\"type\": \"text\",\n" +
-                "\"code\": \"pattern\",\n" +
-                "\"hint\": \"Pattern\",\n" +
-                "\"required\": false\n" +
-                "},\n" +
-                "{\n" +
-                "\"type\": \"text\",\n" +
-                "\"code\": \"pocket\",\n" +
-                "\"hint\": \"Pocket\",\n" +
-                "\"required\": false\n" +
+                "\"code\": \"" + Order.LENGTH + "\",\n" +
+                "\"hint\": \"લંબાઈ\",\n" +
+                "\"required\": true\n" +
                 "},\n" +
                 "{\n" +
                 "\"type\": \"decimal\",\n" +
-                "\"code\": \"pocket_size\",\n" +
-                "\"hint\": \"Pocket Size\",\n" +
+                "\"code\": \"" + Order.KOTHO + "\",\n" +
+                "\"hint\": \"કોથો\",\n" +
+                "\"required\": true\n" +
+                "},\n" +
+                "{\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": \"" + Order.PATTERN + "\",\n" +
+                "\"hint\": \"પેટર્ન\",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getPatterns()) + ",\n" +
+                "\"required\": true\n" +
+                "}," +
+                "{\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": \"" + Order.POCKET + "\",\n" +
+                "\"hint\": \"પોકેટ\",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getPockets()) + ",\n" +
+                "\"required\": true\n" +
+                "}," +
+                "{\n" +
+                "\"type\": \"decimal\",\n" +
+                "\"code\": \"" + Order.POCKET_SIZE + "\",\n" +
+                "\"hint\": \"પોકેટનું માપ\",\n" +
                 "\"required\": false\n" +
                 "},\n" +
                 "{\n" +
                 "\"type\": \"text\",\n" +
-                "\"code\": \"mundho\",\n" +
-                "\"hint\": \"Mundho\",\n" +
+                "\"code\": \"" + Order.MUNDHO + "\",\n" +
+                "\"hint\": \"મુંધો\",\n" +
                 "\"required\": false\n" +
                 "},\n" +
                 "{\n" +
-                "\"type\": \"text\",\n" +
-                "\"code\": \"fitting\",\n" +
-                "\"hint\": \"Fitting\",\n" +
-                "\"required\": false\n" +
-                "},\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": \"" + Order.NECK_TYPE + "\",\n" +
+                "\"hint\": \"ગળું\",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getThroats()) + ",\n" +
+                "\"required\": true\n" +
+                "}," +
                 "{\n" +
                 "\"type\": \"text\",\n" +
-                "\"code\": \"design\",\n" +
-                "\"hint\": \"Design and color\",\n" +
+                "\"code\": \"" + Order.CLOTH_DESIGN + "\",\n" +
+                "\"hint\": \"કાપડ ડિઝાઇન\",\n" +
+                "\"required\": true\n" +
+                "}," +
+                "{\n" +
+                "\"type\": \"text\",\n" +
+                "\"code\": \"" + Order.CLOTH_COLOR + "\",\n" +
+                "\"hint\": \"કાપડ રંગ\",\n" +
                 "\"required\": true\n" +
                 "}" +
                 "]";
@@ -318,8 +391,12 @@ public class AppData {
                 return order.getMundho();
             case GETFITTING:
                 return order.getFitting();
-            case GETDESIGN:
-                return order.getDesign();
+            case GETKOTHO:
+                return order.getKotho();
+            case GETCLOTHDESIGN:
+                return order.getClothDesign();
+            case GETCLOTHCOLOR:
+                return order.getClothColor();
             default:
                 return null;
         }
@@ -339,6 +416,38 @@ public class AppData {
             default:
                 return null;
         }
+    }
+
+    public static CodeName[] getPatterns() {
+        CodeName[] codeNames = new CodeName[6];
+
+        codeNames[0] = new CodeName("got", "ગોટ");
+        codeNames[1] = new CodeName("dkajul", "ડબલ કાપડ જૂલ");
+        codeNames[2] = new CodeName("motijul", "મોટી જૂલ");
+        codeNames[3] = new CodeName("netwalu", "નેટવાળુ");
+        codeNames[4] = new CodeName("plaingot", "પ્લેનગોટ");
+        codeNames[5] = new CodeName("plaindkajul", "પ્લેન ડબલ કાપડ જૂલ");
+
+        return codeNames;
+    }
+
+    public static CodeName[] getPockets() {
+        CodeName[] codeNames = new CodeName[2];
+        codeNames[0] = new CodeName("pocket", "પોકેટ");
+        codeNames[1] = new CodeName("side_pocket", "સાઈડ પોકેટ");
+        return codeNames;
+    }
+
+    public static CodeName[] getThroats() {
+        CodeName[] codeNames = new CodeName[5];
+
+        codeNames[0] = new CodeName("panchkon", "પંચકોણ");
+        codeNames[1] = new CodeName("round", "ગોળ");
+        codeNames[2] = new CodeName("square", "ચોરસ");
+        codeNames[3] = new CodeName("vshape", "વિશેપ");
+        codeNames[4] = new CodeName("panshape", "પાનશેપ");
+
+        return codeNames;
     }
 
 }

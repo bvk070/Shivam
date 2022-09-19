@@ -190,7 +190,9 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         order.setPocketSize(hashMap.get(Order.POCKET_SIZE));
         order.setMundho(hashMap.get(Order.MUNDHO));
         order.setFitting(hashMap.get(Order.FITTING));
-        order.setDesign(hashMap.get(Order.DESIGN));
+        order.setKotho(hashMap.get(Order.KOTHO));
+        order.setClothDesign(hashMap.get(Order.CLOTH_DESIGN));
+        order.setClothColor(hashMap.get(Order.CLOTH_COLOR));
 
         CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(TABLE_ORDERS);
         collectionReference.add(order).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
