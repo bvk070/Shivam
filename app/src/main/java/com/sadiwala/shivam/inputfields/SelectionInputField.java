@@ -2,6 +2,7 @@ package com.sadiwala.shivam.inputfields;
 
 import static com.sadiwala.shivam.inputfields.InputFieldType.INPUT_FIELD_TYPE_CODE_NAME_SPINNER;
 import static com.sadiwala.shivam.inputfields.InputFieldType.INPUT_FIELD_TYPE_SPINNER;
+import static com.sadiwala.shivam.models.Customer.CUSTOMER_CODE;
 import static com.sadiwala.shivam.util.AaryaConstants.NO_SEARCH_BAR;
 import static com.sadiwala.shivam.util.AaryaConstants.REQUEST_CODE;
 import static com.sadiwala.shivam.util.Util.createChips;
@@ -148,8 +149,10 @@ public class SelectionInputField extends ParentInputField {
             }
         });
 
-        mieChipsRecyclerView = view.findViewById(R.id.mie_chips_rv);
-        setMiEChips();
+        if (!CUSTOMER_CODE.equals(mInputFieldType.getCode())) {
+            mieChipsRecyclerView = view.findViewById(R.id.mie_chips_rv);
+            setMiEChips();
+        }
 
     }
 
