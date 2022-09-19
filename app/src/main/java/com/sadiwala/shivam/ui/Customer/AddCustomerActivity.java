@@ -1,5 +1,7 @@
 package com.sadiwala.shivam.ui.Customer;
 
+import static com.sadiwala.shivam.util.AaryaConstants.REQUEST_CODE_ADD_CUSTOMER;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +27,12 @@ public class AddCustomerActivity extends BaseAddActivity {
         Intent intent = new Intent(activity, AddCustomerActivity.class);
         intent.putExtras(bundle);
         activity.startActivity(intent);
+    }
+
+    public static void startActivityForResult(Activity activity, Bundle bundle) {
+        Intent intent = new Intent(activity, AddCustomerActivity.class);
+        intent.putExtras(bundle);
+        activity.startActivityForResult(intent, REQUEST_CODE_ADD_CUSTOMER);
     }
 
     @Override

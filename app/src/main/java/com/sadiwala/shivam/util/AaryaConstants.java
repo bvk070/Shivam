@@ -17,6 +17,7 @@ public class AaryaConstants {
     public static final int AARYA_FOREGROUND_SERVICE_NOTIFICATION_ID = 1111;
     public static final int REQUEST_CODE_USER_PERMISSIONS = 60418;
     public static final int REQUEST_CODE_ACTIVITY_UPDATE = 60415;
+    public static final int REQUEST_CODE_ADD_CUSTOMER = 60420;
     public static final int PERMISSIONS_REQUEST_PHONE_CALL = 31;
     public static final int USER_PERMISSION_REQUEST_RETRY_COUNT = 2;
     public static final String REQUEST_CODE = "requestCode";

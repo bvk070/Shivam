@@ -53,23 +53,21 @@ public class FragmentOrders extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().setTitle(getString(R.string.orders));
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initializeViews();
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        initializeViews();
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle(getString(R.string.orders));
         ArrayList<Order> orders = DataController.getPrefOrders();
         if (Util.isListEmpty(orders)) {
             refreshData();
         } else {
             setData(orders);
         }
-
     }
 
     private void initializeViews() {

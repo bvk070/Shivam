@@ -140,7 +140,9 @@ public class AppData {
                 "\"code\": \"" + CUSTOMER_CODE + "\",\n" +
                 "\"hint\": \"Customer\",\n" +
                 "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getCachedCustomers()) + ",\n" +
-                "\"required\": true\n" +
+                "\"required\": true,\n" +
+                "\"show_add\": true,\n" +
+                "\"hide_chips\": true\n" +
                 "}]";
 
         ArrayList<InputFieldType> inputFieldTypes = Gson.getInstance().fromJson(stringInputs, new TypeToken<List<InputFieldType>>() {

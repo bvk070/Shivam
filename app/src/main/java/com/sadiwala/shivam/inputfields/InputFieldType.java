@@ -96,6 +96,8 @@ public class InputFieldType {
     private String source; //used in auto complete type to determine the pref name.
     private boolean singleSelect; //used in MSACIF to make it single select.
     private CodeName[] codeNameSpinnerOptions; // Code-Name spinner options.
+    private boolean hideChips;
+    private boolean showAdd;
 
     public InputFieldType(String type, String code, boolean required, String hint) {
         this.type = type;
@@ -295,6 +297,22 @@ public class InputFieldType {
 
     public void setCodeNameSpinnerOptions(CodeName[] codeNameSpinnerOptions) {
         this.codeNameSpinnerOptions = codeNameSpinnerOptions;
+    }
+
+    public boolean isHideChips() {
+        return hideChips;
+    }
+
+    public void setHideChips(boolean hideChips) {
+        this.hideChips = hideChips;
+    }
+
+    public boolean isShowAdd() {
+        return showAdd;
+    }
+
+    public void setShowAdd(boolean showAdd) {
+        this.showAdd = showAdd;
     }
 
     public ParentInputField toInputField(

@@ -1,45 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Default"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
-        style="@style/Default"
-        android:paddingTop="@dimen/tiny_padding"
-        android:paddingBottom="@dimen/tiny_padding">
+        android:id="@+id/rlAdd"
+        android:layout_width="@dimen/icon_size_40"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:visibility="gone">
 
-        <com.sadiwala.shivam.util.CustomTextView
-            android:id="@+id/txt_selected_values"
-            style="@style/Text.SingleLine"
-            android:layout_centerVertical="true"
-            android:paddingTop="@dimen/padding_8dp"
-            android:paddingRight="@dimen/padding_30dp"
-            android:paddingBottom="@dimen/padding_8dp"
-            android:textColor="@color/vymo_text_light"
-            android:textSize="@dimen/text_size_14sp"
-            android:visibility="visible"
-            tools:text="@string/select" />
-
-        <ImageView
-            android:id="@+id/img_right_arrow"
-            style="@style/WrapContent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/padding_8dp"
-            app:srcCompat="@drawable/selection_dropdown"
-            android:visibility="visible" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="@dimen/padding_20dp"
+            android:layout_height="@dimen/padding_20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/padding_10dp"
+            android:background="@drawable/ic_baseline_add_24"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
 
     </RelativeLayout>
 
-    <include layout="@layout/chip_mie_layout" />
+    <LinearLayout
+        style="@style/Default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/small_padding"
+        android:layout_toLeftOf="@+id/rlAdd"
+        android:orientation="vertical">
 
-    <include
-        layout="@layout/error_text_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <RelativeLayout
+            style="@style/Default"
+            android:paddingTop="@dimen/tiny_padding"
+            android:paddingBottom="@dimen/tiny_padding">
 
-</LinearLayout>
+            <com.sadiwala.shivam.util.CustomTextView
+                android:id="@+id/txt_selected_values"
+                style="@style/Text.SingleLine"
+                android:layout_centerVertical="true"
+                android:paddingTop="@dimen/padding_8dp"
+                android:paddingRight="@dimen/padding_30dp"
+                android:paddingBottom="@dimen/padding_8dp"
+                android:textColor="@color/vymo_text_light"
+                android:textSize="@dimen/text_size_14sp"
+                android:visibility="visible"
+                tools:text="@string/select" />
+
+            <ImageView
+                android:id="@+id/img_right_arrow"
+                style="@style/WrapContent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/padding_8dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/selection_dropdown" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/chip_mie_layout" />
+
+        <include
+            layout="@layout/error_text_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</RelativeLayout>

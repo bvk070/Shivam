@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,7 @@ import com.sadiwala.shivam.models.common.CodeValue;
 import com.sadiwala.shivam.models.common.IBottomSheetListener;
 import com.sadiwala.shivam.models.common.ICodeName;
 import com.sadiwala.shivam.models.common.OnItemSelectedListener;
+import com.sadiwala.shivam.ui.Customer.AddCustomerActivity;
 import com.sadiwala.shivam.util.AaryaConstants;
 import com.sadiwala.shivam.util.CustomTextView;
 import com.sadiwala.shivam.util.Gson;
@@ -75,6 +77,7 @@ public class SelectionInputField extends ParentInputField {
     private static final int MAX_CHAR_TO_SHOW = 8;
     private AppCompatActivity mActivity;
     private View view;
+    private RelativeLayout rlAdd;
     private TextView txtValue;
     private ImageView imgArrow;
     private CustomTextView errorText;
@@ -100,6 +103,7 @@ public class SelectionInputField extends ParentInputField {
         SourceRouteUtil.addInputFieldInRefreshMap(mActivity, inputFieldType, this);
         mInputFieldType = inputFieldType;
         view = activity.getLayoutInflater().inflate(R.layout.selection_input_field, null);
+        rlAdd = view.findViewById(R.id.rlAdd);
         txtValue = view.findViewById(R.id.txt_selected_values);
         imgArrow = view.findViewById(R.id.img_right_arrow);
         imgArrow.setColorFilter(UiUtil.getBrandedPrimaryColorWithDefault());
@@ -149,9 +153,21 @@ public class SelectionInputField extends ParentInputField {
             }
         });
 
-        if (!CUSTOMER_CODE.equals(mInputFieldType.getCode())) {
+        if (!mInputFieldType.isHideChips()) {
             mieChipsRecyclerView = view.findViewById(R.id.mie_chips_rv);
             setMiEChips();
+        }
+
+        if (mInputFieldType.isShowAdd()) {
+            rlAdd.setVisibility(View.VISIBLE);
+            rlAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(EXTRAS_CODE, mInputFieldType.getCode());
+                    AddCustomerActivity.startActivityForResult(mActivity, bundle);
+                }
+            });
         }
 
     }

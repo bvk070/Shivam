@@ -27,7 +27,9 @@ import com.sadiwala.shivam.inputfields.InputFieldValue;
 import com.sadiwala.shivam.inputfields.SelectionInputField;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
+import com.sadiwala.shivam.models.common.CodeName;
 import com.sadiwala.shivam.models.common.IBottomSheetListener;
+import com.sadiwala.shivam.preferences.DataController;
 import com.sadiwala.shivam.ui.BaseActivity;
 import com.sadiwala.shivam.ui.Customer.AddCustomerActivity;
 import com.sadiwala.shivam.util.AaryaConstants;
@@ -75,6 +77,19 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case AaryaConstants.REQUEST_CODE_INPUTFIELD: {
+                if (resultCode == Activity.RESULT_OK) {
+                    if (mRefreshInputFieldsMap != null && !mRefreshInputFieldsMap.isEmpty()) {
+                        if (data.hasExtra(SelectionInputField.EXTRAS_CODE) && mRefreshInputFieldsMap != null) {
+                            mRefreshInputFieldsMap.get(data.getStringExtra(SelectionInputField.EXTRAS_CODE)).updateViewPostSelection(data.getStringExtra(SelectionInputField.EXTRAS_SELECTED_OPTIONS));
+                        }
+                        if (data.hasExtra(CLEAR_CLICK) && data.getExtras().getBoolean(CLEAR_CLICK)) {
+                            mRefreshInputFieldsMap.get(data.getStringExtra(SelectionInputField.EXTRAS_CODE)).clearView();
+                        }
+                    }
+                }
+                return;
+            }
+            case AaryaConstants.REQUEST_CODE_ADD_CUSTOMER: {
                 if (resultCode == Activity.RESULT_OK) {
                     if (mRefreshInputFieldsMap != null && !mRefreshInputFieldsMap.isEmpty()) {
                         if (data.hasExtra(SelectionInputField.EXTRAS_CODE) && mRefreshInputFieldsMap != null) {
@@ -205,6 +220,13 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         collectionReference.add(order).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
+
+                // Update cache data
+                ArrayList<Order> orders = DataController.getPrefOrders();
+                order.setId(documentReference.getId());
+                orders.add(0, order);
+                DataController.setPrefOrders(orders);
+
                 Toast.makeText(getApplicationContext(), getString(R.string.order_added), Toast.LENGTH_LONG).show();
                 finish();
             }
@@ -234,8 +256,25 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         collectionReference.add(customer).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
+
+                // Update cache data
+                ArrayList<Customer> customers = DataController.getPrefCustomers();
+                customer.setId(documentReference.getId());
+                customers.add(0, customer);
+                DataController.setPrefCustomers(customers);
+
                 Toast.makeText(getApplicationContext(), getString(R.string.customer_added), Toast.LENGTH_LONG).show();
-                finish();
+                if (getIntent().getExtras() != null && getIntent().hasExtra(SelectionInputField.EXTRAS_CODE)) {
+                    ArrayList<CodeName> codeNames = new ArrayList<>();
+                    codeNames.add(new CodeName(customer.getId(), customer.getName().getValue()));
+                    Intent intent = new Intent();
+                    intent.putExtra(SelectionInputField.EXTRAS_CODE, getIntent().getStringExtra(SelectionInputField.EXTRAS_CODE));
+                    intent.putExtra(SelectionInputField.EXTRAS_SELECTED_OPTIONS, Gson.getInstance().toJson(codeNames));
+                    setResult(RESULT_OK, intent);
+                    finish();
+                } else {
+                    finish();
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

@@ -53,16 +53,16 @@ public class FragmentCustomers extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().setTitle(getString(R.string.customers));
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initializeViews();
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle(getString(R.string.customers));
 
-        initializeViews();
         ArrayList<Customer> customers = DataController.getPrefCustomers();
         if (Util.isListEmpty(customers)) {
             refreshData();
