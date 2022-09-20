@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchParent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:visibility="gone"
+        app:titleTextColor="@color/white" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:minHeight="?attr/actionBarSize"
+        app:queryHint="@string/query_hint"
+        app:theme="@style/AppSearchView" />
+
+    <RelativeLayout style="@style/MatchParent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeContainer"
+            style="@style/MatchParent">
+
+            <LinearLayout
+                style="@style/MatchParent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    style="@style/MatchParent"
+                    android:layout_margin="@dimen/tiny_padding"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            </LinearLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <TextView
+            android:id="@+id/tvError"
+            style="@style/WrapContent"
+            android:layout_centerInParent="true"
+            android:text="@string/no_data"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</LinearLayout>

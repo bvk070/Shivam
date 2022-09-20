@@ -9,6 +9,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.sadiwala.shivam.inputfields.SelectionInputField;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
 import com.sadiwala.shivam.preferences.DataController;
@@ -76,6 +77,28 @@ public class FirebaseDatabaseController {
             }
         });
 
+    }
+
+    public static ArrayList<Order> getOrdersByName(ArrayList<Order> orders, String query) {
+        ArrayList<Order> results = new ArrayList<>();
+        for (int i = 0; i < orders.size(); i++) {
+            Order order = orders.get(i);
+            if (SelectionInputField.getNameFromJsonValue(order.getCustomer().getValue()).toLowerCase().contains(query.toLowerCase())) {
+                results.add(order);
+            }
+        }
+        return results;
+    }
+
+    public static ArrayList<Customer> getCustomerByName(ArrayList<Customer> customers, String query) {
+        ArrayList<Customer> results = new ArrayList<>();
+        for (int i = 0; i < customers.size(); i++) {
+            Customer customer = customers.get(i);
+            if (customer.getName().getValue().toLowerCase().contains(query.toLowerCase())) {
+                results.add(customer);
+            }
+        }
+        return results;
     }
 
 }
