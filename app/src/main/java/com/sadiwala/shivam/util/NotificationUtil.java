@@ -65,7 +65,7 @@ public class NotificationUtil {
      */
     public static int getNotificationIcon() {
         boolean useWhiteIcon = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
-        return useWhiteIcon ? R.drawable.ic_launcher_foreground : getAppLauncherIcon(ShivamApplication.getAppContext());
+        return useWhiteIcon ? R.drawable.ic_logo : getAppLauncherIcon(ShivamApplication.getAppContext());
     }
 
     /**

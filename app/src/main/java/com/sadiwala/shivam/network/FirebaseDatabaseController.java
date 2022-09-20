@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -12,6 +13,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.sadiwala.shivam.inputfields.SelectionInputField;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
+import com.sadiwala.shivam.models.User;
 import com.sadiwala.shivam.preferences.DataController;
 import com.sadiwala.shivam.syncdata.WorkManagerUtils;
 import com.sadiwala.shivam.util.Util;
@@ -23,6 +25,7 @@ public class FirebaseDatabaseController {
     private static final String TAG = FirebaseDatabaseController.class.getName();
     public static final String TABLE_CUSTOMERS = "customers";
     public static final String TABLE_ORDERS = "orders";
+    public static final String TABLE_USERS = "users";
 
     public static void cacheCustomers(WorkManagerUtils.AaryaSyncListener aaryaSyncListener) {
 
@@ -99,6 +102,17 @@ public class FirebaseDatabaseController {
             }
         }
         return results;
+    }
+
+    public static User getUser(QuerySnapshot queryDocumentSnapshots, User currentUser) {
+        if (queryDocumentSnapshots != null && !Util.isListEmpty(queryDocumentSnapshots.getDocuments())) {
+            for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+                User user = documentSnapshot.toObject(User.class);
+                if (user.getEmail().equals(currentUser.getEmail()) && user.getPassword().equals(currentUser.getPassword()))
+                    return user;
+            }
+        }
+        return null;
     }
 
 }

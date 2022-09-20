@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
+import com.sadiwala.shivam.models.User;
 import com.sadiwala.shivam.models.common.CodeName;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class DataController {
 
+    public static final String PREF_USER = "pref_user";
     public static final String PREF_ORDERS = "orders";
     public static final String PREF_CUSTOMERS = "customers";
 
@@ -21,6 +23,19 @@ public class DataController {
 
     public static void setModelObject(String key, String value) {
         PreferenceUtil.setStringValue(key, value);
+    }
+
+    public static User getPrefUser() {
+        String userString = PreferenceUtil.getStringValue(PREF_USER, null);
+        if (userString != null) {
+            User user = new Gson().fromJson(userString, User.class);
+            return user;
+        }
+        return null;
+    }
+
+    public static void setPrefUser(User user) {
+        PreferenceUtil.setStringValue(PREF_USER, new Gson().toJson(user));
     }
 
     public static ArrayList<Order> getPrefOrders() {

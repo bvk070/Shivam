@@ -32,20 +32,12 @@ public class SyncForegroundService extends Service implements WorkManagerUtils.A
                         getString(R.string.sync_service_description), AARYA_FOREGROUND_SERVICE_NOTIFICATION_ID, 0));
 
         // cache customers
-        if (Util.isListEmpty(DataController.getPrefCustomers())) {
-            syncCount++;
-            FirebaseDatabaseController.cacheCustomers(this);
-        }
+        syncCount++;
+        FirebaseDatabaseController.cacheCustomers(this);
 
         // cache orders
-        if (Util.isListEmpty(DataController.getPrefOrders())) {
-            syncCount++;
-            FirebaseDatabaseController.cacheOrders(this);
-        }
-
-        if (syncCount == 0) {
-            stopSyncForeGroundService();
-        }
+        syncCount++;
+        FirebaseDatabaseController.cacheOrders(this);
 
     }
 

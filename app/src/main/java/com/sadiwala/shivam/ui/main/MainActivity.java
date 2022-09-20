@@ -6,6 +6,8 @@ import static com.sadiwala.shivam.ui.search.SearchActivity.DATA_TYPE;
 import static com.sadiwala.shivam.ui.search.SearchActivity.DATA_TYPE_CUSTOMERS;
 import static com.sadiwala.shivam.ui.search.SearchActivity.DATA_TYPE_ORDERS;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,6 +39,12 @@ public class MainActivity extends BaseActivity {
     private Toolbar mToolbar;
     private NavController navController;
     private boolean showSearchMenu = false;
+
+    public static void start(Activity activity) {
+        Intent intent = new Intent(activity, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -26,12 +26,21 @@
     <string name="night_shoot_top">ટોપ</string>
     <string name="night_shoot_bottom">લેંઘી</string>
 
-    <string name="aarya_notification">Aarya Notification</string>
-    <string name="sync_service_title">Aarya service is running in the background.</string>
+    <string name="aarya_notification">Shivam Notification</string>
+    <string name="sync_service_title">Shivam service is running in the background.</string>
     <string name="sync_service_description">This will help to sync data in the background.</string>
 
     <!-- Search screen -->
     <string name="query_hint">Search by customer</string>
+
+    <!-- login screen -->
+    <string name="login">LOGIN</string>
+    <string name="create_account">Create account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
 
     <string name="left_icon" translatable="false">Left Icon</string>
     <string name="ok">Ok</string>
@@ -60,5 +69,9 @@
     <string name="description">Description</string>
     <string name="max_limit_selected">Maximum %1$d items can be selected</string>
     <string name="mieChipLeftDrawable" translatable="false">MiEChipLeftDrawable</string>
+
+    <!-- errors -->
+    <string name="required">Required</string>
+    <string name="enter_valid_email">Please enter valid email</string>
 
 </resources>
