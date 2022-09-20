@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -50,6 +51,9 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
     private Map<String, InputField> mInputFields = new HashMap<>();
     protected Map<String, InputField> mRefreshInputFieldsMap = new HashMap<>();
 
+    protected AppCompatButton btnSubmit;
+    protected Customer customer;
+    protected Order order;
     protected String productType;
 
     @Override
@@ -152,11 +156,11 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
     }
 
     protected void disableSubmitButton() {
-        findViewById(R.id.submit).setEnabled(false);
+        findViewById(R.id.btnSubmit).setEnabled(false);
     }
 
     protected void enableSubmitButton() {
-        findViewById(R.id.submit).setEnabled(true);
+        findViewById(R.id.btnSubmit).setEnabled(true);
     }
 
     public void submit(View view) {
@@ -173,10 +177,18 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
             if (validInput) {
                 if (this instanceof AddCustomerActivity) {
                     disableSubmitButton();
-                    addCustomer();
+                    if (customer != null) {
+                        updateCustomer();
+                    } else {
+                        addCustomer();
+                    }
                 } else {
                     disableSubmitButton();
-                    addOrder();
+                    if (order != null) {
+                        updateOrder();
+                    } else {
+                        addOrder();
+                    }
                 }
             }
 
@@ -191,7 +203,7 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         Order order = new Order();
         order.setTimestamp(System.currentTimeMillis());
         order.setType(productType);
-        order.setCustomer(hashMap.get(Customer.CUSTOMER_CODE));
+        order.setCustomer(hashMap.get(Order.CUSTOMER));
 
         order.setShoulder(hashMap.get(Order.SHOULDER));
         order.setChest(hashMap.get(Order.CHEST));
@@ -240,6 +252,51 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
 
     }
 
+    private void updateOrder() {
+
+        HashMap<String, InputFieldValue> hashMap = prepareInputValues();
+
+        Map<String, Object> map = new HashMap<>();
+        map.put(Order.CUSTOMER, hashMap.get(Order.CUSTOMER));
+        map.put(Order.SHOULDER, hashMap.get(Order.SHOULDER));
+        map.put(Order.CHEST, hashMap.get(Order.CHEST));
+        map.put(Order.WAIST, hashMap.get(Order.WAIST));
+        map.put(Order.SLEEVE, hashMap.get(Order.SLEEVE));
+        map.put(Order.LENGTH, hashMap.get(Order.LENGTH));
+        map.put(Order.NECK_TYPE, hashMap.get(Order.NECK_TYPE));
+        map.put(Order.NECK_SIZE, hashMap.get(Order.NECK_SIZE));
+        map.put(Order.PATTERN, hashMap.get(Order.PATTERN));
+        map.put(Order.POCKET, hashMap.get(Order.POCKET));
+        map.put(Order.LENGHA_POCKET, hashMap.get(Order.LENGHA_POCKET));
+        map.put(Order.POCKET_SIZE, hashMap.get(Order.POCKET_SIZE));
+        map.put(Order.MUNDHO, hashMap.get(Order.MUNDHO));
+        map.put(Order.FITTING, hashMap.get(Order.FITTING));
+        map.put(Order.KOTHO, hashMap.get(Order.KOTHO));
+        map.put(Order.HIPS, hashMap.get(Order.HIPS));
+        map.put(Order.GHER, hashMap.get(Order.GHER));
+        map.put(Order.CUT, hashMap.get(Order.CUT));
+        map.put(Order.MORI, hashMap.get(Order.MORI));
+        map.put(Order.KHRISTAK, hashMap.get(Order.KHRISTAK));
+        map.put(Order.ILASTIC, hashMap.get(Order.ILASTIC));
+        map.put(Order.CLOTH_DESIGN, hashMap.get(Order.CLOTH_DESIGN));
+        map.put(Order.CLOTH_COLOR, hashMap.get(Order.CLOTH_COLOR));
+
+        CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(TABLE_ORDERS);
+        collectionReference.document(order.getId()).update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(getApplicationContext(), getString(R.string.order_updated), Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), getString(R.string.update_order_failed), Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
     private void addCustomer() {
 
         HashMap<String, InputFieldValue> hashMap = prepareInputValues();
@@ -281,6 +338,33 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getApplicationContext(), getString(R.string.add_customer_failed), Toast.LENGTH_LONG).show();
                 enableSubmitButton();
+            }
+        });
+
+    }
+
+    private void updateCustomer() {
+
+        HashMap<String, InputFieldValue> hashMap = prepareInputValues();
+
+        Map<String, Object> map = new HashMap<>();
+        map.put(Customer.NAME, hashMap.get(Customer.NAME));
+        map.put(Customer.MOBILE, hashMap.get(Customer.MOBILE));
+        map.put(Customer.ADDRESS, hashMap.get(Customer.ADDRESS));
+        map.put(Customer.AREA, hashMap.get(Customer.AREA));
+        map.put(Customer.PINCODE, hashMap.get(Customer.PINCODE));
+
+        CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(TABLE_CUSTOMERS);
+        collectionReference.document(customer.getId()).update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(getApplicationContext(), getString(R.string.customer_updated), Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), getString(R.string.update_customer_failed), Toast.LENGTH_LONG).show();
             }
         });
 

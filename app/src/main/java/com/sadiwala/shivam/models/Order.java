@@ -6,6 +6,7 @@ import com.sadiwala.shivam.inputfields.InputFieldValue;
 public class Order {
 
     // Field Names
+    public static final String CUSTOMER = "customer";
     public static final String SHOULDER = "shoulder";
     public static final String CHEST = "chest";
     public static final String WAIST = "waist";
@@ -267,6 +268,7 @@ public class Order {
     }
 
     // Getter Method Names
+    public static final String GETCUSTOMER = "getCustomer()";
     public static final String GETSHOULDER = "getShoulder()";
     public static final String GETWAIST = "getWaist()";
     public static final String GETCHEST = "getChest()";

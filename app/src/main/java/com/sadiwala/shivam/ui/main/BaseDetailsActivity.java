@@ -4,6 +4,8 @@ import static com.sadiwala.shivam.network.FirebaseDatabaseController.TABLE_CUSTO
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.TABLE_ORDERS;
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.deleteCustomerFromCache;
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.deleteOrderFromCache;
+import static com.sadiwala.shivam.ui.Customer.CustomerDetailsActivity.CUSTOMER_DATA;
+import static com.sadiwala.shivam.ui.Order.OrderDetailsActivity.ORDER_DATA;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -26,7 +28,9 @@ import com.sadiwala.shivam.inputfields.InputFieldsGroupsContainer;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
 import com.sadiwala.shivam.ui.BaseActivity;
-import com.sadiwala.shivam.ui.search.SearchActivity;
+import com.sadiwala.shivam.ui.Customer.AddCustomerActivity;
+import com.sadiwala.shivam.ui.Order.AddOrderActivity;
+import com.sadiwala.shivam.util.Gson;
 
 import de.greenrobot.event.EventBus;
 
@@ -72,7 +76,15 @@ public class BaseDetailsActivity extends BaseActivity {
                 deleteClicked(this);
                 return true;
             case R.id.menu_edit:
-                SearchActivity.start(this, new Bundle());
+                if (order != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(ORDER_DATA, Gson.getInstance().toJson(order));
+                    AddOrderActivity.start(this, bundle);
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(CUSTOMER_DATA, Gson.getInstance().toJson(customer));
+                    AddCustomerActivity.start(this, bundle);
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -16,19 +16,19 @@
         app:titleTextColor="@color/white" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/submit"
+        android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/navigation_item_height"
         android:layout_alignParentBottom="true"
         android:background="@color/red"
         android:onClick="submit"
-        android:text="Add"
+        android:text="@string/add"
         android:textColor="@color/white" />
 
     <ScrollView
         android:id="@+id/form"
         style="@style/MatchParent"
-        android:layout_above="@+id/submit"
+        android:layout_above="@+id/btnSubmit"
         android:layout_below="@+id/toolbar"
         android:fillViewport="false">
 

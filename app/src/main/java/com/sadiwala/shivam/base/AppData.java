@@ -1,13 +1,15 @@
 package com.sadiwala.shivam.base;
 
-import static com.sadiwala.shivam.models.Customer.CUSTOMER_CODE;
 import static com.sadiwala.shivam.models.Customer.GETADDRESS;
 import static com.sadiwala.shivam.models.Customer.GETAREA;
 import static com.sadiwala.shivam.models.Customer.GETMOBILE;
+import static com.sadiwala.shivam.models.Customer.GETNAME;
 import static com.sadiwala.shivam.models.Customer.GETPINCODE;
+import static com.sadiwala.shivam.models.Order.CUSTOMER;
 import static com.sadiwala.shivam.models.Order.GETCHEST;
 import static com.sadiwala.shivam.models.Order.GETCLOTHCOLOR;
 import static com.sadiwala.shivam.models.Order.GETCLOTHDESIGN;
+import static com.sadiwala.shivam.models.Order.GETCUSTOMER;
 import static com.sadiwala.shivam.models.Order.GETCUT;
 import static com.sadiwala.shivam.models.Order.GETFITTING;
 import static com.sadiwala.shivam.models.Order.GETGHER;
@@ -107,7 +109,7 @@ public class AppData {
         hashMap.put(Customer.AREA, new InputFieldValue());
         hashMap.put(Customer.PINCODE, new InputFieldValue());
 
-        hashMap.put(CUSTOMER_CODE, new InputFieldValue());
+        hashMap.put(Order.CUSTOMER, new InputFieldValue());
         hashMap.put(Order.SHOULDER, new InputFieldValue());
         hashMap.put(Order.CHEST, new InputFieldValue());
         hashMap.put(Order.WAIST, new InputFieldValue());
@@ -137,7 +139,7 @@ public class AppData {
     public static ArrayList<InputFieldType> getCustomerSectionInputs() {
         String stringInputs = "[{\n" +
                 "\"type\": \"code_name_spinner\",\n" +
-                "\"code\": \"" + CUSTOMER_CODE + "\",\n" +
+                "\"code\": \"" + CUSTOMER + "\",\n" +
                 "\"hint\": \"Customer\",\n" +
                 "\"code_name_spinner_options\": " + Gson.getInstance().toJson(getCachedCustomers()) + ",\n" +
                 "\"required\": true,\n" +
@@ -518,8 +520,10 @@ public class AppData {
                 InputFieldValue inputFieldValue = getOrderFieldValueByFieldName(methods, field.getName(), order);
                 if (inputFieldValue != null) {
                     inputFieldValues.add(inputFieldValue);
-                    InputFieldType inputFieldType = new InputFieldType(inputFieldValue.getType(), inputFieldValue.getCode(), false, inputFieldValue.getName());
-                    inputFieldTypes.add(inputFieldType);
+                    if (inputFieldTypes != null) {
+                        InputFieldType inputFieldType = new InputFieldType(inputFieldValue.getType(), inputFieldValue.getCode(), false, inputFieldValue.getName());
+                        inputFieldTypes.add(inputFieldType);
+                    }
                 }
             }
         }
@@ -536,8 +540,10 @@ public class AppData {
                 InputFieldValue inputFieldValue = getCustomerFieldValueByFieldName(methods, field.getName(), customer);
                 if (inputFieldValue != null) {
                     inputFieldValues.add(inputFieldValue);
-                    InputFieldType inputFieldType = new InputFieldType(inputFieldValue.getType(), inputFieldValue.getCode(), false, inputFieldValue.getName());
-                    inputFieldTypes.add(inputFieldType);
+                    if (inputFieldTypes != null) {
+                        InputFieldType inputFieldType = new InputFieldType(inputFieldValue.getType(), inputFieldValue.getCode(), false, inputFieldValue.getName());
+                        inputFieldTypes.add(inputFieldType);
+                    }
                 }
             }
         }
@@ -547,6 +553,8 @@ public class AppData {
     public static InputFieldValue getOrderFieldValueByFieldName(ArrayList<Method> methods, String fieldName, Order order) {
         String getGetterMethod = getGetterMethodNameByFieldName(methods, fieldName);
         switch (getGetterMethod) {
+            case GETCUSTOMER:
+                return order.getCustomer();
             case GETSHOULDER:
                 return order.getShoulder();
             case GETCHEST:
@@ -599,6 +607,8 @@ public class AppData {
     public static InputFieldValue getCustomerFieldValueByFieldName(ArrayList<Method> methods, String fieldName, Customer customer) {
         String getGetterMethod = getGetterMethodNameByFieldName(methods, fieldName);
         switch (getGetterMethod) {
+            case GETNAME:
+                return customer.getName();
             case GETMOBILE:
                 return customer.getMobile();
             case GETADDRESS:

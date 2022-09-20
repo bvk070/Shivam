@@ -2,7 +2,6 @@ package com.sadiwala.shivam.inputfields;
 
 import static com.sadiwala.shivam.inputfields.InputFieldType.INPUT_FIELD_TYPE_CODE_NAME_SPINNER;
 import static com.sadiwala.shivam.inputfields.InputFieldType.INPUT_FIELD_TYPE_SPINNER;
-import static com.sadiwala.shivam.models.Customer.CUSTOMER_CODE;
 import static com.sadiwala.shivam.util.AaryaConstants.NO_SEARCH_BAR;
 import static com.sadiwala.shivam.util.AaryaConstants.REQUEST_CODE;
 import static com.sadiwala.shivam.util.Util.createChips;
@@ -524,30 +523,6 @@ public class SelectionInputField extends ParentInputField {
     protected void initSelectedOptions(String json) {
         if (json == null) {
             Log.e(TAG, "Null JSON");
-        }
-
-        if (INPUT_FIELD_TYPE_SPINNER.equals(mInputFieldType.getType())
-                || INPUT_FIELD_TYPE_CODE_NAME_SPINNER.equals(mInputFieldType.getType())) {
-
-            mSelectedOptions = new ArrayList<>();
-            for (int i = 0; i < mAvailableOptions.size(); i++) {
-                if (mAvailableOptions.get(i).getCode().equals(json)) {
-                    mSelectedOptions.add(mAvailableOptions.get(i));
-                }
-            }
-
-            mSelectedOptions = getValidPrePopulateValue();
-
-            if (onItemSelectedListener != null && !Util.isListEmpty(mSelectedOptions)) {
-                onItemSelectedListener.onItemSelected(mSelectedOptions);
-            } else {
-                if (!Util.isListEmpty(mSelectedOptions)) {
-                    // migrating GenericSpinnerInputField selection
-                    getBus().postSticky(new CodeName(mInputFieldType.getCode(), mSelectedOptions.get(0).getCode()));
-                }
-            }
-
-            return;
         }
 
         try {

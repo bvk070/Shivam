@@ -5,7 +5,6 @@ import com.sadiwala.shivam.inputfields.InputFieldValue;
 
 public class Customer {
 
-    public static final String CUSTOMER_CODE = "customer_code";
     public static final String NAME = "name";
     public static final String MOBILE = "mobile";
     public static final String ADDRESS = "address";
@@ -79,6 +78,7 @@ public class Customer {
     }
 
     // Getter Method Names
+    public static final String GETNAME = "getName()";
     public static final String GETMOBILE = "getMobile()";
     public static final String GETADDRESS = "getAddress()";
     public static final String GETAREA = "getArea()";
