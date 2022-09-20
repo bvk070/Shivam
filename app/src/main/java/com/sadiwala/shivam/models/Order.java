@@ -28,6 +28,7 @@ public class Order {
     public static final String ILASTIC = "ilastic";
     public static final String CLOTH_DESIGN = "cloth_design";
     public static final String CLOTH_COLOR = "cloth_color";
+    public static final String TIMESTAMP = "timestamp";
 
     private String id;
     private String type;

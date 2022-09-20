@@ -26,6 +26,10 @@
     <string name="night_shoot_top">ટોપ</string>
     <string name="night_shoot_bottom">લેંઘી</string>
 
+    <string name="aarya_notification">Aarya Notification</string>
+    <string name="sync_service_title">Aarya service is running in the background.</string>
+    <string name="sync_service_description">This will help to sync data in the background.</string>
+
     <string name="left_icon" translatable="false">Left Icon</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>

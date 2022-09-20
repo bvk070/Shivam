@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sadiwala.shivam.R;
 import com.sadiwala.shivam.models.Order;
@@ -98,7 +99,7 @@ public class FragmentOrders extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
 
         CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(TABLE_ORDERS);
-        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        collectionReference.orderBy(Order.TIMESTAMP, Query.Direction.DESCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
@@ -125,17 +126,17 @@ public class FragmentOrders extends Fragment {
     }
 
     private void setData(ArrayList<Order> orders) {
+        OrdersRecycleviewAdapter ordersRecycleviewAdapter = new OrdersRecycleviewAdapter(orders, getActivity());
+        mRecyclerView.setAdapter(ordersRecycleviewAdapter);
+        DataController.setPrefOrders(orders);
+        progressBar.setVisibility(View.GONE);
+        swipeRefreshLayout.setRefreshing(false);
 
         if (Util.isListEmpty(orders)) {
             tvError.setVisibility(View.VISIBLE);
         } else {
             tvError.setVisibility(View.GONE);
-            OrdersRecycleviewAdapter ordersRecycleviewAdapter = new OrdersRecycleviewAdapter(orders, getActivity());
-            mRecyclerView.setAdapter(ordersRecycleviewAdapter);
         }
-        DataController.setPrefOrders(orders);
-        progressBar.setVisibility(View.GONE);
-        swipeRefreshLayout.setRefreshing(false);
     }
 
 }

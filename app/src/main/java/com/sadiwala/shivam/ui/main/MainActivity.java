@@ -1,5 +1,6 @@
 package com.sadiwala.shivam.ui.main;
 
+import static com.sadiwala.shivam.syncdata.WorkManagerUtils.startSyncForeGroundService;
 import static com.sadiwala.shivam.ui.Order.AddOrderActivity.PRODUCT_TYPE_DATA;
 
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+        startSyncForeGroundService();
     }
 
     private void init() {

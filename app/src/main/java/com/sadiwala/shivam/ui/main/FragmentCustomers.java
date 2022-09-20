@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sadiwala.shivam.R;
 import com.sadiwala.shivam.models.Customer;
@@ -99,7 +100,7 @@ public class FragmentCustomers extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
 
         CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(TABLE_CUSTOMERS);
-        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        collectionReference.orderBy(Customer.TIMESTAMP, Query.Direction.DESCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
@@ -126,17 +127,17 @@ public class FragmentCustomers extends Fragment {
     }
 
     private void setData(ArrayList<Customer> customers) {
+        CustomersRecycleviewAdapter customersRecycleviewAdapter = new CustomersRecycleviewAdapter(customers, getActivity());
+        mRecyclerView.setAdapter(customersRecycleviewAdapter);
+        DataController.setPrefCustomers(customers);
+        progressBar.setVisibility(View.GONE);
+        swipeRefreshLayout.setRefreshing(false);
 
         if (Util.isListEmpty(customers)) {
             tvError.setVisibility(View.VISIBLE);
         } else {
             tvError.setVisibility(View.GONE);
-            CustomersRecycleviewAdapter customersRecycleviewAdapter = new CustomersRecycleviewAdapter(customers, getActivity());
-            mRecyclerView.setAdapter(customersRecycleviewAdapter);
         }
-        DataController.setPrefCustomers(customers);
-        progressBar.setVisibility(View.GONE);
-        swipeRefreshLayout.setRefreshing(false);
     }
 
 }

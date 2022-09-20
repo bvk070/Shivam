@@ -60,6 +60,11 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
+        <service
+            android:name=".syncdata.SyncForegroundService"
+            android:exported="true"
+            android:foregroundServiceType="dataSync" />
+
     </application>
 
 </manifest>

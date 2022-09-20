@@ -11,6 +11,7 @@ public class Customer {
     public static final String ADDRESS = "address";
     public static final String AREA = "area";
     public static final String PINCODE = "pincode";
+    public static final String TIMESTAMP = "timestamp";
 
     private String id;
     private long timestamp;
