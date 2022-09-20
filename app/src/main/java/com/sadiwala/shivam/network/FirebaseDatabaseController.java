@@ -82,6 +82,28 @@ public class FirebaseDatabaseController {
 
     }
 
+    public static void deleteCustomerFromCache(Customer customer) {
+        ArrayList<Customer> customers = DataController.getPrefCustomers();
+        for (int i = 0; i < customers.size(); i++) {
+            Customer customer1 = customers.get(i);
+            if (customer1.getId().equals(customer.getId())) {
+                customers.remove(i);
+            }
+        }
+        DataController.setPrefCustomers(customers);
+    }
+
+    public static void deleteOrderFromCache(Order order) {
+        ArrayList<Order> orders = DataController.getPrefOrders();
+        for (int i = 0; i < orders.size(); i++) {
+            Order order1 = orders.get(i);
+            if (order1.getId().equals(order.getId())) {
+                orders.remove(i);
+            }
+        }
+        DataController.setPrefOrders(orders);
+    }
+
     public static ArrayList<Order> getOrdersByName(ArrayList<Order> orders, String query) {
         ArrayList<Order> results = new ArrayList<>();
         for (int i = 0; i < orders.size(); i++) {

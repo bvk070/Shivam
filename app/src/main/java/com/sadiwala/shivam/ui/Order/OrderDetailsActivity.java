@@ -38,6 +38,7 @@ import com.sadiwala.shivam.models.Order;
 import com.sadiwala.shivam.preferences.DataController;
 import com.sadiwala.shivam.ui.BaseActivity;
 import com.sadiwala.shivam.ui.Customer.CustomerDetailsActivity;
+import com.sadiwala.shivam.ui.main.BaseDetailsActivity;
 import com.sadiwala.shivam.util.CustomTextView;
 import com.sadiwala.shivam.util.Gson;
 import com.sadiwala.shivam.util.PhoneUtil;
@@ -49,18 +50,13 @@ import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
 
-public class OrderDetailsActivity extends BaseActivity {
+public class OrderDetailsActivity extends BaseDetailsActivity {
 
     public static final String ORDER_DATA = "order_data";
 
     private Toolbar mToolbar;
     private CustomTextView tvName;
     private RelativeLayout rlCall, rlWhatsApp, rlDownload, profileView;
-
-    private EventBus mBus;
-    private Order order;
-    private Customer customer;
-    private InputFieldsGroupsContainer groupView;
 
     public static void start(Activity activity, Bundle bundle) {
         Intent intent = new Intent(activity, OrderDetailsActivity.class);
@@ -92,9 +88,8 @@ public class OrderDetailsActivity extends BaseActivity {
             customer = DataController.getCustomerById(SelectionInputField.getCodeFromJsonValue(order.getCustomer().getValue()));
         }
 
-        if (customer != null) {
-            loadData();
-        } else {
+        loadData();
+        if (customer == null) {
             fetchCustomerById(SelectionInputField.getCodeFromJsonValue(order.getCustomer().getValue()));
         }
 
@@ -122,16 +117,21 @@ public class OrderDetailsActivity extends BaseActivity {
     }
 
     private void loadData() {
-        tvName = findViewById(R.id.name);
-        tvName.setText(customer.getName().getValue());
 
-        rlCall = findViewById(R.id.rlCall);
-        rlCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PhoneUtil.makeCall(OrderDetailsActivity.this, customer.getMobile().getValue());
-            }
-        });
+        tvName = findViewById(R.id.name);
+        if (customer == null) {
+            tvName.setText(getString(R.string.customer_not_exists));
+
+            showUpdate = false;
+            invalidateOptionsMenu();
+
+        } else {
+            tvName.setText(customer.getName().getValue());
+            loadCustomerRelatedInfo();
+
+            showUpdate = true;
+            invalidateOptionsMenu();
+        }
 
         rlWhatsApp = findViewById(R.id.rlWhatsApp);
         rlWhatsApp.setOnClickListener(new View.OnClickListener() {
@@ -163,6 +163,19 @@ public class OrderDetailsActivity extends BaseActivity {
             }
         });
 
+        loadGroupView(null);
+    }
+
+    private void loadCustomerRelatedInfo() {
+        rlCall = findViewById(R.id.rlCall);
+        rlCall.setVisibility(View.VISIBLE);
+        rlCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PhoneUtil.makeCall(OrderDetailsActivity.this, customer.getMobile().getValue());
+            }
+        });
+
         profileView = findViewById(R.id.profileView);
         profileView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,13 +185,15 @@ public class OrderDetailsActivity extends BaseActivity {
                 CustomerDetailsActivity.start(OrderDetailsActivity.this, bundle);
             }
         });
-
-        loadGroupView(null);
     }
 
     private void loadGroupView(Bundle savedInstanceState) {
 
         ArrayList<InputFieldsGroup> inputFieldsGroups = new ArrayList<>();
+        String customerName = "";
+        if (customer != null) {
+            customerName = customer.getName().getValue();
+        }
 
         if (AppData.PRODUCT_TYPE.ALINE_GOWN.toString().equals(order.getType())) {
 
@@ -187,7 +202,7 @@ public class OrderDetailsActivity extends BaseActivity {
 
             prepareOrderGroups(inputFieldTypes, inputFieldValues, order);
 
-            InputFieldsGroup inputFieldsGroup = new InputFieldsGroup(this, savedInstanceState, "code", customer.getName().getValue() + " / " + AppData.getType(this, order.getType()),
+            InputFieldsGroup inputFieldsGroup = new InputFieldsGroup(this, savedInstanceState, "code", customerName + " / " + AppData.getType(this, order.getType()),
                     inputFieldValues, AppData.getAlineGownForm(), InputField.EditMode.READ, false, getBus(), null, null);
             inputFieldsGroups.add(inputFieldsGroup);
 
@@ -198,7 +213,7 @@ public class OrderDetailsActivity extends BaseActivity {
 
             prepareOrderGroups(inputFieldTypes, inputFieldValues, order);
 
-            InputFieldsGroup inputFieldsGroup = new InputFieldsGroup(this, savedInstanceState, "code", customer.getName().getValue() + " / " + AppData.getType(this, order.getType()),
+            InputFieldsGroup inputFieldsGroup = new InputFieldsGroup(this, savedInstanceState, "code", customerName + " / " + AppData.getType(this, order.getType()),
                     inputFieldValues, AppData.getChapatiGownForm(), InputField.EditMode.READ, false, getBus(), null, null);
             inputFieldsGroups.add(inputFieldsGroup);
 
@@ -209,11 +224,11 @@ public class OrderDetailsActivity extends BaseActivity {
 
             prepareOrderGroups(inputFieldTypes, inputFieldValues, order);
 
-            InputFieldsGroup inputFieldsGroup1 = new InputFieldsGroup(this, savedInstanceState, "night_shoot_top", customer.getName().getValue() + " / " + AppData.getType(this, order.getType()) + " / " + getString(R.string.night_shoot_top),
+            InputFieldsGroup inputFieldsGroup1 = new InputFieldsGroup(this, savedInstanceState, "night_shoot_top", customerName + " / " + AppData.getType(this, order.getType()) + " / " + getString(R.string.night_shoot_top),
                     inputFieldValues, AppData.getNightShootTopForm(), InputField.EditMode.READ, false, getBus(), null, null);
             inputFieldsGroups.add(inputFieldsGroup1);
 
-            InputFieldsGroup inputFieldsGroup2 = new InputFieldsGroup(this, savedInstanceState, "night_shoot_bottom", customer.getName().getValue() + " / " + AppData.getType(this, order.getType()) + " / " + getString(R.string.night_shoot_bottom),
+            InputFieldsGroup inputFieldsGroup2 = new InputFieldsGroup(this, savedInstanceState, "night_shoot_bottom", customerName + " / " + AppData.getType(this, order.getType()) + " / " + getString(R.string.night_shoot_bottom),
                     inputFieldValues, AppData.getNightShootBottomForm(), InputField.EditMode.READ, false, getBus(), null, null);
             inputFieldsGroups.add(inputFieldsGroup2);
 
@@ -224,7 +239,7 @@ public class OrderDetailsActivity extends BaseActivity {
 
             prepareOrderGroups(inputFieldTypes, inputFieldValues, order);
 
-            InputFieldsGroup inputFieldsGroup2 = new InputFieldsGroup(this, savedInstanceState, "night_shoot_bottom", customer.getName().getValue() + " / " + AppData.getType(this, order.getType()),
+            InputFieldsGroup inputFieldsGroup2 = new InputFieldsGroup(this, savedInstanceState, "night_shoot_bottom", customerName + " / " + AppData.getType(this, order.getType()),
                     inputFieldValues, AppData.getNightShootBottomForm(), InputField.EditMode.READ, false, getBus(), null, null);
             inputFieldsGroups.add(inputFieldsGroup2);
 

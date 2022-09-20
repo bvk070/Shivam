@@ -59,6 +59,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rlCall"
             android:layout_width="@dimen/icon_size_40"
             android:layout_height="@dimen/icon_size_40"

@@ -233,7 +233,7 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), getString(R.string.order_failed), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.add_order_failed), Toast.LENGTH_LONG).show();
                 enableSubmitButton();
             }
         });
@@ -279,7 +279,7 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), getString(R.string.customer_failed), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.add_customer_failed), Toast.LENGTH_LONG).show();
                 enableSubmitButton();
             }
         });

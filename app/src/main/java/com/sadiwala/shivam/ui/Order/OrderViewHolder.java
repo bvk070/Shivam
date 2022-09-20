@@ -52,10 +52,9 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
         this.mActivity = mActivity;
 
         customer = DataController.getCustomerById(SelectionInputField.getCodeFromJsonValue(order.getCustomer().getValue()));
+        loadData();
 
-        if (customer != null) {
-            loadData();
-        } else {
+        if (customer == null) {
             fetchCustomerById(SelectionInputField.getCodeFromJsonValue(order.getCustomer().getValue()));
         }
 
@@ -83,7 +82,11 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void loadData() {
-        tvName.setText(customer.getName().getValue());
+        if (customer == null) {
+            tvName.setText(mActivity.getString(R.string.customer_not_exists));
+        } else {
+            tvName.setText(customer.getName().getValue());
+        }
         tvType.setText(AppData.getType(mActivity, order.getType()));
         setDate();
 //        setBackgroundColor();

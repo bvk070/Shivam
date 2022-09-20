@@ -10,13 +10,17 @@
     <string name="add_lenghi">Add Lenghi</string>
     <string name="add_customer">Add Customer</string>
     <string name="customer_added">Customer is added successfully</string>
-    <string name="customer_failed">Failed to add customer, please try again</string>
+    <string name="add_customer_failed">Failed to add customer, please try again</string>
+    <string name="deleted_customer_failed">Failed to delete customer, please try again</string>
+    <string name="customer_deleted">Customer is deleted successfully</string>
     <string name="customer_details">Customer Details</string>
     <string name="order_details">Order Details</string>
     <string name="error_required_permissions_not_available">Shivam doesn’t have mandatory permissions. To enable access, go to Settings.</string>
     <string name="no_call_facility">Calling facility is not available for this device.</string>
     <string name="order_added">Order is added successfully</string>
-    <string name="order_failed">Failed to add order, please try again</string>
+    <string name="add_order_failed">Failed to add order, please try again</string>
+    <string name="order_deleted">Order is deleted successfully</string>
+    <string name="delete_order_failed">Failed to delete order, please try again</string>
     <string name="aline_gown">એલાઇન ગાઉન</string>
     <string name="chapati_down">ચપટીવાળુ ગાઉન</string>
     <string name="night_dress">નાઈટશુટ</string>
@@ -25,6 +29,7 @@
     <string name="screenshot_saved">Screenshot is saved</string>
     <string name="night_shoot_top">ટોપ</string>
     <string name="night_shoot_bottom">લેંઘી</string>
+    <string name="customer_not_exists">Customer is deleted</string>
 
     <string name="aarya_notification">Shivam Notification</string>
     <string name="sync_service_title">Shivam service is running in the background.</string>
@@ -41,6 +46,9 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
+
+    <!-- details screen -->
+    <string name="delete">Delete</string>
 
     <string name="left_icon" translatable="false">Left Icon</string>
     <string name="ok">Ok</string>

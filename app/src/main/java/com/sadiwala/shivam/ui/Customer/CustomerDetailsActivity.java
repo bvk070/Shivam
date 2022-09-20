@@ -20,6 +20,7 @@ import com.sadiwala.shivam.inputfields.InputFieldsGroup;
 import com.sadiwala.shivam.inputfields.InputFieldsGroupsContainer;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.ui.BaseActivity;
+import com.sadiwala.shivam.ui.main.BaseDetailsActivity;
 import com.sadiwala.shivam.util.CustomTextView;
 import com.sadiwala.shivam.util.Gson;
 import com.sadiwala.shivam.util.PhoneUtil;
@@ -29,16 +30,13 @@ import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
 
-public class CustomerDetailsActivity extends BaseActivity {
+public class CustomerDetailsActivity extends BaseDetailsActivity {
 
     public static final String CUSTOMER_DATA = "customer_data";
 
     private Toolbar mToolbar;
     private CustomTextView tvName;
     private RelativeLayout rlCall;
-
-    private EventBus mBus;
-    private Customer customer;
 
     public static void start(Activity activity, Bundle bundle) {
         Intent intent = new Intent(activity, CustomerDetailsActivity.class);
@@ -93,7 +91,7 @@ public class CustomerDetailsActivity extends BaseActivity {
 
         ArrayList<InputFieldsGroup> inputFieldsGroups = new ArrayList<>();
         inputFieldsGroups.add(inputFieldsGroup);
-        InputFieldsGroupsContainer groupView = new InputFieldsGroupsContainer(this, inputFieldsGroups, getBus(), InputField.EditMode.READ, null);
+        groupView = new InputFieldsGroupsContainer(this, inputFieldsGroups, getBus(), InputField.EditMode.READ, null);
 
         ((ViewGroup) findViewById(R.id.input_fields)).addView(groupView.getDisplayView());
     }
