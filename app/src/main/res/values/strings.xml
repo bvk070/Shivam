@@ -32,6 +32,7 @@
     <string name="delete_order_failed">Failed to delete order, please try again</string>
     <string name="order_updated">Order is updated successfully</string>
     <string name="update_order_failed">Failed to update order, please try again</string>
+    <string name="customer">ગ્રાહક</string>
     <string name="aline_gown">એલાઇન ગાઉન</string>
     <string name="chapati_down">ચપટીવાળુ ગાઉન</string>
     <string name="night_dress">નાઈટશુટ</string>
