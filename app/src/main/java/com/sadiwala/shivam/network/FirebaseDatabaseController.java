@@ -22,6 +22,9 @@ import com.sadiwala.shivam.util.Gson;
 import com.sadiwala.shivam.util.Util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class FirebaseDatabaseController {
 
@@ -83,6 +86,36 @@ public class FirebaseDatabaseController {
             }
         });
 
+    }
+
+    public static ArrayList<Order> getOrdersInRange(long start, long end) {
+        ArrayList<Order> results = new ArrayList<>();
+        ArrayList<Order> orders = DataController.getPrefOrders();
+        for (Order order : orders) {
+            if (start <= order.getTimestamp() && order.getTimestamp() <= end) {
+                results.add(order);
+            }
+        }
+        return results;
+    }
+
+    public static ArrayList<Customer> getCustomersInRange(long start, long end) {
+        ArrayList<Customer> results = new ArrayList<>();
+        ArrayList<Customer> customers = DataController.getPrefCustomers();
+        for (Customer customer : customers) {
+            if (start <= customer.getTimestamp() && customer.getTimestamp() <= end) {
+                results.add(customer);
+            }
+        }
+        return results;
+    }
+
+    public static int getUniqueCustomersCountFromOrders(ArrayList<Order> orders) {
+        Set<String> codes = new HashSet<>();
+        for (Order order : orders) {
+            codes.add(SelectionInputField.getCodeFromJsonValue(order.getCustomer().getValue()));
+        }
+        return codes.size();
     }
 
     public static void deleteCustomerFromCache(Customer customer) {

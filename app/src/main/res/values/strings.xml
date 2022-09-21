@@ -61,6 +61,10 @@
     <!-- details screen -->
     <string name="delete">Delete</string>
 
+    <string name="today">Today</string>
+    <string name="this_week">This Week</string>
+    <string name="this_month">This Month</string>
+
     <string name="left_icon" translatable="false">Left Icon</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>

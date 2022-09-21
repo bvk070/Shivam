@@ -43,4 +43,10 @@ public class AaryaDateFormats {
         return simpleDateFormat;
     }
 
+    public static DateFormat getFormatddMMM() {
+        DateFormat FORMAT_DD_MM_YYYY_AM_PM = new SimpleDateFormat("dd MMM", Locale.getDefault());
+        FORMAT_DD_MM_YYYY_AM_PM.setTimeZone(TimeZone.getDefault());
+        return FORMAT_DD_MM_YYYY_AM_PM;
+    }
+
 }

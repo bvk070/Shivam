@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_rl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/tiny_padding">
+
+    <RelativeLayout
+        android:id="@+id/group_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30dp"
+        android:background="@color/vymo_text_color_6"
+        android:orientation="horizontal">
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/groupTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:singleLine="false"
+            android:text="TODAY"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16sp"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/group_header"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <com.sadiwala.shivam.util.CustomTextView
+                    android:id="@+id/orderName"
+                    style="@style/WrapContent"
+                    android:layout_centerHorizontal="true"
+                    android:text="Total Orders"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_size_12sp" />
+
+                <com.sadiwala.shivam.util.CustomTextView
+                    android:id="@+id/orderValue"
+                    style="@style/WrapContent"
+                    android:layout_below="@+id/orderName"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="25"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_20sp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <com.sadiwala.shivam.util.CustomTextView
+                    android:id="@+id/totalCustomersName"
+                    style="@style/WrapContent"
+                    android:layout_centerHorizontal="true"
+                    android:text="Total Customers"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_size_12sp" />
+
+                <com.sadiwala.shivam.util.CustomTextView
+                    android:id="@+id/totalCustomersValue"
+                    style="@style/WrapContent"
+                    android:layout_below="@+id/totalCustomersName"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="20"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_20sp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <com.sadiwala.shivam.util.CustomTextView
+                    android:id="@+id/todaysCustomersName"
+                    style="@style/WrapContent"
+                    android:layout_centerHorizontal="true"
+                    android:text="New Customers"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_size_12sp" />
+
+                <com.sadiwala.shivam.util.CustomTextView
+                    android:id="@+id/todaysCustomersValue"
+                    style="@style/WrapContent"
+                    android:layout_below="@+id/todaysCustomersName"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="12"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_20sp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:background="@color/divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/container" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30dp"
+        android:layout_below="@+id/divider" />
+
+</RelativeLayout>
