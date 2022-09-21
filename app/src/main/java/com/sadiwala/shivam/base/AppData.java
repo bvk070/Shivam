@@ -79,8 +79,8 @@ public class AppData {
                 "\"hint\": \"Area\",\n" +
                 "\"code_name_spinner_options\": " + Gson.getInstance().toJson(DataController.getPrefAreas()) + ",\n" +
                 "\"required\": true,\n" +
-                "\"show_add\": true,\n" +
-                "\"hide_chips\": false\n" +
+                "\"show_add\": false,\n" +
+                "\"hide_chips\": true\n" +
                 "},\n" +
                 "{\n" +
                 "\"type\": \"sentence\",\n" +
