@@ -32,6 +32,7 @@ public class FirebaseDatabaseController {
     public static final String TABLE_CUSTOMERS = "customers";
     public static final String TABLE_ORDERS = "orders";
     public static final String TABLE_USERS = "users";
+    public static final String TABLE_AREAS = "areas";
 
     public static void cacheCustomers(WorkManagerUtils.AaryaSyncListener aaryaSyncListener) {
 
@@ -76,6 +77,34 @@ public class FirebaseDatabaseController {
                     }
                 }
                 DataController.setPrefOrders(orders);
+                aaryaSyncListener.onSyncFinished();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                aaryaSyncListener.onSyncFinished();
+            }
+        });
+
+    }
+
+    public static void cacheAreas(WorkManagerUtils.AaryaSyncListener aaryaSyncListener) {
+
+        CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(TABLE_AREAS);
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                ArrayList<CodeName> codeNames = new ArrayList<>();
+                if (queryDocumentSnapshots != null && !Util.isListEmpty(queryDocumentSnapshots.getDocuments())) {
+                    for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+                        CodeName codeName = documentSnapshot.toObject(CodeName.class);
+                        codeName.setCode(documentSnapshot.getId());
+                        codeNames.add(codeName);
+                    }
+                }
+                DataController.setPrefAreas(codeNames);
                 aaryaSyncListener.onSyncFinished();
 
             }

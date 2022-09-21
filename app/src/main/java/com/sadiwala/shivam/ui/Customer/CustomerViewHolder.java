@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sadiwala.shivam.R;
+import com.sadiwala.shivam.inputfields.SelectionInputField;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.util.Gson;
 import com.sadiwala.shivam.util.PhoneUtil;
@@ -18,12 +19,13 @@ import com.sadiwala.shivam.util.PhoneUtil;
 public class CustomerViewHolder extends RecyclerView.ViewHolder {
 
     private RelativeLayout rlMain, rlCall;
-    private TextView tvName;
+    private TextView tvName, tvArea;
     private Customer customer;
 
     public CustomerViewHolder(View itemView) {
         super(itemView);
         tvName = itemView.findViewById(R.id.name);
+        tvArea = itemView.findViewById(R.id.area);
         rlMain = itemView.findViewById(R.id.main_rl);
         rlCall = itemView.findViewById(R.id.rlCall);
     }
@@ -31,6 +33,7 @@ public class CustomerViewHolder extends RecyclerView.ViewHolder {
     public void setData(Customer customer, Activity mActivity) {
         this.customer = customer;
         tvName.setText(customer.getName().getValue());
+        tvArea.setText(SelectionInputField.getNameFromJsonValue(customer.getArea().getValue()));
 
         rlMain.setOnClickListener(new View.OnClickListener() {
             @Override

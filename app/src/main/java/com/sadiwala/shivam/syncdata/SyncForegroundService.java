@@ -39,6 +39,10 @@ public class SyncForegroundService extends Service implements WorkManagerUtils.A
         syncCount++;
         FirebaseDatabaseController.cacheOrders(this);
 
+        // cache areas
+        syncCount++;
+        FirebaseDatabaseController.cacheAreas(this);
+
     }
 
     @Nullable

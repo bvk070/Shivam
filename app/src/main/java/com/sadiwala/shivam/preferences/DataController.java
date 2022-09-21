@@ -16,6 +16,7 @@ public class DataController {
     public static final String PREF_USER = "pref_user";
     public static final String PREF_ORDERS = "orders";
     public static final String PREF_CUSTOMERS = "customers";
+    public static final String PREF_AREAS = "areas";
 
     public static String getModelObject(String key, String defaultValue) {
         return PreferenceUtil.getStringValue(key, defaultValue);
@@ -64,6 +65,20 @@ public class DataController {
 
     public static void setPrefCustomers(ArrayList<Customer> customers) {
         PreferenceUtil.setStringValue(PREF_CUSTOMERS, new Gson().toJson(customers));
+    }
+
+    public static ArrayList<CodeName> getPrefAreas() {
+        String strOrders = PreferenceUtil.getStringValue(PREF_AREAS, null);
+        ArrayList<CodeName> codeNames = new Gson().fromJson(strOrders, new TypeToken<List<CodeName>>() {
+        }.getType());
+        if (codeNames == null) {
+            codeNames = new ArrayList<>();
+        }
+        return codeNames;
+    }
+
+    public static void setPrefAreas(ArrayList<CodeName> codeNames) {
+        PreferenceUtil.setStringValue(PREF_AREAS, new Gson().toJson(codeNames));
     }
 
     public static CodeName[] getCachedCustomers() {

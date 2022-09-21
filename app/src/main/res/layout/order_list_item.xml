@@ -5,7 +5,16 @@
     android:layout_height="@dimen/dimen_60dp"
     android:padding="@dimen/tiny_padding">
 
+    <com.sadiwala.shivam.util.CustomTextView
+        android:id="@+id/date"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        style="@style/WrapContent"
+        android:textSize="@dimen/text_size_12sp"
+        android:textColor="@color/gray" />
+
     <RelativeLayout
+        android:layout_toLeftOf="@+id/date"
         android:id="@+id/rlCall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,16 +29,6 @@
 
         <com.sadiwala.shivam.util.CustomTextView
             android:id="@+id/type"
-            android:layout_marginTop="@dimen/padding_2dp"
-            android:layout_below="@+id/name"
-            style="@style/WrapContent"
-            android:textSize="@dimen/text_size_12sp"
-            android:layout_marginLeft="@dimen/medium_padding"
-            android:textColor="@color/gray" />
-
-        <com.sadiwala.shivam.util.CustomTextView
-            android:id="@+id/date"
-            android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/padding_2dp"
             android:layout_below="@+id/name"
             style="@style/WrapContent"

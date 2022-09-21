@@ -42,6 +42,7 @@ import com.sadiwala.shivam.inputfields.InputFieldValue;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
 import com.sadiwala.shivam.models.common.CodeName;
+import com.sadiwala.shivam.preferences.DataController;
 import com.sadiwala.shivam.util.Gson;
 
 import java.lang.reflect.Field;
@@ -72,6 +73,15 @@ public class AppData {
                 "\"min_chars\": 10,\n" +
                 "\"max_chars\": 10\n" +
                 "},\n" +
+                " {\n" +
+                "\"type\": \"code_name_spinner\",\n" +
+                "\"code\": " + Customer.AREA + ",\n" +
+                "\"hint\": \"Area\",\n" +
+                "\"code_name_spinner_options\": " + Gson.getInstance().toJson(DataController.getPrefAreas()) + ",\n" +
+                "\"required\": true,\n" +
+                "\"show_add\": true,\n" +
+                "\"hide_chips\": false\n" +
+                "},\n" +
                 "{\n" +
                 "\"type\": \"sentence\",\n" +
                 "\"code\": " + Customer.ADDRESS + ",\n" +
@@ -80,12 +90,6 @@ public class AppData {
                 "\"min_lines\": 3,\n" +
                 "\"parent_code\": null,\n" +
                 "\"read_only\": false\n" +
-                "},\n" +
-                " {\n" +
-                "\"type\": \"text\",\n" +
-                "\"code\": " + Customer.AREA + ",\n" +
-                "\"hint\": \"Area\",\n" +
-                "\"required\": false\n" +
                 "},\n" +
                 " {\n" +
                 "\"type\": \"number\",\n" +

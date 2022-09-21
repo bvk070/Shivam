@@ -2,15 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main_rl"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/icon_size_40"
+    android:layout_height="@dimen/dimen_60dp"
     android:padding="@dimen/tiny_padding">
-
-    <com.sadiwala.shivam.util.CustomTextView
-        android:id="@+id/name"
-        style="@style/WrapContent"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/medium_padding"
-        android:textColor="@color/black" />
 
     <RelativeLayout
         android:id="@+id/rlCall"
@@ -26,6 +19,30 @@
             android:clickable="false"
             android:focusable="false"
             android:focusableInTouchMode="false" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toLeftOf="@+id/rlCall">
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/name"
+            style="@style/WrapContent"
+            android:layout_marginLeft="@dimen/medium_padding"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_14sp" />
+
+        <com.sadiwala.shivam.util.CustomTextView
+            android:id="@+id/area"
+            style="@style/WrapContent"
+            android:layout_below="@+id/name"
+            android:layout_marginLeft="@dimen/medium_padding"
+            android:layout_marginTop="@dimen/padding_2dp"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_size_12sp" />
 
     </RelativeLayout>
 
