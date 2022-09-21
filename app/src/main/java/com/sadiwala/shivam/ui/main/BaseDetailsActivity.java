@@ -6,6 +6,8 @@ import static com.sadiwala.shivam.network.FirebaseDatabaseController.deleteCusto
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.deleteOrderFromCache;
 import static com.sadiwala.shivam.ui.Customer.CustomerDetailsActivity.CUSTOMER_DATA;
 import static com.sadiwala.shivam.ui.Order.OrderDetailsActivity.ORDER_DATA;
+import static com.sadiwala.shivam.util.AaryaConstants.REQUEST_CODE_UPDATE_CUSTOMER;
+import static com.sadiwala.shivam.util.AaryaConstants.REQUEST_CODE_UPDATE_ORDER;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -79,11 +81,11 @@ public class BaseDetailsActivity extends BaseActivity {
                 if (order != null) {
                     Bundle bundle = new Bundle();
                     bundle.putString(ORDER_DATA, Gson.getInstance().toJson(order));
-                    AddOrderActivity.start(this, bundle);
+                    AddOrderActivity.startActivityForResult(this, bundle, REQUEST_CODE_UPDATE_ORDER);
                 } else {
                     Bundle bundle = new Bundle();
                     bundle.putString(CUSTOMER_DATA, Gson.getInstance().toJson(customer));
-                    AddCustomerActivity.start(this, bundle);
+                    AddCustomerActivity.startActivityForResult(this, bundle, REQUEST_CODE_UPDATE_CUSTOMER);
                 }
                 return true;
         }

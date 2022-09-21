@@ -3,6 +3,10 @@ package com.sadiwala.shivam.ui.main;
 import static com.sadiwala.shivam.base.BaseBottomSheet.CLEAR_CLICK;
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.TABLE_CUSTOMERS;
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.TABLE_ORDERS;
+import static com.sadiwala.shivam.network.FirebaseDatabaseController.updateCustomerInCache;
+import static com.sadiwala.shivam.network.FirebaseDatabaseController.updateOrderInCache;
+import static com.sadiwala.shivam.ui.Customer.CustomerDetailsActivity.CUSTOMER_DATA;
+import static com.sadiwala.shivam.ui.Order.OrderDetailsActivity.ORDER_DATA;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -281,11 +285,39 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         map.put(Order.CLOTH_DESIGN, hashMap.get(Order.CLOTH_DESIGN));
         map.put(Order.CLOTH_COLOR, hashMap.get(Order.CLOTH_COLOR));
 
+        order.setShoulder(hashMap.get(Order.SHOULDER));
+        order.setChest(hashMap.get(Order.CHEST));
+        order.setWaist(hashMap.get(Order.WAIST));
+        order.setSleeve(hashMap.get(Order.SLEEVE));
+        order.setLength(hashMap.get(Order.LENGTH));
+        order.setNeckType(hashMap.get(Order.NECK_TYPE));
+        order.setNeckSize(hashMap.get(Order.NECK_SIZE));
+        order.setPattern(hashMap.get(Order.PATTERN));
+        order.setPocket(hashMap.get(Order.POCKET));
+        order.setLenghaPocket(hashMap.get(Order.LENGHA_POCKET));
+        order.setPocketSize(hashMap.get(Order.POCKET_SIZE));
+        order.setMundho(hashMap.get(Order.MUNDHO));
+        order.setFitting(hashMap.get(Order.FITTING));
+        order.setKotho(hashMap.get(Order.KOTHO));
+        order.setHips(hashMap.get(Order.HIPS));
+        order.setGher(hashMap.get(Order.GHER));
+        order.setCut(hashMap.get(Order.CUT));
+        order.setMori(hashMap.get(Order.MORI));
+        order.setKhristak(hashMap.get(Order.KHRISTAK));
+        order.setIlastic(hashMap.get(Order.ILASTIC));
+        order.setClothDesign(hashMap.get(Order.CLOTH_DESIGN));
+        order.setClothColor(hashMap.get(Order.CLOTH_COLOR));
+
         CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(TABLE_ORDERS);
         collectionReference.document(order.getId()).update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
+                updateOrderInCache(order);
                 Toast.makeText(getApplicationContext(), getString(R.string.order_updated), Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent();
+                intent.putExtra(ORDER_DATA, Gson.getInstance().toJson(order));
+                setResult(RESULT_OK, intent);
                 finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -354,11 +386,22 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         map.put(Customer.AREA, hashMap.get(Customer.AREA));
         map.put(Customer.PINCODE, hashMap.get(Customer.PINCODE));
 
+        customer.setName(hashMap.get(Customer.NAME));
+        customer.setMobile(hashMap.get(Customer.MOBILE));
+        customer.setAddress(hashMap.get(Customer.ADDRESS));
+        customer.setArea(hashMap.get(Customer.AREA));
+        customer.setPincode(hashMap.get(Customer.PINCODE));
+
         CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(TABLE_CUSTOMERS);
         collectionReference.document(customer.getId()).update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
+                updateCustomerInCache(customer);
                 Toast.makeText(getApplicationContext(), getString(R.string.customer_updated), Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent();
+                intent.putExtra(CUSTOMER_DATA, Gson.getInstance().toJson(customer));
+                setResult(RESULT_OK, intent);
                 finish();
             }
         }).addOnFailureListener(new OnFailureListener() {

@@ -4,6 +4,7 @@ import static com.sadiwala.shivam.inputfields.InputFieldType.INPUT_FIELD_TYPE_CO
 import static com.sadiwala.shivam.inputfields.InputFieldType.INPUT_FIELD_TYPE_SPINNER;
 import static com.sadiwala.shivam.util.AaryaConstants.NO_SEARCH_BAR;
 import static com.sadiwala.shivam.util.AaryaConstants.REQUEST_CODE;
+import static com.sadiwala.shivam.util.AaryaConstants.REQUEST_CODE_ADD_CUSTOMER;
 import static com.sadiwala.shivam.util.Util.createChips;
 import static io.reactivex.annotations.SchedulerSupport.NONE;
 
@@ -164,7 +165,7 @@ public class SelectionInputField extends ParentInputField {
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
                     bundle.putString(EXTRAS_CODE, mInputFieldType.getCode());
-                    AddCustomerActivity.startActivityForResult(mActivity, bundle);
+                    AddCustomerActivity.startActivityForResult(mActivity, bundle, REQUEST_CODE_ADD_CUSTOMER);
                 }
             });
         }

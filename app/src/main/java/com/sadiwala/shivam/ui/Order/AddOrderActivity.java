@@ -1,6 +1,5 @@
 package com.sadiwala.shivam.ui.Order;
 
-import static com.sadiwala.shivam.base.AppData.prepareCustomerGroups;
 import static com.sadiwala.shivam.base.AppData.prepareOrderGroups;
 import static com.sadiwala.shivam.ui.Order.OrderDetailsActivity.ORDER_DATA;
 
@@ -34,6 +33,12 @@ public class AddOrderActivity extends BaseAddActivity {
         Intent intent = new Intent(activity, AddOrderActivity.class);
         intent.putExtras(bundle);
         activity.startActivity(intent);
+    }
+
+    public static void startActivityForResult(Activity activity, Bundle bundle, int requestCode) {
+        Intent intent = new Intent(activity, AddOrderActivity.class);
+        intent.putExtras(bundle);
+        activity.startActivityForResult(intent, requestCode);
     }
 
     @Override
@@ -70,7 +75,6 @@ public class AddOrderActivity extends BaseAddActivity {
     private void loadGroupView(Bundle savedInstanceState) {
 
         ArrayList<InputFieldsGroup> inputFieldsGroups = new ArrayList<>();
-
         ArrayList<InputFieldValue> inputFieldValues = new ArrayList<>();
         if (order != null) {
             prepareOrderGroups(null, inputFieldValues, order);

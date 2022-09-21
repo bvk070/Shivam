@@ -104,6 +104,28 @@ public class FirebaseDatabaseController {
         DataController.setPrefOrders(orders);
     }
 
+    public static void updateCustomerInCache(Customer customer) {
+        ArrayList<Customer> customers = DataController.getPrefCustomers();
+        for (int i = 0; i < customers.size(); i++) {
+            Customer customer1 = customers.get(i);
+            if (customer1.getId().equals(customer.getId())) {
+                customers.set(i, customer);
+            }
+        }
+        DataController.setPrefCustomers(customers);
+    }
+
+    public static void updateOrderInCache(Order order) {
+        ArrayList<Order> orders = DataController.getPrefOrders();
+        for (int i = 0; i < orders.size(); i++) {
+            Order order1 = orders.get(i);
+            if (order1.getId().equals(order.getId())) {
+                orders.set(i, order);
+            }
+        }
+        DataController.setPrefOrders(orders);
+    }
+
     public static ArrayList<Order> getOrdersByName(ArrayList<Order> orders, String query) {
         ArrayList<Order> results = new ArrayList<>();
         for (int i = 0; i < orders.size(); i++) {

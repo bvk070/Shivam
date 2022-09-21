@@ -19,8 +19,8 @@ import com.sadiwala.shivam.inputfields.InputFieldValue;
 import com.sadiwala.shivam.inputfields.InputFieldsGroup;
 import com.sadiwala.shivam.inputfields.InputFieldsGroupsContainer;
 import com.sadiwala.shivam.models.Customer;
-import com.sadiwala.shivam.ui.BaseActivity;
 import com.sadiwala.shivam.ui.main.BaseDetailsActivity;
+import com.sadiwala.shivam.util.AaryaConstants;
 import com.sadiwala.shivam.util.CustomTextView;
 import com.sadiwala.shivam.util.Gson;
 import com.sadiwala.shivam.util.PhoneUtil;
@@ -49,7 +49,24 @@ public class CustomerDetailsActivity extends BaseDetailsActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_details);
         init();
-        loadGroupView(savedInstanceState);
+        refreshData();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case AaryaConstants.REQUEST_CODE_UPDATE_CUSTOMER:
+                if (resultCode == Activity.RESULT_OK) {
+                    if (data.hasExtra(CUSTOMER_DATA)) {
+                        customer = Gson.getInstance().fromJson(data.getStringExtra(CUSTOMER_DATA), Customer.class);
+                        refreshData();
+                    }
+                }
+                return;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     public EventBus getBus() {
@@ -69,8 +86,6 @@ public class CustomerDetailsActivity extends BaseDetailsActivity {
         }
 
         tvName = findViewById(R.id.name);
-        tvName.setText(customer.getName().getValue());
-
         rlCall = findViewById(R.id.rlCall);
         rlCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,8 +95,13 @@ public class CustomerDetailsActivity extends BaseDetailsActivity {
         });
     }
 
-    private void loadGroupView(Bundle savedInstanceState) {
+    private void refreshData() {
+        tvName.setText(customer.getName().getValue());
+        loadGroupView(null);
+    }
 
+    private void loadGroupView(Bundle savedInstanceState) {
+        ((ViewGroup) findViewById(R.id.input_fields)).removeAllViews();
         ArrayList<InputFieldType> inputFieldTypes = new ArrayList<>();
         ArrayList<InputFieldValue> inputFieldValues = new ArrayList<>();
         prepareCustomerGroups(inputFieldTypes, inputFieldValues, customer);

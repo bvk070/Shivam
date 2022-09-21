@@ -34,10 +34,10 @@ public class AddCustomerActivity extends BaseAddActivity {
         activity.startActivity(intent);
     }
 
-    public static void startActivityForResult(Activity activity, Bundle bundle) {
+    public static void startActivityForResult(Activity activity, Bundle bundle, int requestCode) {
         Intent intent = new Intent(activity, AddCustomerActivity.class);
         intent.putExtras(bundle);
-        activity.startActivityForResult(intent, REQUEST_CODE_ADD_CUSTOMER);
+        activity.startActivityForResult(intent, requestCode);
     }
 
     @Override

@@ -36,9 +36,9 @@ import com.sadiwala.shivam.inputfields.SelectionInputField;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
 import com.sadiwala.shivam.preferences.DataController;
-import com.sadiwala.shivam.ui.BaseActivity;
 import com.sadiwala.shivam.ui.Customer.CustomerDetailsActivity;
 import com.sadiwala.shivam.ui.main.BaseDetailsActivity;
+import com.sadiwala.shivam.util.AaryaConstants;
 import com.sadiwala.shivam.util.CustomTextView;
 import com.sadiwala.shivam.util.Gson;
 import com.sadiwala.shivam.util.PhoneUtil;
@@ -69,6 +69,23 @@ public class OrderDetailsActivity extends BaseDetailsActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
         init();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case AaryaConstants.REQUEST_CODE_UPDATE_ORDER:
+                if (resultCode == Activity.RESULT_OK) {
+                    if (data.hasExtra(ORDER_DATA)) {
+                        order = Gson.getInstance().fromJson(data.getStringExtra(ORDER_DATA), Order.class);
+                        refreshData();
+                    }
+                }
+                return;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     public EventBus getBus() {
@@ -119,19 +136,6 @@ public class OrderDetailsActivity extends BaseDetailsActivity {
     private void loadData() {
 
         tvName = findViewById(R.id.name);
-        if (customer == null) {
-            tvName.setText(getString(R.string.customer_not_exists));
-
-            showUpdate = false;
-            invalidateOptionsMenu();
-
-        } else {
-            tvName.setText(customer.getName().getValue());
-            loadCustomerRelatedInfo();
-
-            showUpdate = true;
-            invalidateOptionsMenu();
-        }
 
         rlWhatsApp = findViewById(R.id.rlWhatsApp);
         rlWhatsApp.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +167,7 @@ public class OrderDetailsActivity extends BaseDetailsActivity {
             }
         });
 
-        loadGroupView(null);
+        refreshData();
     }
 
     private void loadCustomerRelatedInfo() {
@@ -187,7 +191,28 @@ public class OrderDetailsActivity extends BaseDetailsActivity {
         });
     }
 
+    private void refreshData() {
+        if (customer == null) {
+            tvName.setText(getString(R.string.customer_not_exists));
+
+            showUpdate = false;
+            invalidateOptionsMenu();
+
+        } else {
+            tvName.setText(customer.getName().getValue());
+            loadCustomerRelatedInfo();
+
+            showUpdate = true;
+            invalidateOptionsMenu();
+        }
+
+        loadGroupView(null);
+
+    }
+
     private void loadGroupView(Bundle savedInstanceState) {
+
+        ((ViewGroup) findViewById(R.id.input_fields)).removeAllViews();
 
         ArrayList<InputFieldsGroup> inputFieldsGroups = new ArrayList<>();
         String customerName = "";
