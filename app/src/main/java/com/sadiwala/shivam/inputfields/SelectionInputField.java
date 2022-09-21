@@ -53,7 +53,6 @@ import java.util.Set;
 import de.greenrobot.event.EventBus;
 
 /**
- * Created by ankit on 30/11/16.
  * This class do following:
  * 1. Show hint default value is select
  * 2. Add click listener which will start another activity/fragment
@@ -449,15 +448,6 @@ public class SelectionInputField extends ParentInputField {
         if (mListener != null) {
             mListener.onRefreshData();
         }
-//
-//        if (onItemSelectedListener != null && !Util.isListEmpty(mSelectedOptions)) {
-//            onItemSelectedListener.onItemSelected(mSelectedOptions);
-//        } else {
-//            if (!Util.isListEmpty(mSelectedOptions)) {
-//                // migrating GenericSpinnerInputField selection
-//                getBus().postSticky(new CodeName(mInputFieldType.getCode(), mSelectedOptions.get(0).getCode()));
-//            }
-//        }
 
         // validate this field on value change.
         validateInput();

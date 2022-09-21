@@ -3,6 +3,8 @@ package com.sadiwala.shivam.ui.main;
 import static com.sadiwala.shivam.base.BaseBottomSheet.CLEAR_CLICK;
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.TABLE_CUSTOMERS;
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.TABLE_ORDERS;
+import static com.sadiwala.shivam.network.FirebaseDatabaseController.addCustomerInCache;
+import static com.sadiwala.shivam.network.FirebaseDatabaseController.addOrderInCache;
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.updateCustomerInCache;
 import static com.sadiwala.shivam.network.FirebaseDatabaseController.updateOrderInCache;
 import static com.sadiwala.shivam.ui.Customer.CustomerDetailsActivity.CUSTOMER_DATA;
@@ -34,7 +36,6 @@ import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
 import com.sadiwala.shivam.models.common.CodeName;
 import com.sadiwala.shivam.models.common.IBottomSheetListener;
-import com.sadiwala.shivam.preferences.DataController;
 import com.sadiwala.shivam.ui.BaseActivity;
 import com.sadiwala.shivam.ui.Customer.AddCustomerActivity;
 import com.sadiwala.shivam.util.AaryaConstants;
@@ -207,8 +208,8 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         Order order = new Order();
         order.setTimestamp(System.currentTimeMillis());
         order.setType(productType);
-        order.setCustomer(hashMap.get(Order.CUSTOMER));
 
+        order.setCustomer(hashMap.get(Order.CUSTOMER));
         order.setShoulder(hashMap.get(Order.SHOULDER));
         order.setChest(hashMap.get(Order.CHEST));
         order.setWaist(hashMap.get(Order.WAIST));
@@ -236,12 +237,8 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         collectionReference.add(order).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-
-                // Update cache data
-                ArrayList<Order> orders = DataController.getPrefOrders();
                 order.setId(documentReference.getId());
-                orders.add(0, order);
-                DataController.setPrefOrders(orders);
+                addOrderInCache(order);
 
                 Toast.makeText(getApplicationContext(), getString(R.string.order_added), Toast.LENGTH_LONG).show();
                 finish();
@@ -285,6 +282,7 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         map.put(Order.CLOTH_DESIGN, hashMap.get(Order.CLOTH_DESIGN));
         map.put(Order.CLOTH_COLOR, hashMap.get(Order.CLOTH_COLOR));
 
+        order.setCustomer(hashMap.get(Order.CUSTOMER));
         order.setShoulder(hashMap.get(Order.SHOULDER));
         order.setChest(hashMap.get(Order.CHEST));
         order.setWaist(hashMap.get(Order.WAIST));
@@ -345,12 +343,8 @@ public abstract class BaseAddActivity extends BaseActivity implements IBottomShe
         collectionReference.add(customer).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-
-                // Update cache data
-                ArrayList<Customer> customers = DataController.getPrefCustomers();
                 customer.setId(documentReference.getId());
-                customers.add(0, customer);
-                DataController.setPrefCustomers(customers);
+                addCustomerInCache(customer);
 
                 Toast.makeText(getApplicationContext(), getString(R.string.customer_added), Toast.LENGTH_LONG).show();
                 if (getIntent().getExtras() != null && getIntent().hasExtra(SelectionInputField.EXTRAS_CODE)) {

@@ -10,12 +10,15 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.sadiwala.shivam.inputfields.InputFieldValue;
 import com.sadiwala.shivam.inputfields.SelectionInputField;
 import com.sadiwala.shivam.models.Customer;
 import com.sadiwala.shivam.models.Order;
 import com.sadiwala.shivam.models.User;
+import com.sadiwala.shivam.models.common.CodeName;
 import com.sadiwala.shivam.preferences.DataController;
 import com.sadiwala.shivam.syncdata.WorkManagerUtils;
+import com.sadiwala.shivam.util.Gson;
 import com.sadiwala.shivam.util.Util;
 
 import java.util.ArrayList;
@@ -104,6 +107,12 @@ public class FirebaseDatabaseController {
         DataController.setPrefOrders(orders);
     }
 
+    public static void addCustomerInCache(Customer customer) {
+        ArrayList<Customer> customers = DataController.getPrefCustomers();
+        customers.add(0, customer);
+        DataController.setPrefCustomers(customers);
+    }
+
     public static void updateCustomerInCache(Customer customer) {
         ArrayList<Customer> customers = DataController.getPrefCustomers();
         for (int i = 0; i < customers.size(); i++) {
@@ -113,6 +122,12 @@ public class FirebaseDatabaseController {
             }
         }
         DataController.setPrefCustomers(customers);
+    }
+
+    public static void addOrderInCache(Order order) {
+        ArrayList<Order> orders = DataController.getPrefOrders();
+        orders.add(0, order);
+        DataController.setPrefOrders(orders);
     }
 
     public static void updateOrderInCache(Order order) {
@@ -148,6 +163,17 @@ public class FirebaseDatabaseController {
         return results;
     }
 
+    public static Customer getCustomerByCode(String code) {
+        ArrayList<Customer> customers = DataController.getPrefCustomers();
+        for (int i = 0; i < customers.size(); i++) {
+            Customer customer = customers.get(i);
+            if (customer.getId().equals(code)) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
     public static User getUser(QuerySnapshot queryDocumentSnapshots, User currentUser) {
         if (queryDocumentSnapshots != null && !Util.isListEmpty(queryDocumentSnapshots.getDocuments())) {
             for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
@@ -157,6 +183,21 @@ public class FirebaseDatabaseController {
             }
         }
         return null;
+    }
+
+    public static void updateLatestCustomerValue(ArrayList<InputFieldValue> inputFieldValues) {
+        for (InputFieldValue inputFieldValue : inputFieldValues) {
+            if (Order.CUSTOMER.equals(inputFieldValue.getCode())) {
+                String json = inputFieldValue.getValue();
+                String customerCode = SelectionInputField.getCodeFromJsonValue(json);
+                Customer customer = getCustomerByCode(customerCode);
+                if (customer != null) {
+                    ArrayList<CodeName> codeNames = new ArrayList<>();
+                    codeNames.add(new CodeName(customerCode, customer.getName().getValue()));
+                    inputFieldValue.setValue(Gson.getInstance().toJson(codeNames));
+                }
+            }
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package com.sadiwala.shivam.ui.Order;
 
 import static com.sadiwala.shivam.base.AppData.prepareOrderGroups;
+import static com.sadiwala.shivam.network.FirebaseDatabaseController.updateLatestCustomerValue;
 import static com.sadiwala.shivam.ui.Order.OrderDetailsActivity.ORDER_DATA;
 
 import android.app.Activity;
@@ -79,6 +80,7 @@ public class AddOrderActivity extends BaseAddActivity {
         if (order != null) {
             prepareOrderGroups(null, inputFieldValues, order);
         }
+        updateLatestCustomerValue(inputFieldValues);
 
         if (AppData.PRODUCT_TYPE.ALINE_GOWN.toString().equals(productType)) {
             if (order != null) {

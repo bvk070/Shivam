@@ -79,6 +79,7 @@ public class OrderDetailsActivity extends BaseDetailsActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     if (data.hasExtra(ORDER_DATA)) {
                         order = Gson.getInstance().fromJson(data.getStringExtra(ORDER_DATA), Order.class);
+                        customer = DataController.getCustomerById(SelectionInputField.getCodeFromJsonValue(order.getCustomer().getValue()));
                         refreshData();
                     }
                 }
